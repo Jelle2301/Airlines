@@ -1,0 +1,139 @@
+﻿/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #1e1e1e;
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    color: #fff;
+    animation: fadeIn 2s ease;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin: 1rem 0 2rem;
+    color: #ccc;
+}
+
+.options {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.option-btn {
+    background: #444;
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+    .option-btn:hover {
+        background: #5c5c5c;
+        transform: scale(1.05);
+    }
+
+/* About Section */
+.about {
+    background-color: #2b2b2b;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+    .about h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .about p {
+        max-width: 700px;
+        margin: 0 auto 1.5rem;
+        color: #ccc;
+    }
+
+/* Contact Section */
+.contact {
+    background-color: #1c1c1c;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+    .contact h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input, textarea {
+    padding: 1rem;
+    background: #333;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+button[type=\"submit\"] {
+    background: #5c5c5c;
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+    button[type=\"submit\"]:hover {
+        background: #777;
+    }
+
+.form-message {
+    margin-top: 1rem;
+    color: #88ff88;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
