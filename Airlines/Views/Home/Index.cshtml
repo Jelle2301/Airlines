@@ -1,48 +1,7 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to FlightFinder</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="script.js"></script>
-</head>
-<body>
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Welcome to FlightFinder ✈️</h1>
-            <p>Discover, compare and book flights with ease</p>
-            <div class="options">
-                <button class="option-btn">Search Flights</button>
-                <button class="option-btn">Popular Destinations</button>
-                <button class="option-btn">Travel Tips</button>
-            </div>
-        </div>
-    </header>
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
 
-    <section class="about">
-        <div class="container">
-            <h2>Who We Are</h2>
-            <p>
-                At FlightFinder, we're passionate about making your travel dreams come true. With our powerful search engine and top-tier partnerships, we bring you the best flight deals, all in one place.
-            </p>
-            <p>
-                Whether you're looking for a weekend getaway or a business trip, our intuitive platform helps you find the perfect flight fast.
-            </p>
-        </div>
-    </section>
-
-    <section class="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <form id="contactForm">
-                <input type="text" name="name" placeholder="Your Name" required />
-                <input type="email" name="email" placeholder="Your Email" required />
-                <textarea name="message" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-            <p class="form-message" id="formMessage"></p>
-        </div>
-    </section>
-</body>
-</html>
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
