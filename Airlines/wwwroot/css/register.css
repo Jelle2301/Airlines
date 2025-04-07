@@ -1,0 +1,93 @@
+﻿body {
+    background-color: #f8f9fa; /* Light gray background */
+
+    font-family: Arial, sans-serif;
+}
+
+
+h1 {
+    color: #333; /* Dark gray for the title */
+
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+}
+
+
+.col-md-4 {
+    background-color: #fff; /* White background for the form */
+
+    border-radius: 8px; /* Rounded corners */
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+
+    padding: 20px;
+    max-width: 400px; /* Limit the width of the form */
+
+    margin: 0 auto; /* Center the form */
+}
+
+
+h2 {
+    color: #333; /* Dark gray for the subtitle */
+
+    margin-bottom: 20px;
+}
+
+
+.form-floating {
+    margin-bottom: 15px; /* Space between form fields */
+}
+
+
+.form-control {
+    border: 1px solid #ccc; /* Light gray border */
+
+    border-radius: 4px; /* Rounded corners */
+
+    padding: 10px; /* Padding inside the input */
+
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+
+    .form-control:focus {
+        border-color: #007bff; /* Blue border on focus */
+
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue shadow on focus */
+    }
+
+
+label {
+    color: #555; /* Medium gray for labels */
+}
+
+
+.text-danger {
+    color: #dc3545; /* Bootstrap danger color for validation messages */
+}
+
+
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+
+    border: none; /* Remove border */
+
+    border-radius: 4px; /* Rounded corners */
+
+    padding: 10px; /* Padding inside the button */
+
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
