@@ -1,18 +1,12 @@
 ﻿@page
-
 @model RegisterModel
-
 @{
 
     ViewData["Title"] = "Register";
 
 }
-
-
 <h1>@ViewData["Title"]</h1>
-
 <link rel="stylesheet" href="/css/register.css" asp-append-version="true" /> <!-- Link to the stylesheet -->
-
 <div class="register-container">
 
     <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
