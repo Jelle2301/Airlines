@@ -1,14 +1,21 @@
 using Airlines.Data;
 using Domains.Data;
+using Domains.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Repositories;
+using Repositories.Interfaces;
+using Services;
+using Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<AirlineDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -30,19 +37,19 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "My API Employee",
+        Title = "My API Flights",
         Version = "version 1",
-        Description = "An API to perform Employee operations",
+        Description = "An API to see flight info",
         TermsOfService = new Uri("https://example.com/terms"),
         Contact = new OpenApiContact
         {
-            Name = "CDW",
-            Email = "christophe.dewaele@vives.be",
+            Name = "JGQB",
+            Email = "quinten.bernard1@gmail.com",
             Url = new Uri("https://vives.be"),
         },
         License = new OpenApiLicense
         {
-            Name = "Employee API LICX",
+            Name = "Flight API",
             Url = new Uri("https://example.com/license"),
         }
     });
@@ -50,7 +57,8 @@ builder.Services.AddSwaggerGen(c =>
 // add Automapper
 builder.Services.AddAutoMapper(typeof(Program));
 //DI
-// your code
+builder.Services.AddTransient<IDAO<Plaats>, PlaatsDAO>();
+builder.Services.AddTransient<IService<Plaats>, PlaatsService>();
 
 
 
