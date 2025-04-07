@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Repositories.Interfaces
 {
-    public class IDAO
+    public interface IDAO<T> where T : class
     {
+        Task<IEnumerable<T>?> GetAllAsync();
     }
 }

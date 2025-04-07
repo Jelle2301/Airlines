@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Services.Interfaces
 {
-    public class IService
+    public interface IService<T> where T : class
     {
+        Task<IEnumerable<T>?> GetAllAsync();
     }
 }
