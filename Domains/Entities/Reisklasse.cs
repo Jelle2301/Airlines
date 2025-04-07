@@ -9,5 +9,7 @@ public partial class Reisklasse
 
     public int ReisklasseId { get; set; }
 
+    public double ExtraPrijs { get; set; }
+
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

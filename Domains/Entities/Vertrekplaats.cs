@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Domains.Entities;
 
-public partial class Overstap
+public partial class Vertrekplaats
 {
-    public int OverstapId { get; set; }
+    public int VertrekplaatsId { get; set; }
 
     public int PlaatsId { get; set; }
 

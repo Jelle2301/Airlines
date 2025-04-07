@@ -11,5 +11,9 @@ public partial class Seizoen
 
     public int SeizoenId { get; set; }
 
+    public DateOnly BeginDatum { get; set; }
+
+    public DateOnly EindDatum { get; set; }
+
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

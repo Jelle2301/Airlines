@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domains.Entities;
 
-public partial class Plaat
+public partial class Plaats
 {
     public int PlaatsId { get; set; }
 
@@ -13,5 +13,5 @@ public partial class Plaat
 
     public virtual ICollection<Overstap> Overstaps { get; set; } = new List<Overstap>();
 
-    public virtual ICollection<Vertrekplaat> Vertrekplaats { get; set; } = new List<Vertrekplaat>();
+    public virtual ICollection<Vertrekplaats> Vertrekplaats { get; set; } = new List<Vertrekplaats>();
 }

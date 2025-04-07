@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Domains.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Domains.Data;
 
@@ -37,7 +36,7 @@ public partial class AirlineDbContext : DbContext
 
     public virtual DbSet<Overstap> Overstaps { get; set; }
 
-    public virtual DbSet<Plaat> Plaats { get; set; }
+    public virtual DbSet<Plaats> Plaats { get; set; }
 
     public virtual DbSet<Reisklasse> Reisklasses { get; set; }
 
@@ -45,22 +44,13 @@ public partial class AirlineDbContext : DbContext
 
     public virtual DbSet<Ticket> Tickets { get; set; }
 
-    public virtual DbSet<Vertrekplaat> Vertrekplaats { get; set; }
+    public virtual DbSet<Vertrekplaats> Vertrekplaats { get; set; }
+
+    public virtual DbSet<Vlucht> Vluchts { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-
-        if (!optionsBuilder.IsConfigured)
-        {
-            // install this packages: - Microsoft.Extensions.Configuration.Json
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("appsettings.json")
-            .Build();
-            // add connectionstring to appsettings.json file (see appsettings.json)
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-        }
-    }
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=.\\SQL22_VIVES; Database=flightDatabase ;Trusted_Connection=True; TrustServerCertificate=True;MultipleActiveResultSets=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -150,12 +140,9 @@ public partial class AirlineDbContext : DbContext
         {
             entity.ToTable("Boeking");
 
-            entity.Property(e => e.AchternaamBoeking)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.VoornaamBoeking)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+            entity.Property(e => e.AchternaamBoeking).IsUnicode(false);
+            entity.Property(e => e.UserId).HasMaxLength(50);
+            entity.Property(e => e.VoornaamBoeking).IsUnicode(false);
 
             entity.HasOne(d => d.Ticket).WithMany(p => p.Boekings)
                 .HasForeignKey(d => d.TicketId)
@@ -167,12 +154,8 @@ public partial class AirlineDbContext : DbContext
         {
             entity.ToTable("Maaltijd");
 
-            entity.Property(e => e.Naam)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.Soort)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+            entity.Property(e => e.Naam).IsUnicode(false);
+            entity.Property(e => e.Soort).IsUnicode(false);
         });
 
         modelBuilder.Entity<Overstap>(entity =>
@@ -185,31 +168,25 @@ public partial class AirlineDbContext : DbContext
                 .HasConstraintName("FK_Overstap_Plaats");
         });
 
-        modelBuilder.Entity<Plaat>(entity =>
+        modelBuilder.Entity<Plaats>(entity =>
         {
             entity.HasKey(e => e.PlaatsId);
 
-            entity.Property(e => e.Naam)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+            entity.Property(e => e.Naam).IsUnicode(false);
         });
 
         modelBuilder.Entity<Reisklasse>(entity =>
         {
             entity.ToTable("Reisklasse");
 
-            entity.Property(e => e.SoortReisklasse)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+            entity.Property(e => e.SoortReisklasse).IsUnicode(false);
         });
 
         modelBuilder.Entity<Seizoen>(entity =>
         {
             entity.ToTable("Seizoen");
 
-            entity.Property(e => e.SoortPeriode)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+            entity.Property(e => e.SoortPeriode).IsUnicode(false);
         });
 
         modelBuilder.Entity<Ticket>(entity =>
@@ -218,25 +195,12 @@ public partial class AirlineDbContext : DbContext
 
             entity.ToTable("Ticket");
 
-            entity.Property(e => e.Achternaam)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.Voornaam)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-
-            entity.HasOne(d => d.Bestemming).WithMany(p => p.Tickets)
-                .HasForeignKey(d => d.BestemmingId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Ticket_Bestemming");
+            entity.Property(e => e.Achternaam).IsUnicode(false);
+            entity.Property(e => e.Voornaam).IsUnicode(false);
 
             entity.HasOne(d => d.Maaltijd).WithMany(p => p.Tickets)
                 .HasForeignKey(d => d.MaaltijdId)
                 .HasConstraintName("FK_Ticket_Maaltijd");
-
-            entity.HasOne(d => d.Overstap).WithMany(p => p.Tickets)
-                .HasForeignKey(d => d.OverstapId)
-                .HasConstraintName("FK_Ticket_Overstap");
 
             entity.HasOne(d => d.Reisklasse).WithMany(p => p.Tickets)
                 .HasForeignKey(d => d.ReisklasseId)
@@ -248,13 +212,13 @@ public partial class AirlineDbContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Ticket_Seizoen");
 
-            entity.HasOne(d => d.Vertrekplaats).WithMany(p => p.Tickets)
-                .HasForeignKey(d => d.VertrekplaatsId)
+            entity.HasOne(d => d.Vliegtuig).WithMany(p => p.Tickets)
+                .HasForeignKey(d => d.VliegtuigId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Ticket_Vertrekplaats");
+                .HasConstraintName("FK_Ticket_Vliegtuig");
         });
 
-        modelBuilder.Entity<Vertrekplaat>(entity =>
+        modelBuilder.Entity<Vertrekplaats>(entity =>
         {
             entity.HasKey(e => e.VertrekplaatsId);
 
@@ -262,6 +226,27 @@ public partial class AirlineDbContext : DbContext
                 .HasForeignKey(d => d.PlaatsId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Vertrekplaats_Plaats");
+        });
+
+        modelBuilder.Entity<Vlucht>(entity =>
+        {
+            entity.HasKey(e => e.VliegtuigId).HasName("PK_Vliegtuig");
+
+            entity.ToTable("Vlucht");
+
+            entity.HasOne(d => d.Bestemming).WithMany(p => p.Vluchts)
+                .HasForeignKey(d => d.BestemmingId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Vliegtuig_Bestemming");
+
+            entity.HasOne(d => d.Overstap).WithMany(p => p.Vluchts)
+                .HasForeignKey(d => d.OverstapId)
+                .HasConstraintName("FK_Vliegtuig_Overstap");
+
+            entity.HasOne(d => d.Vertrekplaats).WithMany(p => p.Vluchts)
+                .HasForeignKey(d => d.VertrekplaatsId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Vliegtuig_Vertrekplaats");
         });
 
         OnModelCreatingPartial(modelBuilder);

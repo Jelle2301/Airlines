@@ -17,5 +17,7 @@ public partial class Boeking
 
     public double TotalePrijs { get; set; }
 
+    public string UserId { get; set; } = null!;
+
     public virtual Ticket Ticket { get; set; } = null!;
 }
