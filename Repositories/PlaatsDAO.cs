@@ -12,7 +12,7 @@ namespace Repositories
 {
     public class PlaatsDAO : IDAO<Plaats>
     {
-        private readonly AirlineDbContext dbContext;
+        private AirlineDbContext dbContext;
         public PlaatsDAO(AirlineDbContext context)
         {
             this.dbContext = context;

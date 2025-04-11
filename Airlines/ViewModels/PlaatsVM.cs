@@ -2,6 +2,7 @@
 {
     public class PlaatsVM
     {
-        public string Naam { get; set; }
+        public int PlaatsId { get; set; }
+        public string Naam { get; set; } = null!;
     }
 }
