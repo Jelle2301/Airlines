@@ -1,13 +1,16 @@
 using Airlines.Data;
 using Domains.Data;
 using Domains.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Repositories;
 using Repositories.Interfaces;
 using Services;
 using Services.Interfaces;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,10 +25,6 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
-
-
-
-
 
 // SwaggerGen produces JSON schema documents that power Swagger UI.By default, these are served up under / swagger
 //{ documentName}/ swagger.json, where { documentName} is usually the API version.
@@ -60,7 +59,25 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddTransient<IDAO<Plaats>, PlaatsDAO>();
 builder.Services.AddTransient<IService<Plaats>, PlaatsService>();
 
-
+builder.Services
+ .AddAuthentication(options =>
+ {
+     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+ })
+ .AddJwtBearer(cfg =>
+ {
+     cfg.RequireHttpsMetadata = false;
+     cfg.SaveToken = true;
+     cfg.TokenValidationParameters = new TokenValidationParameters
+     {
+         ValidIssuer = builder.Configuration["JwtConfig:JwtIssuer"],
+         ValidAudience = builder.Configuration["JwtConfig:JwtIssuer"],
+         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtConfig:JwtKey"])),
+         ClockSkew = TimeSpan.Zero // remove delay of token when expire
+     };
+ });
 
 
 
@@ -93,7 +110,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
