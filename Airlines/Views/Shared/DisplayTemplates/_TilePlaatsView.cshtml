@@ -1,9 +1,41 @@
 ﻿@model Airlines.ViewModels.PlaatsVM
 
 @if(Model != null){
+    
+    <div class="card">
+        <div class="content">
+
+            <div class="back">
+                <div class="back-content">
+                    <strong>@Model.Naam</strong>
+                </div>
+            </div>
+
+            <div class="front">
+                <div class="front-content">
+                    <br/>
+                    <br/>
+                    <br/>
+                    
+                    <div class="description">
+                        
+                        
+                        <form asp-controller="Boekings" asp-action="Index" method="get">
+                            <button type="submit">Boek nu</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+	@*
 	<div class="col-md-4">
         <div class="tile">
 			@Model.Naam
 		</div>
 	</div>
+	*@
 }

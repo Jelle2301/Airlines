@@ -9,7 +9,7 @@ namespace Airlines.AutoMapper
         public AutoMapperProfile()
         {
 
-            CreateMap<Plaats, PlaatsVM>();
+            CreateMap<Plaats, PlaatsVM>();         
         }
     }
 }

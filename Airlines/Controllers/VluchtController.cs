@@ -20,9 +20,11 @@ namespace Airlines.Controllers
             try
             {
                 var lstPlaatsen = await _plaatsService.GetAllAsync();
+                Console.WriteLine(lstPlaatsen);
                 List<PlaatsVM> lstPlaatsVM = null;//? of gwn op null zetten
                 if (lstPlaatsen != null)
                 {
+                    Console.WriteLine("test1");
                     lstPlaatsVM = _mapper.Map<List<PlaatsVM>>(lstPlaatsen);
                     return View(lstPlaatsVM);
                 }
