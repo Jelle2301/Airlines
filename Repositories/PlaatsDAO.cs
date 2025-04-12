@@ -26,7 +26,19 @@ namespace Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in DAO(LuchthavenDAO) in GetAllAsync");
+                Console.WriteLine("Error in DAO(PlaatsDAO) in GetAllAsync");
+                throw;
+            }
+        }
+        public async Task<IEnumerable<Plaats>?> GetById(int Id)
+        {
+            try
+            {
+                return await dbContext.Plaats.Where(v=> v.PlaatsId==Id).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in DAO(PlaatsDAO) in GetAllAsync");
                 throw;
             }
         }

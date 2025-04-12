@@ -11,7 +11,7 @@ namespace Services
 {
     public class PlaatsService : IService<Plaats>
     {
-        private IDAO<Plaats> _plaatsDAO;
+       private IDAO<Plaats> _plaatsDAO;
        public PlaatsService(IDAO<Plaats> plaatsDAO)
         {
             _plaatsDAO = plaatsDAO;
@@ -25,11 +25,23 @@ namespace Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Service(LuchthavenService) in GetAllAsync");
+                Console.WriteLine("Error in Service(PlaatsService) in GetAllAsync");
+                throw;
+            }
+        }
+        public async Task<IEnumerable<Plaats>?> GetById(int Id)
+        {
+            try
+            {
+                return await _plaatsDAO.GetByIdAsync(Id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(PlaatsService) in GetAllAsync");
                 throw;
             }
         }
 
-        
+
     }
 }
