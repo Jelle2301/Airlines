@@ -6,11 +6,11 @@ using Services.Interfaces;
 
 namespace Airlines.Controllers
 {
-    public class VluchtController : Controller
+    public class PlaatsController : Controller
     {
         private readonly IMapper _mapper;
         private readonly IService<Plaats> _plaatsService;
-        public VluchtController(IService<Plaats> plaatsService, IMapper mapper)
+        public PlaatsController(IService<Plaats> plaatsService, IMapper mapper)
         {
             _plaatsService = plaatsService;
             _mapper = mapper;

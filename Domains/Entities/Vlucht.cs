@@ -5,15 +5,7 @@ namespace Domains.Entities;
 
 public partial class Vlucht
 {
-    public int VliegtuigId { get; set; }
-
-    public int AantalGewonePlaatsen { get; set; }
-
-    public int AantalEconomyPlaatsen { get; set; }
-
-    public int AantalBusinessPlaatsen { get; set; }
-
-    public string NaamVliegtuig { get; set; } = null!;
+    public int VluchtId { get; set; }
 
     public double Prijs { get; set; }
 
@@ -23,9 +15,11 @@ public partial class Vlucht
 
     public int? OverstapId { get; set; }
 
-    public DateOnly TijdVertrek { get; set; }
+    public DateTime TijdVertrek { get; set; }
 
-    public DateOnly TijdAankomst { get; set; }
+    public DateTime TijdAankomst { get; set; }
+
+    public int VliegtuigId { get; set; }
 
     public virtual Bestemming Bestemming { get; set; } = null!;
 
@@ -34,4 +28,6 @@ public partial class Vlucht
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 
     public virtual Vertrekplaats Vertrekplaats { get; set; } = null!;
+
+    public virtual Vliegtuig Vliegtuig { get; set; } = null!;
 }

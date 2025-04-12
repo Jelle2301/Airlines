@@ -46,6 +46,8 @@ public partial class AirlineDbContext : DbContext
 
     public virtual DbSet<Vertrekplaats> Vertrekplaats { get; set; }
 
+    public virtual DbSet<Vliegtuig> Vliegtuigs { get; set; }
+
     public virtual DbSet<Vlucht> Vluchts { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -228,11 +230,21 @@ public partial class AirlineDbContext : DbContext
                 .HasConstraintName("FK_Vertrekplaats_Plaats");
         });
 
+        modelBuilder.Entity<Vliegtuig>(entity =>
+        {
+            entity.HasKey(e => e.VliegtuigId).HasName("PK_Vliegtuig_1");
+
+            entity.ToTable("Vliegtuig");
+        });
+
         modelBuilder.Entity<Vlucht>(entity =>
         {
-            entity.HasKey(e => e.VliegtuigId).HasName("PK_Vliegtuig");
+            entity.HasKey(e => e.VluchtId).HasName("PK_Vliegtuig");
 
             entity.ToTable("Vlucht");
+
+            entity.Property(e => e.TijdAankomst).HasColumnType("datetime");
+            entity.Property(e => e.TijdVertrek).HasColumnType("datetime");
 
             entity.HasOne(d => d.Bestemming).WithMany(p => p.Vluchts)
                 .HasForeignKey(d => d.BestemmingId)
@@ -247,6 +259,11 @@ public partial class AirlineDbContext : DbContext
                 .HasForeignKey(d => d.VertrekplaatsId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Vliegtuig_Vertrekplaats");
+
+            entity.HasOne(d => d.Vliegtuig).WithMany(p => p.Vluchts)
+                .HasForeignKey(d => d.VliegtuigId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Vlucht_Vliegtuig");
         });
 
         OnModelCreatingPartial(modelBuilder);
