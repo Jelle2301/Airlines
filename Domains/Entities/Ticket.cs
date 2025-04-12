@@ -13,10 +13,6 @@ public partial class Ticket
 
     public double Prijs { get; set; }
 
-    public DateOnly TijdVertrek { get; set; }
-
-    public DateOnly TijdAankomst { get; set; }
-
     public int? MaaltijdId { get; set; }
 
     public int ReisklasseId { get; set; }

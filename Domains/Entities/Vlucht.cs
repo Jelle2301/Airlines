@@ -23,6 +23,10 @@ public partial class Vlucht
 
     public int? OverstapId { get; set; }
 
+    public DateOnly TijdVertrek { get; set; }
+
+    public DateOnly TijdAankomst { get; set; }
+
     public virtual Bestemming Bestemming { get; set; } = null!;
 
     public virtual Overstap? Overstap { get; set; }
