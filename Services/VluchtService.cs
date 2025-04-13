@@ -29,5 +29,10 @@ namespace Services
                 throw;
             }
         }
+
+        public Task<IEnumerable<Vlucht>?> GetByIdAsync(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

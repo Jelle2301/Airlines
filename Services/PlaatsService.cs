@@ -29,7 +29,7 @@ namespace Services
                 throw;
             }
         }
-        public async Task<IEnumerable<Plaats>?> GetById(int Id)
+        public async Task<IEnumerable<Plaats>?> GetByIdAsync(int Id)
         {
             try
             {
@@ -41,7 +41,6 @@ namespace Services
                 throw;
             }
         }
-
 
     }
 }

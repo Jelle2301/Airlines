@@ -4,7 +4,23 @@
     ViewData["Title"] = "Index";
 }
 
-<link rel="stylesheet" href="/css/vluchten.css" asp-append-version="true" />
+<link rel="stylesheet" href="/css/plaatsen.css" asp-append-version="true" />
+<link rel="stylesheet" href="/css/VertrekplaatsKnoppen.css" asp-append-version="true" />
+
+<p>Kies jouw vertrekplaats</p>
+<br/>
+<div class="flex-container">
+    <div class="btn-group">
+    @foreach (var item in Model)
+    {
+            <button class="btn" type="button">@item.Naam</button>
+    }
+    </div>
+</div>
+<br />
+
+<p>Kies jouw bestemming</p>
+
 <div class="flex-container">
     @foreach (var item in Model)
     {

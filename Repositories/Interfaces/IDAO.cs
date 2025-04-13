@@ -9,5 +9,6 @@ namespace Repositories.Interfaces
     public interface IDAO<T> where T : class
     {
         Task<IEnumerable<T>?> GetAllAsync();
+        Task<IEnumerable<T>?> GetByIdAsync(int Id);
     }
 }

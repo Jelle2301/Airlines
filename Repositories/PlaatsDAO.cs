@@ -30,7 +30,7 @@ namespace Repositories
                 throw;
             }
         }
-        public async Task<IEnumerable<Plaats>?> GetById(int Id)
+        public async Task<IEnumerable<Plaats>?> GetByIdAsync(int Id)
         {
             try
             {
@@ -41,6 +41,11 @@ namespace Repositories
                 Console.WriteLine("Error in DAO(PlaatsDAO) in GetAllAsync");
                 throw;
             }
+        }
+
+        public Task<IEnumerable<Plaats>?> GetByIdAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

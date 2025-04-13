@@ -9,5 +9,6 @@ namespace Services.Interfaces
     public interface IService<T> where T : class
     {
         Task<IEnumerable<T>?> GetAllAsync();
+        Task<IEnumerable<T>?> GetByIdAsync(int Id);
     }
 }
