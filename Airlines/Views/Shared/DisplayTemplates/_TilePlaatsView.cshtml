@@ -24,6 +24,8 @@
                         
                         
                         <form asp-controller="Boekings" asp-action="Index" method="get">
+                            <input type="hidden" name="vertrekplaatsId" class="vertrekplaats-id" />
+                            <input type="hidden" name="bestemmingId" value="@Model.Naam" />
                             <button type="submit">Boek nu</button>
                         </form>
                         
