@@ -5,57 +5,63 @@
 }
 
 <link rel="stylesheet" href="/css/plaatsen.css" asp-append-version="true" />
-<link rel="stylesheet" href="/css/VertrekplaatsKnoppen.css" asp-append-version="true" />
+<link rel="stylesheet" href="/css/plaatsKnoppen.css" asp-append-version="true" />
 
 <p>Kies jouw vertrekplaats</p>
 <br/>
-<div class="flex-container">
-    <div class="btn-group">
+<div class="radio-input">
     @foreach (var item in Model)
     {
-            <button class="vertrekplaatsBtn" type="button" data-vertrekplaats-id="@item.Naam">@item.Naam</button>
+        <label>
+            <input value="@item.Naam" name="value-radio-vertrek" id="@item.Naam-Vertrek" type="radio" />
+            <span>@item.Naam</span>
+        </label>
     }
-    </div>
+     
 </div>
 <br />
 
 <p>Kies jouw bestemming</p>
+<br />
+<div class="radio-input">
+        @foreach (var item in Model)
+        {
+        <label>
+            <input value="@item.Naam" name="value-radio-bestemming" id="@item.Naam-Bestemming" type="radio" />
+            <span>@item.Naam</span>
+        </label>
+        }
 
+</div>
+<br />
+<a href="#" id="zieVluchtenLink">Zie vluchten</a>
+ @*
 <div class="flex-container">
     @foreach (var item in Model)
     {
         @await Html.PartialAsync("DisplayTemplates/_TilePlaatsView",item)
     }
 </div>
+*@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var link = document.getElementById("zieVluchtenLink");
 
-@* 
-<h1>Index</h1>
+        link.addEventListener("click", function (event) {
+            // Zoek de geselecteerde vertrekplaats
+            var vertrekRadio = document.querySelector('input[name="value-radio-vertrek"]:checked');
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Naam)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Naam)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
- *@
+            if (!vertrekRadio) {
+                alert("Kies een vertrekplaats.");
+                event.preventDefault(); // stop klikken als niks gekozen is
+                return;
+            }
+
+            var vertrek = vertrekRadio.value;
+
+            // Stel de nieuwe URL in voor de link
+            var baseUrl = "/Boekings/Index";
+            link.href = baseUrl + "?vertrek=" + encodeURIComponent(vertrek);
+        });
+    });
+</script>

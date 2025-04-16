@@ -4,9 +4,9 @@ namespace Airlines.Controllers
 {
     public class BoekingsController : Controller
     {
-        public IActionResult Index(int Id)
+        public IActionResult Index(string vertrek)
         {
-            return View();
+            return View("Index");
         }
     }
 }
