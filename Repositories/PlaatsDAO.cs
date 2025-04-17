@@ -30,11 +30,11 @@ namespace Repositories
                 throw;
             }
         }
-        public async Task<IEnumerable<Plaats>?> GetByIdAsync(int Id)
+        public async Task<Plaats?> GetByNaamAsync(string naam)
         {
             try
             {
-                return await dbContext.Plaats.Where(v=> v.PlaatsId==Id).ToListAsync();
+                return await dbContext.Plaats.Where(v => v.Naam.Equals(naam)).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
@@ -43,9 +43,6 @@ namespace Repositories
             }
         }
 
-        public Task<IEnumerable<Plaats>?> GetByIdAsync()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

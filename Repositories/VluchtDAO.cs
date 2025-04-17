@@ -30,8 +30,22 @@ namespace Repositories
                 throw;
             }
         }
+        public async Task<IEnumerable<Vlucht>?> GetVluchtenTussenPlaatsen(int vertrekPlaatdId, int bestemmingId)
+        {
+            try
+            {
+                return await dbContext.Vluchts.Include(v => v.Vliegtuig).Include(v => v.Vertrekplaats).Where(v => v.VertrekplaatsId ==vertrekPlaatdId).Include(v => v.Bestemming).ThenInclude(b => b.Plaats).Where(v => v.BestemmingId == bestemmingId).ToListAsync();
 
-        public Task<IEnumerable<Vlucht>?> GetByIdAsync(int Id)
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in DAO(VluchtDAO) in GetAllAsync");
+                throw;
+            }
+        }
+        
+
+        public Task<Plaats?> GetByNaamAsync(string naam)
         {
             throw new NotImplementedException();
         }

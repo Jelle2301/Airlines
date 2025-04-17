@@ -30,7 +30,9 @@ namespace Services
             }
         }
 
-        public Task<IEnumerable<Vlucht>?> GetByIdAsync(int Id)
+        
+
+        public Task<Plaats?> GetByNaamAsync(string naam)
         {
             throw new NotImplementedException();
         }

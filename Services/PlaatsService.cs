@@ -29,11 +29,11 @@ namespace Services
                 throw;
             }
         }
-        public async Task<IEnumerable<Plaats>?> GetByIdAsync(int Id)
+        public async Task<Plaats?> GetByNaamAsync(string naam)
         {
             try
             {
-                return await _plaatsDAO.GetByIdAsync(Id);
+                return await _plaatsDAO.GetByNaamAsync(naam);
             }
             catch (Exception ex)
             {
@@ -41,6 +41,7 @@ namespace Services
                 throw;
             }
         }
+
 
     }
 }
