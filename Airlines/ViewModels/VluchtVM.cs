@@ -3,7 +3,7 @@
     public class VluchtVM
     {
 
-        public double BeginPrijd { get; set; }
+        public double BeginPrijs { get; set; }
 
         public DateTime TijdVertrek { get; set; }
 

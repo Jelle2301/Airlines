@@ -1,10 +1,97 @@
-﻿
+﻿@model IEnumerable<Airlines.ViewModels.VluchtVM>
+
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
 
-<p>Knop en pagina werkt</p>
-
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BeginPrijs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TijdVertrek)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TijdAankomst)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VliegtuigNaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AantalTotalePlaatsen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AantalGewonePlaatsen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AantalBusinessPlaatsen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AantalEconomyPlaatsen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VertrekNaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverstapNaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BestemmingNaam)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeginPrijs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TijdVertrek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TijdAankomst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VliegtuigNaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AantalTotalePlaatsen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AantalGewonePlaatsen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AantalBusinessPlaatsen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AantalEconomyPlaatsen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VertrekNaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OverstapNaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BestemmingNaam)
+            </td>
+            @*
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+            *@
+        </tr>
+}
+    </tbody>
+</table>

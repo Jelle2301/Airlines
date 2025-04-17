@@ -27,10 +27,14 @@ namespace Airlines.Controllers
                 int vertrekPlaatsId = _plaatsService.GetByNaamAsync(vertrek).Result.PlaatsId;
                 int bestemmingId = _plaatsService.GetByNaamAsync(bestemming).Result.PlaatsId;
                 var lstVluchten = await _vluchtService.GetVluchtenTussenPlaatsen(vertrekPlaatsId, bestemmingId);
-
-                List<PlaatsVM> lstTestVM = null;
-
-                return View(lstTestVM);
+                
+                List<VluchtVM> lstVluchtVM = null;
+                if(lstVluchten != null)
+                {
+                    lstVluchtVM = _mapper.Map<List<VluchtVM>>(lstVluchten);
+                    return View(lstVluchtVM);
+                }
+        
                 
             }
             catch (Exception ex)
