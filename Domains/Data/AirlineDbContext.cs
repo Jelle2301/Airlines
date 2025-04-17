@@ -214,10 +214,10 @@ public partial class AirlineDbContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Ticket_Seizoen");
 
-            entity.HasOne(d => d.Vliegtuig).WithMany(p => p.Tickets)
-                .HasForeignKey(d => d.VliegtuigId)
+            entity.HasOne(d => d.Vlucht).WithMany(p => p.Tickets)
+                .HasForeignKey(d => d.VluchtId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Ticket_Vliegtuig");
+                .HasConstraintName("FK_Ticket_Vlucht");
         });
 
         modelBuilder.Entity<Vertrekplaats>(entity =>

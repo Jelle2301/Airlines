@@ -19,7 +19,7 @@ public partial class Ticket
 
     public int SeizoenId { get; set; }
 
-    public int VliegtuigId { get; set; }
+    public int VluchtId { get; set; }
 
     public virtual ICollection<Boeking> Boekings { get; set; } = new List<Boeking>();
 
@@ -29,5 +29,5 @@ public partial class Ticket
 
     public virtual Seizoen Seizoen { get; set; } = null!;
 
-    public virtual Vlucht Vliegtuig { get; set; } = null!;
+    public virtual Vlucht Vlucht { get; set; } = null!;
 }
