@@ -7,11 +7,8 @@ using Domains.Entities;
 
 namespace Repositories.Interfaces
 {
-    public interface IDAO<T> where T : class
+    public interface IVluchtDAO : IDAO<Vlucht>
     {
-        Task<IEnumerable<T>?> GetAllAsync();
-        
-
-
+        Task<IEnumerable<Vlucht>?> GetVluchtenTussenPlaatsen(int vertrekPlaatdId, int bestemmingId);
     }
 }

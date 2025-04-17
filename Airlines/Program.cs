@@ -56,10 +56,10 @@ builder.Services.AddSwaggerGen(c =>
 // add Automapper
 builder.Services.AddAutoMapper(typeof(Program));
 //DI
-builder.Services.AddTransient<IDAO<Plaats>, PlaatsDAO>();
-builder.Services.AddTransient<IService<Plaats>, PlaatsService>();
-builder.Services.AddTransient<IDAO<Vlucht>, VluchtDAO>();
-builder.Services.AddTransient<IService<Vlucht>, VluchtService>();
+builder.Services.AddTransient<IPlaatsDAO, PlaatsDAO>();
+builder.Services.AddTransient<IPlaatsService, PlaatsService>();
+builder.Services.AddTransient<IVluchtDAO, VluchtDAO>();
+builder.Services.AddTransient<IVluchtService, VluchtService>();
 
 builder.Services
  .AddAuthentication(options =>

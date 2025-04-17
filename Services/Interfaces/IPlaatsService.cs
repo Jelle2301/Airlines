@@ -7,10 +7,8 @@ using Domains.Entities;
 
 namespace Services.Interfaces
 {
-    public interface IService<T> where T : class
+    public interface IPlaatsService : IService<Plaats>
     {
-        Task<IEnumerable<T>?> GetAllAsync();
-
-
+        Task<Plaats?> GetByNaamAsync(string naam);
     }
 }

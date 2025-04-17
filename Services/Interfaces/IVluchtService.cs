@@ -7,10 +7,8 @@ using Domains.Entities;
 
 namespace Services.Interfaces
 {
-    public interface IService<T> where T : class
+    public interface IVluchtService : IService<Plaats>
     {
-        Task<IEnumerable<T>?> GetAllAsync();
-
-
+        Task<IEnumerable<Vlucht>?> GetVluchtenTussenPlaatsen(int vertrekPlaatdId, int bestemmingId);
     }
 }

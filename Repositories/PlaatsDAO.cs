@@ -10,7 +10,7 @@ using Repositories.Interfaces;
 
 namespace Repositories
 {
-    public class PlaatsDAO : IDAO<Plaats>
+    public class PlaatsDAO : IPlaatsDAO
     {
         private AirlineDbContext dbContext;
         public PlaatsDAO(AirlineDbContext context)
@@ -30,6 +30,7 @@ namespace Repositories
                 throw;
             }
         }
+
         public async Task<Plaats?> GetByNaamAsync(string naam)
         {
             try

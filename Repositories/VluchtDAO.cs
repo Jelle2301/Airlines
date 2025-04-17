@@ -10,7 +10,7 @@ using Repositories.Interfaces;
 
 namespace Repositories
 {
-    public class VluchtDAO : IDAO<Vlucht>
+    public class VluchtDAO : IVluchtDAO
     {
         private AirlineDbContext dbContext;
         public VluchtDAO(AirlineDbContext context)

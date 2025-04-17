@@ -9,10 +9,10 @@ using Services.Interfaces;
 
 namespace Services
 {
-    public class PlaatsService : IService<Plaats>
+    public class PlaatsService : IPlaatsService
     {
-       private IDAO<Plaats> _plaatsDAO;
-       public PlaatsService(IDAO<Plaats> plaatsDAO)
+       private IPlaatsDAO _plaatsDAO;
+       public PlaatsService(IPlaatsDAO plaatsDAO)
         {
             _plaatsDAO = plaatsDAO;
         }

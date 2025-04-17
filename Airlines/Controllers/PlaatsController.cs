@@ -2,6 +2,7 @@
 using AutoMapper;
 using Domains.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Services;
 using Services.Interfaces;
 
 namespace Airlines.Controllers
@@ -9,8 +10,8 @@ namespace Airlines.Controllers
     public class PlaatsController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IService<Plaats> _plaatsService;
-        public PlaatsController(IService<Plaats> plaatsService, IMapper mapper)
+        private readonly IPlaatsService _plaatsService;
+        public PlaatsController(IPlaatsService plaatsService, IMapper mapper)
         {
             _plaatsService = plaatsService;
             _mapper = mapper;

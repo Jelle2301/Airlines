@@ -10,31 +10,30 @@ using Services.Interfaces;
 
 namespace Services
 {
-    public class VluchtService : IService<Vlucht>
+    public class VluchtService : IVluchtService
     {
-        private IDAO<Vlucht> _vluchtDAO;
-        public VluchtService(IDAO<Vlucht> vluchtDAO)
+        private IVluchtDAO _vluchtDAO;
+        public VluchtService(IVluchtDAO vluchtDAO)
         {
             _vluchtDAO = vluchtDAO;
         }
-        public async Task<IEnumerable<Vlucht>?> GetAllAsync()
+
+        public Task<IEnumerable<Plaats>?> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<Vlucht>?> GetVluchtenTussenPlaatsen(int vertrekPlaatdId, int bestemmingId)
         {
             try
             {
-                return await _vluchtDAO.GetAllAsync();
+                return await _vluchtDAO.GetVluchtenTussenPlaatsen(vertrekPlaatdId, bestemmingId);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error in Service(VluchtService) in GetAllAsync");
                 throw;
             }
-        }
-
-        
-
-        public Task<Plaats?> GetByNaamAsync(string naam)
-        {
-            throw new NotImplementedException();
         }
     }
 }

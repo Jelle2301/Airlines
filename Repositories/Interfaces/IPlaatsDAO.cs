@@ -5,12 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Domains.Entities;
 
-namespace Services.Interfaces
+namespace Repositories.Interfaces
 {
-    public interface IService<T> where T : class
+    public interface IPlaatsDAO : IDAO<Plaats>
     {
-        Task<IEnumerable<T>?> GetAllAsync();
-
-
+        Task<Plaats?> GetByNaamAsync(string naam);
     }
 }
