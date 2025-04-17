@@ -5,10 +5,8 @@
 }
 
 <h1>Index</h1>
+<link rel="stylesheet" href="/css/vluchten.css" asp-append-version="true" />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -79,11 +77,20 @@
                 @Html.DisplayFor(modelItem => item.VertrekNaam)
             </td>
             <td>
+                @if(item.OverstapNaam == null){
+                    <p>Geen overstap</p>
+                }else{
                 @Html.DisplayFor(modelItem => item.OverstapNaam)
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BestemmingNaam)
             </td>
+                <td>
+                    <a asp-controller="Ticket" asp-action="Index" asp-route-vlucht="@item">
+                        Boek deze vlucht
+                    </a>
+                </td>
             @*
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
