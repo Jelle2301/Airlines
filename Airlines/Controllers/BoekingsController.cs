@@ -18,7 +18,22 @@ namespace Airlines.Controllers
         }
         public IActionResult Index(string vertrek, string bestemming)
         {
-            return View("Index");
+            try
+            {
+                int vertrekPlaatsId = _plaatsService.GetByNaamAsync(vertrek).Result.PlaatsId;
+                var lstPlaatsen = _plaatsService.GetAllAsync();
+                
+                
+                    
+                return View("Index");
+                
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Er is een fout opgetreden");
+            }
+            return View();
+           
         }
     }
 }
