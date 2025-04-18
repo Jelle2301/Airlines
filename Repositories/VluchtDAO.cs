@@ -45,9 +45,6 @@ namespace Repositories
         }
         
 
-        public Task<Plaats?> GetByNaamAsync(string naam)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

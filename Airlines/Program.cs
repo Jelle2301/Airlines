@@ -60,6 +60,8 @@ builder.Services.AddTransient<IPlaatsDAO, PlaatsDAO>();
 builder.Services.AddTransient<IPlaatsService, PlaatsService>();
 builder.Services.AddTransient<IVluchtDAO, VluchtDAO>();
 builder.Services.AddTransient<IVluchtService, VluchtService>();
+builder.Services.AddTransient<IMaaltijdDAO, MaaltijdDAO>();
+builder.Services.AddTransient<IMaaltijdService, MaaltijdService>();
 
 builder.Services
  .AddAuthentication(options =>

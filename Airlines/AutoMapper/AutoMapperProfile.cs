@@ -14,8 +14,7 @@ namespace Airlines.AutoMapper
             CreateMap<Vlucht, VluchtVM>()
                 .ForMember(dest=> dest.BeginPrijs,
                     opts=> opts.MapFrom(
-                        src=> src.Prijs
-                    ))
+                        src=> src.Prijs))
                 .ForMember(dest=> dest.VliegtuigNaam,
                     opts=>opts.MapFrom(
                         src=>src.Vliegtuig.VliegtuigNaam))
@@ -41,6 +40,14 @@ namespace Airlines.AutoMapper
                     opts => opts.MapFrom(
                         src => src.Bestemming.Plaats.Naam))
                 ;
+
+            CreateMap<Maaltijd, MaaltijdVM>()
+                .ForMember(dest => dest.ExtraPrijs,
+                    opts => opts.MapFrom(
+                        src => src.Prijs))
+                .ForMember(dest => dest.SoortMaaltijd,
+                    opts => opts.MapFrom(
+                        src => src.Soort));
         }
     }
 }

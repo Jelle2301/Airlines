@@ -50,6 +50,8 @@ public partial class AirlineDbContext : DbContext
 
     public virtual DbSet<Vlucht> Vluchts { get; set; }
 
+    public virtual DbSet<Zitplaat> Zitplaats { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server = tcp:flight-project-vives.database.windows.net; Initial Catalog = flightDatabase; User ID = beheerder; Password = Flight1Ww.; MultipleActiveResultSets = True; Encrypt = True; TrustServerCertificate = True;");
@@ -218,6 +220,11 @@ public partial class AirlineDbContext : DbContext
                 .HasForeignKey(d => d.VluchtId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Ticket_Vlucht");
+
+            entity.HasOne(d => d.Zitplaats).WithMany(p => p.Tickets)
+                .HasForeignKey(d => d.ZitplaatsId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Ticket_Zitplaats");
         });
 
         modelBuilder.Entity<Vertrekplaats>(entity =>
@@ -264,6 +271,11 @@ public partial class AirlineDbContext : DbContext
                 .HasForeignKey(d => d.VliegtuigId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Vlucht_Vliegtuig");
+        });
+
+        modelBuilder.Entity<Zitplaat>(entity =>
+        {
+            entity.HasKey(e => e.ZitplaatsId);
         });
 
         OnModelCreatingPartial(modelBuilder);
