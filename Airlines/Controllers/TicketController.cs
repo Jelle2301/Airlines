@@ -16,8 +16,10 @@ namespace Airlines.Controllers
             this._reisklasseService = reisklasseService;
             this._maaltijdService = maaltijdService;
         }
+        /*
         public async IActionResult Index(VluchtVM vluchtVM)
         {
+
             try
             {
                 var lstReisklassen = await _reisklasseService.GetAllAsync();
@@ -43,5 +45,6 @@ namespace Airlines.Controllers
 
             return View();
         }
+        */
     }
 }
