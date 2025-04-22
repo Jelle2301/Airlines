@@ -2,6 +2,39 @@
     ViewData["Title"] = "Home Page";
 }
 
+<link rel="stylesheet" href="/css/beginpagina.css" asp-append-version="true" />
+<div class="welkomBlokDiv">
+
+<section class="welkomBlok">
+    <img src="/images/vliegtuigBeginpagina.jpg" alt="Vliegtuig" />
+    <h1>WELKOM BIJ GILWE AIRLINES ✈️</h1>
+    <p>Uw reis begint hier — eenvoudig, snel en voordelig!</p>
+    
+    <a class="zieVluchtenLink" asp-area="" asp-controller="Plaats" asp-action="Index">Bekijk vluchten</a>
+</section>
+</div>
+<section class="missie">
+    <h2>🛫 Onze missie</h2>
+    <p>Wij bieden jullie een top service aan zonder veel vertraging als bij TUI, alsook bieden wij u geen stakingen aan als bij NMBS.</p>
+</section>
+
+<section class="info">
+    <div class="infoDiv">
+        <div class="infoblokje">
+            <h3>✈️ Vluchten boeken</h3>
+            <p>U kunt bij ons eenvoudig een vlucht inboeken.</p>
+        </div>
+        <div class="infoblokje">
+            <h3>🍽️ Maaltijden tijdens uw vlucht</h3>
+            <p>Ook kunt u een lekkere maaltijd bij uw vlucht aankopen</p>
+        </div>
+        <div class="infoblokje">
+            <h3>🧳 Voordelig op reis</h3>
+            <p>Wij bieden u acceptabele en goedkope prijzen aan.</p>
+        </div>
+    </div>
+</section>
+@*
 <div>
     <h1>Welkom bij Gilwe Airlines !</h1>
     <p>Bij ons kunt u terecht voor het boeken van vluchten tegen een voordelig tarief.</p>
@@ -13,3 +46,4 @@
         U kunt ook al uw hotel boeken bij uw vlucht, wij stellen enkele hotels voor na het selecteren van uw bestemming.
     </p>
 </div>
+*@

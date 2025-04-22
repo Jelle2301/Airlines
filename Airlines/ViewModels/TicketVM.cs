@@ -12,13 +12,13 @@ namespace Airlines.ViewModels
 
         public double Prijs { get; set; }
 
-        public MaaltijdVM maaltijd { get; set; } = null!;
+        public MaaltijdVM Maaltijd { get; set; } = null!;
 
-        public ReisklasseVM reisklasse { get; set; } = null!;
+        public ReisklasseVM Reisklasse { get; set; } = null!;
 
-        public SeizoenVM seizoen { get; set; } = null!;
-        public VluchtVM vlucht { get; set; } = null!;
+        public SeizoenVM Seizoen { get; set; } = null!;
+        public VluchtVM Vlucht { get; set; } = null!;
 
-        public ZitplaatsVM zitplaats { get; set; } = null!;
+        public ZitplaatsVM Zitplaats { get; set; } = null!;
     }
 }

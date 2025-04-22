@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Domains.Entities;
 using Repositories.Interfaces;
+using Services.Interfaces;
 
 namespace Services
 {
-    public class SeizoenService
+    public class SeizoenService : ISeizoenService
     {
         private ISeizoenDAO _seizoenDAO;
         public SeizoenService(ISeizoenDAO seizoenDAO)

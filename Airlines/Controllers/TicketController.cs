@@ -7,6 +7,14 @@ namespace Airlines.Controllers
     {
         public IActionResult Index(VluchtVM vluchtVM)
         {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Er is een fout opgetreden");
+            }
 
             return View();
         }

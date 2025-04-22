@@ -62,6 +62,12 @@ builder.Services.AddTransient<IVluchtDAO, VluchtDAO>();
 builder.Services.AddTransient<IVluchtService, VluchtService>();
 builder.Services.AddTransient<IMaaltijdDAO, MaaltijdDAO>();
 builder.Services.AddTransient<IMaaltijdService, MaaltijdService>();
+builder.Services.AddTransient<IReisklasseDAO, ReisklasseDAO>();
+builder.Services.AddTransient<IReisklasseService, ReisklasseService>();
+builder.Services.AddTransient<ISeizoenDAO, SeizoenDAO>();
+builder.Services.AddTransient<ISeizoenService, SeizoenService>();
+builder.Services.AddTransient<IZitplaatsDAO, ZitplaatsDAO>();
+builder.Services.AddTransient<IZitplaatsService, ZitplaatsService>();
 
 builder.Services
  .AddAuthentication(options =>

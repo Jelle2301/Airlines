@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Domains.Entities;
 using Repositories.Interfaces;
+using Services.Interfaces;
 
 namespace Services
 {
-    public class ReisklasseService
+    public class ReisklasseService : IReisklasseService
     {
         private IReisklasseDAO _reisklasseDAO;
         public ReisklasseService(IReisklasseDAO reisklasseDAO)
