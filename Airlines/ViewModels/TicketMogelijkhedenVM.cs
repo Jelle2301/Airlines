@@ -2,9 +2,9 @@
 {
     public class TicketMogelijkhedenVM
     {
-        public List<MaaltijdVM> Maaltijd { get; set; } = null!;
+        public List<MaaltijdVM> Maaltijden { get; set; } = null!;
 
-        public List<ReisklasseVM> Reisklasse { get; set; } = null!;
+        public List<ReisklasseVM> Reisklassen { get; set; } = null!;
 
         public SeizoenVM Seizoen { get; set; } = null!;
         public VluchtVM Vlucht { get; set; } = null!;

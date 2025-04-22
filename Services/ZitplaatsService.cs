@@ -29,6 +29,17 @@ namespace Services
             }
         }
 
-        
+        public async Task<IEnumerable<Zitplaat>?> GetAllZitplaatsenByVluchtAsync(int vluchtId)
+        {
+            try
+            {
+                return await _zitplaatsDAO.GetAllZitplaatsenByVluchtAsync(vluchtId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(ZitplaatsService) in GetAllAsync");
+                throw;
+            }
+        }
     }
 }

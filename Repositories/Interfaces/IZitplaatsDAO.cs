@@ -9,5 +9,6 @@ namespace Repositories.Interfaces
 {
     public interface IZitplaatsDAO : IDAO<Zitplaat>
     {
+        Task<IEnumerable<Zitplaat>?> GetAllZitplaatsenByVluchtAsync(int vluchtId);
     }
 }
