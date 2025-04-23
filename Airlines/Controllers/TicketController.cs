@@ -56,6 +56,7 @@ namespace Airlines.Controllers
                         ticketMogelijkhedenVM.Seizoen = _mapper.Map<SeizoenVM>(seizoen);
                     }
                 }
+               ticketMogelijkhedenVM.TotaalPrijs = vluchtVM.BeginPrijs;
                 return View(ticketMogelijkhedenVM);
 
             }

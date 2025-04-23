@@ -10,5 +10,6 @@
         public VluchtVM Vlucht { get; set; } = null!;
 
         public ZitplaatsVM Zitplaats { get; set; } = null!;
+        public double TotaalPrijs { get; set; } = 0;
     }
 }

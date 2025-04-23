@@ -53,7 +53,7 @@
        
         @foreach (var item in Model.Maaltijden)
         {
-            <div class="maaltijdKaart" onclick="selectMeal(this)">
+            <div class="maaltijdKaart" onclick="selecteerMaaltijd(this)" data-prijs="@item.ExtraPrijs">
                 <img src="/images/maaltijden/@(item.Naam + ".jpg")" alt="@item.Naam" />
                 <div class="inhoudVanMaaltijd">
                     <h4>@item.Naam</h4>
@@ -70,7 +70,7 @@
         
             @foreach (var item in Model.Reisklassen)
             {
-            <label><input type="radio" name="reisklasse" value="@item.SoortReisklasse"> @item.SoortReisklasse (+ €@item.ExtraPrijs)</label>
+            <label><input type="radio" onchange="selecteerReisklasse(this)" data-prijs="@item.ExtraPrijs" name="reisklasse" value="@item.SoortReisklasse"> @item.SoortReisklasse (+ €@item.ExtraPrijs)</label>
             }
         
     </div>
@@ -95,7 +95,7 @@
         <input type="text" id="Achternaam" name="Achternaam" placeholder="Achternaam" />
     </div>
     <div class="kleinBlokDeel">
-        <h2>Huidige prijs:</h2>
+        <h2>Huidige prijs: €<span id="totaalPrijs">@Model.TotaalPrijs</span></h2>
     </div>
     <div class="submitKnop">
         <button>Boek deze vlucht!</button>
