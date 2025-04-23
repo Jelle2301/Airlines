@@ -4,6 +4,102 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>Test</p>
+    @*
+<div class="maaltijdenDiv">
+    <label for="maaltijden">Kies jouw maaltijd<label>
+    <select name="maaltijden" id="maaltijden">
+        <option value="Geen">Geen</option>
+    @foreach (var item in Model.Maaltijden)
+    {
+			<option value="@item.Naam">@item.Naam</option>
+    }
+    </select>
+</div>
+<br />
+<div class="reisklasseDiv">
+    <label for="reisklassen">Kies jouw Reisklasse<label>
+            <select name="reisklassen" id="reisklassen">
+                
+                @foreach (var item in Model.Reisklassen)
+                {
+                    <option value="@item.SoortReisklasse">@item.SoortReisklasse</option>
+                }
+            </select>
+</div>
+<div>
+    <p>Gegevens:</p>
+        <label for="Voornaam">Voornaam:</label>
+        <input type="text" id="Voornaam" name="Voornaam"><br>
+        <label for="Achternaam">Achternaam:</label>
+        <input type="text" id="Achternaam" name="Achternaam"><br>
+</div>
+<div class="seizoen">
+    @if(Model.Seizoen == null){
+        <p>Niet geboekt in seizoen (geen extra kostprijs!)</p>
+    }else{
+        <p>Seizoen: @Model.Seizoen.SoortPeriode</p>
+    }
+</div>
+
+
+*@
+<link rel="stylesheet" href="/css/ticket.css" asp-append-version="true" />
+<script src="/js/ticket.js"></script>
+<div class="blokPagina">
+    <h1>Kies een maaltijd</h1>
+    <p class="subtitelMaaltijd">Selecteren een maaltijd voor de vlucht</p>
+    <div class="alleMaaltijdenBlok">
+       
+        @foreach (var item in Model.Maaltijden)
+        {
+            <div class="maaltijdKaart" onclick="selectMeal(this)">
+                <img src="/images/maaltijden/@(item.Naam + ".jpg")" alt="@item.Naam" />
+                <div class="inhoudVanMaaltijd">
+                    <h4>@item.Naam</h4>
+                    <p>@item.SoortMaaltijd</p>
+                    <p>+ €@item.ExtraPrijs</p>
+                </div>
+            </div>
+        }
+       
+    </div>
+
+    <h2>Kies een reisklasse</h2>
+    <div class="reisklassen">
+        
+            @foreach (var item in Model.Reisklassen)
+            {
+            <label><input type="radio" name="reisklasse" value="@item.SoortReisklasse"> @item.SoortReisklasse (+ €@item.ExtraPrijs)</label>
+            }
+        
+    </div>
+
+    <div class="kleinBlokDeel">
+        @if (Model.Seizoen == null)
+        {
+            <h2 class="seizoenTitel">Niet geboekt in seizoen (geen extra kostprijs!)</h2>
+        }
+        else
+        {
+            <h2 class ="seizoenTitel">Seizoen: @Model.Seizoen.SoortPeriode</h2>
+        }
+    </div>
+    <div class="kleinBlokDeel">
+        <label for="Voornaam">Voornaam</label>
+        <input type="text" id="Voornaam" name="Voornaam" placeholder="Voornaam" />
+    
+
+    
+        <label for="Achternaam">Achternaam</label>
+        <input type="text" id="Achternaam" name="Achternaam" placeholder="Achternaam" />
+    </div>
+    <div class="kleinBlokDeel">
+        <h2>Huidige prijs:</h2>
+    </div>
+    <div class="submitKnop">
+        <button>Boek deze vlucht!</button>
+    </div>
+</div>
+
+

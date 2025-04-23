@@ -10,6 +10,5 @@
         public VluchtVM Vlucht { get; set; } = null!;
 
         public ZitplaatsVM Zitplaats { get; set; } = null!;
-        public TicketVM TicketVM { get; set; } = null!;
     }
 }
