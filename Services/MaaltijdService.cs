@@ -13,9 +13,9 @@ namespace Services
     public class MaaltijdService : IMaaltijdService
     {
         private IMaaltijdDAO _maaltijdDAO;
-        public MaaltijdService(IMaaltijdDAO _maaltijdDAO)
+        public MaaltijdService(IMaaltijdDAO maaltijdDAO)
         {
-            _maaltijdDAO = _maaltijdDAO;
+            _maaltijdDAO = maaltijdDAO;
         }
         public async Task<IEnumerable<Maaltijd>?> GetAllAsync()
         {

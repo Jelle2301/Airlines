@@ -18,8 +18,8 @@ namespace Airlines.Controllers
             this._maaltijdService = maaltijdService;
             this._seizoenService = seizoenService;
         }
-        /*
-        public async IActionResult Index(VluchtVM vluchtVM)
+        
+        public async Task<IActionResult> Index(VluchtVM vluchtVM)
         {
 
             try
@@ -58,10 +58,6 @@ namespace Airlines.Controllers
                 }
                 return View(ticketMogelijkhedenVM);
 
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -70,7 +66,7 @@ namespace Airlines.Controllers
 
             return View();
         }
-        */
+        
         
     }
 }
