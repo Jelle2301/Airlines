@@ -10,11 +10,13 @@ namespace Airlines.Controllers
         private readonly IMapper _mapper;
         private readonly IReisklasseService _reisklasseService;
         private readonly IMaaltijdService _maaltijdService;
-        public TicketController(IMapper mapper, IReisklasseService reisklasseService, IMaaltijdService maaltijdService)
+        private readonly ISeizoenService _seizoenService;
+        public TicketController(IMapper mapper, IReisklasseService reisklasseService, IMaaltijdService maaltijdService, ISeizoenService seizoenService)
         {
             _mapper = mapper;
             this._reisklasseService = reisklasseService;
             this._maaltijdService = maaltijdService;
+            this._seizoenService = seizoenService;
         }
         /*
         public async IActionResult Index(VluchtVM vluchtVM)
@@ -34,6 +36,29 @@ namespace Airlines.Controllers
                     ticketMogelijkhedenVM.Maaltijden = _mapper.Map<List<MaaltijdVM>>(lstMaaltijden);
                 }
                 ticketMogelijkhedenVM.Vlucht = vluchtVM;
+                var lstSeizoenen = await _seizoenService.GetAllAsync();
+                if (lstSeizoenen != null)
+                {
+                    //gaat de seizoenen geven die in die perdio liggen
+                    var tijdVertrek = vluchtVM.TijdVertrek;
+                    var seizoen = lstSeizoenen.FirstOrDefault(s =>
+                    {
+                        var begin = new DateTime(1, s.BeginDatum.Month, s.BeginDatum.Day);
+                        var eind = new DateTime(1, s.EindDatum.Month, s.EindDatum.Day);
+                        var vertrek = new DateTime(1, tijdVertrek.Month, tijdVertrek.Day);
+
+                        
+                        return vertrek >= begin && vertrek <= eind;
+                    });
+                    //als geen seizoenen heeft gevonden doet die niets, anders voegt die dat toe aan de VM
+                    if (seizoen != null)
+                    {
+                        ticketMogelijkhedenVM.Seizoen = _mapper.Map<SeizoenVM>(seizoen);
+                    }
+                }
+                return View(ticketMogelijkhedenVM);
+
+
 
 
 
@@ -46,5 +71,6 @@ namespace Airlines.Controllers
             return View();
         }
         */
+        
     }
 }
