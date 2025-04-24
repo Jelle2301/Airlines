@@ -1,14 +1,14 @@
 ﻿
 
-//is iets speciaals dat ik heb gevonden online, als hij scriptje laadt dan zal hij deze module direct laden en die init funcite uitvoeren, 
-kon ook via een eventlistener met DOMContentLoaded maar wou eens iets neuws proberen
+
+//is een soort van module, die module wordt ingelaadt door die eventlistener van domcontent loeaded, wou dit eens proberen maar is ene nadeel, je moet cash refreshen voor nieuw scriptje, is niet echt probleem voor client maar kan eventueel mooier
 const TicketModule = (() => {
     let totaalPrijsElement;
     let originelePrijs = 0;
     let huidigeMaaltijdPrijs = 0;
     let huidigeReisklassePrijs = 0;
 
-     init = () =>{
+      const init = () =>{
         totaalPrijsElement = document.getElementById("totaalPrijs");
         originelePrijs = parseFloat(totaalPrijsElement.textContent);
 
@@ -19,9 +19,10 @@ const TicketModule = (() => {
         document.querySelectorAll("input[name='reisklasse']").forEach(radio => {
             radio.addEventListener("change", () => selecteerReisklasse(radio));
         });
+
     }
 
-     selecteerMaaltijd = (element) => {
+    const selecteerMaaltijd = (element) => {
         document.querySelectorAll(".maaltijdKaart").forEach(x => x.classList.remove("selected"));
         element.classList.add("selected");
 
@@ -32,7 +33,7 @@ const TicketModule = (() => {
         updateTotaalPrijs();
     }
 
-     selecteerReisklasse = (element) => {
+    const selecteerReisklasse = (element) => {
         let nieuweReisklassePrijs = parseFloat(element.getAttribute("data-prijs")) || 0;
         originelePrijs = originelePrijs - huidigeReisklassePrijs + nieuweReisklassePrijs;
         huidigeReisklassePrijs = nieuweReisklassePrijs;
@@ -40,7 +41,7 @@ const TicketModule = (() => {
         updateTotaalPrijs();
     }
 
-     updateTotaalPrijs = () => {
+    const updateTotaalPrijs = () => {
         totaalPrijsElement.textContent = originelePrijs.toFixed(2);
     }
 
