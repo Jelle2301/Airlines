@@ -67,7 +67,13 @@ namespace Airlines.Controllers
 
             return View();
         }
-        
-        
+        /*
+        public Task<IActionResult> VluchtSelecteren(TicketVM ticketVM)
+        {
+            return View()
+        }
+        */
+
+
     }
 }

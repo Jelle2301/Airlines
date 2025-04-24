@@ -70,7 +70,7 @@
         
             @foreach (var item in Model.Reisklassen)
             {
-            <label><input type="radio" onchange="selecteerReisklasse(this)" data-prijs="@item.ExtraPrijs" name="reisklasse" value="@item.SoortReisklasse"> @item.SoortReisklasse (+ €@item.ExtraPrijs)</label>
+            <label><input type="radio" onchange="selecteerReisklasse(this)" data-prijs="@item.ExtraPrijsReisklasse" name="reisklasse" value="@item.SoortReisklasse"> @item.SoortReisklasse (+ €@item.ExtraPrijs)</label>
             }
         
     </div>
@@ -97,9 +97,40 @@
     <div class="kleinBlokDeel">
         <h2>Huidige prijs: €<span id="totaalPrijs">@Model.TotaalPrijs</span></h2>
     </div>
+    <form asp-action="VluchtSelecteren" method="post">
+        <input type="hidden" name="Voornaam" value="" />
+        <input type="hidden" name="Achternaam" value="" />
+
+        <input type="hidden" name="SoortMaaltijd" value="" />
+        <input type="hidden" name="Naam" value="" />
+        <input type="hidden" name="ExtraPrijs" value="" />
+
+        <input type="hidden" name="SoortReisklasse" value="" />
+        <input type="hidden" name="ExtraPrijsReisklasse" value="" />
+
+        <input type="hidden" name="Tarief" value="" />
+        <input type="hidden" name="SoortPeriode" value="" />
+        <input type="hidden" name="BeginDatum" value="" />
+        <input type="hidden" name="EindDatum" value="" />
+
+        <input type="hidden" name="BeginPrijs" value="" />
+        <input type="hidden" name="TijdVertrek" value="" />
+        <input type="hidden" name="TijdAankomst" value="" />
+        <input type="hidden" name="VliegtuigNaam" value="" />
+        <input type="hidden" name="AantalTotalePlaatsen" value="" />
+        <input type="hidden" name="AantalGewonePlaatsen" value="" />
+        <input type="hidden" name="AantalBusinessPlaatsen" value="" />
+        <input type="hidden" name="AantalEconomyPlaatsen" value="" />
+        <input type="hidden" name="VertrekNaam" value="" />
+        <input type="hidden" name="OverstapNaam" value="" />
+        <input type="hidden" name="BestemmingNaam" value="" />
+        
+        <input type="hidden" name="Zitnummer" value="" />
+
     <div class="submitKnop">
         <button>Boek deze vlucht!</button>
     </div>
+    </form>
 </div>
 
 

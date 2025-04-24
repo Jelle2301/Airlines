@@ -48,7 +48,11 @@ namespace Airlines.AutoMapper
                 .ForMember(dest => dest.SoortMaaltijd,
                     opts => opts.MapFrom(
                         src => src.Soort));
-            CreateMap<Reisklasse, ReisklasseVM>();
+            CreateMap<Reisklasse, ReisklasseVM>()
+                .ForMember(dest => dest.ExtraPrijsReisklasse,
+                    opts => opts.MapFrom(
+                        src => src.ExtraPrijs))
+                ;
             CreateMap<Seizoen, SeizoenVM>();
             CreateMap<Zitplaat, ZitplaatsVM>();
             CreateMap<Ticket, TicketVM>();
