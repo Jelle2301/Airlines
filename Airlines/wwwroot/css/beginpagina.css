@@ -43,7 +43,7 @@ body {
         font-size: 1.1rem;
     }
 
-.missie, .info, .welkomBlokDiv {
+.missie, .info, .welkomBlokDiv, .voorstelling {
     margin: 2rem auto;
     padding: 2rem;
     background-color: #fff;
@@ -65,10 +65,14 @@ body {
     flex-wrap: wrap;
 }
 
-.infoblokje {
+.infoblokje, .infoblokjeVoorstelling {
     flex: 1 1 250px;
     background: #f5faff;
     padding: 1rem;
     border-radius: 12px;
     text-align: center;
 }
+.infoblokjeVoorstelling{
+    margin-bottom:10px;
+}
+

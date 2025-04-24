@@ -70,7 +70,7 @@
         
             @foreach (var item in Model.Reisklassen)
             {
-            <label><input type="radio" onchange="selecteerReisklasse(this)" data-prijs="@item.ExtraPrijsReisklasse" name="reisklasse" value="@item.SoortReisklasse"> @item.SoortReisklasse (+ €@item.ExtraPrijs)</label>
+            <label><input type="radio" onchange="selecteerReisklasse(this)" data-prijs="@item.ExtraPrijsReisklasse" name="reisklasse" value="@item.SoortReisklasse"> @item.SoortReisklasse (+ €@item.ExtraPrijsReisklasse)</label>
             }
         
     </div>
