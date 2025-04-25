@@ -4,32 +4,22 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Naam)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Naam)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<link rel="stylesheet" href="/css/Aanbiedbestemmingen.css" asp-append-version="true" />
+<div class="blokPagina">
+    <h1>Alle bestemmingen:</h1>
+    <p class="subtitelMaaltijd">Subtitel</p>
+    <div class="alleMaaltijdenBlok">
+        
+        @foreach (var item in Model)
+        {
+            <div class="maaltijdKaart">
+                <img src="/images/bestemmingen/@(item.Naam + ".jpg")" alt="@item.Naam" />
+                <div class="inhoudVanMaaltijd">
+                    <h4>@item.Naam</h4>
+                    <p>Een descriptie</p>
+                </div>
+            </div>
+        }
+        
+    </div>
+</div>
