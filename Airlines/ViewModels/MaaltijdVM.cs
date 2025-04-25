@@ -7,5 +7,7 @@
         public string Naam { get; set; } = null!;
 
         public double ExtraPrijs { get; set; }
+        public int MaaltijdId { get; set; }
+
     }
 }

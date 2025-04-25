@@ -11,6 +11,7 @@ namespace Airlines.ViewModels
         public DateOnly BeginDatum { get; set; }
 
         public DateOnly EindDatum { get; set; }
+        public int SeizoenId { get; set; }
 
 
     }

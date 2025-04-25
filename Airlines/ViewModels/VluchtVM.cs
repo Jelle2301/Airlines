@@ -2,6 +2,7 @@
 {
     public class VluchtVM
     {
+        public int VluchtId { get; set; }
 
         public double BeginPrijs { get; set; }
 

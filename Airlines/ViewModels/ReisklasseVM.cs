@@ -6,6 +6,7 @@ namespace Airlines.ViewModels
     {
         public string SoortReisklasse { get; set; } = null!;
         public double ExtraPrijsReisklasse { get; set; }
+        public int ReisklasseId { get; set; }
 
     }
 }
