@@ -24,6 +24,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+
 builder.Services.AddControllersWithViews();
 
 // SwaggerGen produces JSON schema documents that power Swagger UI.By default, these are served up under / swagger
