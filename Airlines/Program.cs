@@ -74,24 +74,24 @@ builder.Services.AddTransient<ISeizoenService, SeizoenService>();
 builder.Services.AddTransient<IZitplaatsDAO, ZitplaatsDAO>();
 builder.Services.AddTransient<IZitplaatsService, ZitplaatsService>();
 
-builder.Services
- .AddAuthentication(options =>
- {
-     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
- })
- .AddJwtBearer(cfg =>
- {
-     cfg.SaveToken = true;
-     cfg.TokenValidationParameters = new TokenValidationParameters
-     {
-         ValidIssuer = builder.Configuration["JwtConfig:JwtIssuer"],
-         ValidAudience = builder.Configuration["JwtConfig:JwtIssuer"],
-         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtConfig:JwtKey"])),
-         ClockSkew = TimeSpan.Zero // remove delay of token when expire
-     };
- });
+//builder.Services
+// .AddAuthentication(options =>
+// {
+//     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+//     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+// })
+// .AddJwtBearer(cfg =>
+// {
+//     cfg.SaveToken = true;
+//     cfg.TokenValidationParameters = new TokenValidationParameters
+//     {
+//         ValidIssuer = builder.Configuration["JwtConfig:JwtIssuer"],
+//         ValidAudience = builder.Configuration["JwtConfig:JwtIssuer"],
+//         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtConfig:JwtKey"])),
+//         ClockSkew = TimeSpan.Zero // remove delay of token when expire
+//     };
+// });
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
