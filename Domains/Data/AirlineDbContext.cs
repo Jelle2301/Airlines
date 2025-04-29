@@ -158,7 +158,9 @@ public partial class AirlineDbContext : DbContext
         {
             entity.ToTable("Maaltijd");
 
+            entity.Property(e => e.ExtraOmschrijving).IsUnicode(false);
             entity.Property(e => e.Naam).IsUnicode(false);
+            entity.Property(e => e.PlaatsMaaltijd).IsUnicode(false);
             entity.Property(e => e.Soort).IsUnicode(false);
         });
 
@@ -170,6 +172,11 @@ public partial class AirlineDbContext : DbContext
                 .HasForeignKey(d => d.PlaatsId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Overstap_Plaats");
+
+            entity.HasOne(d => d.Vlucht).WithMany(p => p.Overstaps)
+                .HasForeignKey(d => d.VluchtId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Overstap_Vlucht");
         });
 
         modelBuilder.Entity<Plaats>(entity =>
@@ -220,11 +227,6 @@ public partial class AirlineDbContext : DbContext
                 .HasForeignKey(d => d.VluchtId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Ticket_Vlucht");
-
-            entity.HasOne(d => d.Zitplaats).WithMany(p => p.Tickets)
-                .HasForeignKey(d => d.ZitplaatsId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Ticket_Zitplaats");
         });
 
         modelBuilder.Entity<Vertrekplaats>(entity =>
@@ -250,6 +252,7 @@ public partial class AirlineDbContext : DbContext
 
             entity.ToTable("Vlucht");
 
+            entity.Property(e => e.IsOverstap).HasColumnName("isOverstap");
             entity.Property(e => e.TijdAankomst).HasColumnType("datetime");
             entity.Property(e => e.TijdVertrek).HasColumnType("datetime");
 
@@ -257,10 +260,6 @@ public partial class AirlineDbContext : DbContext
                 .HasForeignKey(d => d.BestemmingId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Vliegtuig_Bestemming");
-
-            entity.HasOne(d => d.Overstap).WithMany(p => p.Vluchts)
-                .HasForeignKey(d => d.OverstapId)
-                .HasConstraintName("FK_Vliegtuig_Overstap");
 
             entity.HasOne(d => d.Vertrekplaats).WithMany(p => p.Vluchts)
                 .HasForeignKey(d => d.VertrekplaatsId)
@@ -276,6 +275,11 @@ public partial class AirlineDbContext : DbContext
         modelBuilder.Entity<Zitplaat>(entity =>
         {
             entity.HasKey(e => e.ZitplaatsId);
+
+            entity.HasOne(d => d.Vlucht).WithMany(p => p.Zitplaats)
+                .HasForeignKey(d => d.VluchtId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Zitplaats_Vlucht");
         });
 
         OnModelCreatingPartial(modelBuilder);

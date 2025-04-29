@@ -38,7 +38,7 @@
                 @Html.DisplayNameFor(model => model.VertrekNaam)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OverstapNaam)
+                @Html.DisplayNameFor(model => model.IsOverstap)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.BestemmingNaam)
@@ -77,10 +77,10 @@
                 @Html.DisplayFor(modelItem => item.VertrekNaam)
             </td>
             <td>
-                @if(item.OverstapNaam == null){
+                @if(item.IsOverstap == false){
                     <p>Geen overstap</p>
                 }else{
-                @Html.DisplayFor(modelItem => item.OverstapNaam)
+                        @Html.DisplayFor(modelItem => item.IsOverstap)
                 }
             </td>
             <td>
@@ -102,7 +102,7 @@
                         <input type="hidden" name="AantalBusinessPlaatsen" value="@item.AantalBusinessPlaatsen" />
                         <input type="hidden" name="AantalEconomyPlaatsen" value="@item.AantalEconomyPlaatsen" />
                         <input type="hidden" name="VertrekNaam" value="@item.VertrekNaam" />
-                        <input type="hidden" name="OverstapNaam" value="@item.OverstapNaam" />
+                        <input type="hidden" name="OverstapNaam" value="@item.IsOverstap" />
                         <input type="hidden" name="BestemmingNaam" value="@item.BestemmingNaam" />
                         <button type="submit" class="btn btn-primary">Boek deze vlucht</button>
                     </form>

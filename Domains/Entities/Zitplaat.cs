@@ -7,11 +7,9 @@ public partial class Zitplaat
 {
     public int ZitplaatsId { get; set; }
 
-    public int VliegtuidId { get; set; }
-
     public string Zitnummer { get; set; } = null!;
 
-    public int ReisklasseId { get; set; }
+    public int VluchtId { get; set; }
 
-    public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
+    public virtual Vlucht Vlucht { get; set; } = null!;
 }

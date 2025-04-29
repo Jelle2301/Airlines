@@ -9,7 +9,9 @@ public partial class Overstap
 
     public int PlaatsId { get; set; }
 
+    public int VluchtId { get; set; }
+
     public virtual Plaats Plaats { get; set; } = null!;
 
-    public virtual ICollection<Vlucht> Vluchts { get; set; } = new List<Vlucht>();
+    public virtual Vlucht Vlucht { get; set; } = null!;
 }

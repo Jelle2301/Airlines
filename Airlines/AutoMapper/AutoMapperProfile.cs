@@ -33,12 +33,15 @@ namespace Airlines.AutoMapper
                 .ForMember(dest => dest.VertrekNaam,
                     opts => opts.MapFrom(
                         src => src.Vertrekplaats.Plaats.Naam))
-                .ForMember(dest => dest.OverstapNaam,
+                /*.ForMember(dest => dest.OverstapNaam,
                     opts => opts.MapFrom(
-                        src => src.Overstap.Plaats.Naam))
+                        src => src.Overstap.Plaats.Naam))*/
                 .ForMember(dest => dest.BestemmingNaam,
                     opts => opts.MapFrom(
                         src => src.Bestemming.Plaats.Naam))
+                .ForMember(dest => dest.IsOverstap,
+                    opts => opts.MapFrom(
+                        src => src.IsOverstap))
                 ;
 
             CreateMap<Maaltijd, MaaltijdVM>()

@@ -21,8 +21,8 @@
 
         public int AantalEconomyPlaatsen { get; set; }
         public string VertrekNaam { get; set; } = null!;
-        public string OverstapNaam { get; set; } = null!;
         public string BestemmingNaam { get; set; } = null!;
+        public bool IsOverstap { get; set; }
 
 
 

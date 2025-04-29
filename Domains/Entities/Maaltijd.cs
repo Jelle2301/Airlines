@@ -13,5 +13,9 @@ public partial class Maaltijd
 
     public int MaaltijdId { get; set; }
 
+    public string PlaatsMaaltijd { get; set; } = null!;
+
+    public string? ExtraOmschrijving { get; set; }
+
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }
