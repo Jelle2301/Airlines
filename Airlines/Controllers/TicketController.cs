@@ -67,12 +67,12 @@ namespace Airlines.Controllers
 
             return View();
         }
-        /*
-        public Task<IActionResult> VluchtSelecteren(TicketVM ticketVM, int maaltijdId, int seizoenId, int seizoenId)
+        
+        public IActionResult VluchtSelecteren(TicketVM ticketVM, int maaltijdId, int reisklasseId)
         {
-            return View()
+            return View();
         }
-        */
+        
 
 
     }
