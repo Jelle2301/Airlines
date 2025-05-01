@@ -4,115 +4,28 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+
 <link rel="stylesheet" href="/css/vluchten.css" asp-append-version="true" />
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BeginPrijs)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TijdVertrek)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TijdAankomst)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VliegtuigNaam)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AantalTotalePlaatsen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AantalGewonePlaatsen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AantalBusinessPlaatsen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AantalEconomyPlaatsen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VertrekNaam)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsOverstap)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BestemmingNaam)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BeginPrijs)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TijdVertrek)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TijdAankomst)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VliegtuigNaam)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AantalTotalePlaatsen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AantalGewonePlaatsen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AantalBusinessPlaatsen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AantalEconomyPlaatsen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VertrekNaam)
-            </td>
-            <td>
-                @if(item.IsOverstap == false){
-                    <p>Geen overstap</p>
-                }else{
-                        @Html.DisplayFor(modelItem => item.IsOverstap)
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BestemmingNaam)
-
-                    
-
-                    
-               
-                
-            
-        </tr>
-}
         <div class="blokPagina">
             <h1>Vluchten:</h1>
-            <p class="subtitelMaaltijd">Ontdek ons ruim aanbod (Gilwe on top)</p>
+            <p class="subtitelVluchten">Ontdek ons ruim aanbod (Gilwe on top)</p>
 
-            <div class="alleMaaltijdenBlok">
+            <div class="alleVluchtenBlok">
 
                 @foreach (var item in Model)
                 {
-                    <div class="maaltijdKaart">
+                    <div class="vluchtKaart">
                         <img src="/images/bestemmingen/@(item.BestemmingNaam + ".jpg")" alt="@item.BestemmingNaam" />
-                        <div class="inhoudVanMaaltijd">
+                        <div class="inhoudVanVlucht">
                             <h3>@item.VertrekNaam -> @item.BestemmingNaam</h3>
                             <div class="tijden">
-                                <h4>🕒@item.TijdVertrek</h4>
-                                <h4>🕒@item.TijdAankomst</h4>
+                                <p>🕒@item.TijdVertrek</p>
+                                <p>🕒@item.TijdAankomst</p>
                             </div>
                             <div class="overstappen">
 
-                                <h4>✈️ Overstap komt hier</h4>
+                                <p>✈️ Overstap komt hier</p>
                             </div>
                             <hr class="solid"><!--Kan blijkbaar zorgen voor mooie divider lijn zoals in swift-->
                             <div>
@@ -121,23 +34,24 @@
                             </div>
                             
                         </div>
-                    </div>
-                    <form asp-controller="Ticket" asp-action="Index" method="post">
-                        <input type="hidden" name="VluchtId" value="@item.VluchtId" />
-                        <input type="hidden" name="BeginPrijs" value="@item.BeginPrijs" />
-                        <input type="hidden" name="TijdVertrek" value="@item.TijdVertrek" />
-                        <input type="hidden" name="TijdAankomst" value="@item.TijdAankomst" />
-                        <input type="hidden" name="VliegtuigNaam" value="@item.VliegtuigNaam" />
+                        <form asp-controller="Ticket" asp-action="Index" method="post">
+                            <input type="hidden" name="VluchtId" value="@item.VluchtId" />
+                            <input type="hidden" name="BeginPrijs" value="@item.BeginPrijs" />
+                            <input type="hidden" name="TijdVertrek" value="@item.TijdVertrek" />
+                            <input type="hidden" name="TijdAankomst" value="@item.TijdAankomst" />
+                            <input type="hidden" name="VliegtuigNaam" value="@item.VliegtuigNaam" />
 
-                        <input type="hidden" name="AantalTotalePlaatsen" value="@item.AantalTotalePlaatsen" />
-                        <input type="hidden" name="AantalGewonePlaatsen" value="@item.AantalGewonePlaatsen" />
-                        <input type="hidden" name="AantalBusinessPlaatsen" value="@item.AantalBusinessPlaatsen" />
-                        <input type="hidden" name="AantalEconomyPlaatsen" value="@item.AantalEconomyPlaatsen" />
-                        <input type="hidden" name="VertrekNaam" value="@item.VertrekNaam" />
-                        <input type="hidden" name="OverstapNaam" value="@item.IsOverstap" />
-                        <input type="hidden" name="BestemmingNaam" value="@item.BestemmingNaam" />
-                        <button type="submit" class="btn btn-primary">Boek deze vlucht</button>
-                    </form>
+                            <input type="hidden" name="AantalTotalePlaatsen" value="@item.AantalTotalePlaatsen" />
+                            <input type="hidden" name="AantalGewonePlaatsen" value="@item.AantalGewonePlaatsen" />
+                            <input type="hidden" name="AantalBusinessPlaatsen" value="@item.AantalBusinessPlaatsen" />
+                            <input type="hidden" name="AantalEconomyPlaatsen" value="@item.AantalEconomyPlaatsen" />
+                            <input type="hidden" name="VertrekNaam" value="@item.VertrekNaam" />
+                            <input type="hidden" name="OverstapNaam" value="@item.IsOverstap" />
+                            <input type="hidden" name="BestemmingNaam" value="@item.BestemmingNaam" />
+                            <button type="submit" class="vluchtButton">Boek deze vlucht</button>
+                        </form>
+                    </div>
+                    
                 }
 
             </div>

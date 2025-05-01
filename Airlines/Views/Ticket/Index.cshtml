@@ -5,46 +5,6 @@
     ViewData["Title"] = "Index";
 }
 
-
-@*
-<div class="maaltijdenDiv">
-    <label for="maaltijden">Kies jouw maaltijd<label>
-    <select name="maaltijden" id="maaltijden">
-        <option value="Geen">Geen</option>
-    @foreach (var item in Model.Maaltijden)
-    {
-			<option value="@item.Naam">@item.Naam</option>
-    }
-    </select>
-</div>
-<br />
-<div class="reisklasseDiv">
-    <label for="reisklassen">Kies jouw Reisklasse<label>
-            <select name="reisklassen" id="reisklassen">
-
-                @foreach (var item in Model.Reisklassen)
-                {
-                    <option value="@item.SoortReisklasse">@item.SoortReisklasse</option>
-                }
-            </select>
-</div>
-<div>
-    <p>Gegevens:</p>
-        <label for="Voornaam">Voornaam:</label>
-        <input type="text" id="Voornaam" name="Voornaam"><br>
-        <label for="Achternaam">Achternaam:</label>
-        <input type="text" id="Achternaam" name="Achternaam"><br>
-</div>
-<div class="seizoen">
-    @if(Model.Seizoen == null){
-        <p>Niet geboekt in seizoen (geen extra kostprijs!)</p>
-    }else{
-        <p>Seizoen: @Model.Seizoen.SoortPeriode</p>
-    }
-</div>
-
-
-*@
 <link rel="stylesheet" href="/css/ticket.css" asp-append-version="true" />
 <script src="/js/ticket.js"></script>
 <div class="blokPagina">
@@ -60,6 +20,9 @@
                     <h4>@item.Naam</h4>
                     <p>@item.SoortMaaltijd</p>
                     <p>+ €@item.ExtraPrijs</p>
+                    @if(item.ExtraOmschrijving != null){
+						<p>@item.ExtraOmschrijving</p>
+					}
                 </div>
             </div>
         }

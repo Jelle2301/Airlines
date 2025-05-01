@@ -18,6 +18,7 @@ namespace Airlines.Controllers
             _vluchtService = vluchtService;
             _mapper = mapper;
         }
+        [HttpPost]
         public async Task<IActionResult> Index(DateTime StartDate, DateTime EndDate, string vertrek, string bestemming)
         {
             try

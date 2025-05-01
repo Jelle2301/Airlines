@@ -10,5 +10,7 @@ namespace Services.Interfaces
     public interface IMaaltijdService : IService<Maaltijd>
     {
         Task<Maaltijd?> GetByIdAsync(int id);
+        Task<IEnumerable<Maaltijd>?> GetAllGewoneMaaltijdenAsync();
+        Task<Maaltijd?> GetSpecifiekeMaaltijdVoorPlaats();
     }
 }

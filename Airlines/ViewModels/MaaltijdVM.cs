@@ -8,6 +8,7 @@
 
         public double ExtraPrijs { get; set; }
         public int MaaltijdId { get; set; }
+        public string? ExtraOmschrijving { get; set; } = null!;
 
     }
 }

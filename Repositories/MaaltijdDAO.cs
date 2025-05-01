@@ -42,5 +42,29 @@ namespace Repositories
                 throw;
             }
         }
+        public async Task<IEnumerable<Maaltijd>?> GetAllGewoneMaaltijdenAsync()
+        {
+            try
+            {
+                return await dbContext.Maaltijds.Where(v => v.PlaatsMaaltijd.Equals("Overal")).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in DAO(MaaltijdDAO) in GetAllAsync");
+                throw;
+            }
+        }
+        public async Task<Maaltijd?> GetSpecifiekeMaaltijdVoorPlaats()
+        {
+            try
+            {
+                return await dbContext.Maaltijds.Where(v => !v.PlaatsMaaltijd.Equals("Overal")).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in DAO(MaaltijdDAO) in GetAllAsync");
+                throw;
+            }
+        }
     }
 }

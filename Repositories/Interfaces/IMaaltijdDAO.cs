@@ -10,5 +10,7 @@ namespace Repositories.Interfaces
     public interface IMaaltijdDAO : IDAO<Maaltijd>
     {
         Task<Maaltijd?> GetByIdAsync(int id);
+        Task<IEnumerable<Maaltijd>?> GetAllGewoneMaaltijdenAsync();
+        Task<Maaltijd?> GetSpecifiekeMaaltijdVoorPlaats();
     }
 }

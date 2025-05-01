@@ -30,11 +30,37 @@ namespace Services
             }
         }
 
+        
+
         public async Task<Maaltijd?> GetByIdAsync(int id)
         {
             try
             {
                 return await _maaltijdDAO.GetByIdAsync(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(MaaltijdService) in GetAllAsync");
+                throw;
+            }
+        }
+        public async Task<IEnumerable<Maaltijd>?> GetAllGewoneMaaltijdenAsync()
+        {
+            try
+            {
+                return await _maaltijdDAO.GetAllGewoneMaaltijdenAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(MaaltijdService) in GetAllAsync");
+                throw;
+            }
+        }
+        public async Task<Maaltijd?> GetSpecifiekeMaaltijdVoorPlaats()
+        {
+            try
+            {
+                return await _maaltijdDAO.GetSpecifiekeMaaltijdVoorPlaats();
             }
             catch (Exception ex)
             {
