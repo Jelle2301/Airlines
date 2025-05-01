@@ -2,9 +2,13 @@
 {
     public class ShoppingCartVM
     {
-        public List<TicketVM>? Carts { get; set; }
+        public List<CartVM>? Carts { get; set; }
         public double ComputeTotalValue() =>
-            Carts.Sum(e => e.Prijs);
+            Carts.Sum(e => e.Ticket.Prijs);
     }
-    
+    public class CartVM
+    {
+        public TicketVM? Ticket { get; set; }
+        public System.DateTime DateCreated { get; set; }
+    }
 }

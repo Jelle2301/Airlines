@@ -9,5 +9,6 @@ namespace Repositories.Interfaces
 {
     public interface IReisklasseDAO : IDAO<Reisklasse>
     {
+        Task<Reisklasse?> GetByIdAsync(int id);
     }
 }

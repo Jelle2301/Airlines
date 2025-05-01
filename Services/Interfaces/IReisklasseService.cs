@@ -9,5 +9,6 @@ namespace Services.Interfaces
 {
     public interface IReisklasseService : IService<Reisklasse>
     {
+        Task<Reisklasse?> GetByIdAsync(int id);
     }
 }

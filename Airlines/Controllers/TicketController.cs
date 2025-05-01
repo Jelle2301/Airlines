@@ -2,7 +2,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
-
+using Airlines.Extensions;
 namespace Airlines.Controllers
 {
     public class TicketController : Controller
@@ -70,6 +70,24 @@ namespace Airlines.Controllers
         
         public IActionResult VluchtSelecteren(TicketVM ticketVM, int maaltijdId, int reisklasseId)
         {
+            try
+            {
+                var gekozenReisklasse = _reisklasseService.GetByIdAsync(reisklasseId);
+                var gekozenMaaltjd = _maaltijdService.GetByIdAsync(maaltijdId);
+
+                ticketVM.Reisklasse = _mapper.Map<ReisklasseVM>(gekozenReisklasse);
+                ticketVM.Maaltijd = _mapper.Map<MaaltijdVM>(gekozenMaaltjd);
+
+                var shoppingCartVM = HttpContext.Session.GetObject<ShoppingCartVM>("shoppingCart") ?? new ShoppingCartVM { Carts = new List<CartVM>() };
+
+
+
+                HttpContext.Session.SetObject("ShoppingCart", shoppingCartVM);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Er is een fout opgetreden");
+            }
             return View();
         }
         

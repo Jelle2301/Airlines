@@ -25,20 +25,20 @@ namespace Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Service(VluchtService) in GetAllAsync");
+                Console.WriteLine("Error in Service(MaaltijdService) in GetAllAsync");
                 throw;
             }
         }
 
-        public async Task<Maaltijd?> GetByNaamAsync(string naam)
+        public async Task<Maaltijd?> GetByIdAsync(int id)
         {
             try
             {
-                return await _maaltijdDAO.GetByNaamAsync(naam);
+                return await _maaltijdDAO.GetByIdAsync(id);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Service(PlaatsService) in GetAllAsync");
+                Console.WriteLine("Error in Service(MaaltijdService) in GetAllAsync");
                 throw;
             }
         }

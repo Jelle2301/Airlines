@@ -9,6 +9,6 @@ namespace Repositories.Interfaces
 {
     public interface IMaaltijdDAO : IDAO<Maaltijd>
     {
-        Task<Maaltijd?> GetByNaamAsync(string naam);
+        Task<Maaltijd?> GetByIdAsync(int id);
     }
 }

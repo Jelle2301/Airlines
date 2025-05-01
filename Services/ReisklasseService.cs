@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domains.Entities;
+using Repositories;
 using Repositories.Interfaces;
 using Services.Interfaces;
 
@@ -25,6 +26,19 @@ namespace Services
             catch (Exception ex)
             {
                 Console.WriteLine("Error in Service(ReisklasseService) in GetAllAsync");
+                throw;
+            }
+        }
+
+        public async Task<Reisklasse?> GetByIdAsync(int id)
+        {
+            try
+            {
+                return await _reisklasseDAO.GetByIdAsync(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(MaaltijdService) in GetAllAsync");
                 throw;
             }
         }

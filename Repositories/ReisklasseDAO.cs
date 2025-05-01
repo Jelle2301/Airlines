@@ -30,5 +30,18 @@ namespace Repositories
                 throw;
             }
         }
+
+        public async Task<Reisklasse?> GetByIdAsync(int id)
+        {
+            try
+            {
+                return await dbContext.Reisklasses.Where(v => v.ReisklasseId.Equals(id)).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in DAO(ReisklasseDAO) in GetAllAsync");
+                throw;
+            }
+        }
     }
 }

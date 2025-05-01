@@ -9,6 +9,6 @@ namespace Services.Interfaces
 {
     public interface IMaaltijdService : IService<Maaltijd>
     {
-        Task<Maaltijd?> GetByNaamAsync(string naam);
+        Task<Maaltijd?> GetByIdAsync(int id);
     }
 }

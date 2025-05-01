@@ -30,15 +30,15 @@ namespace Repositories
             }
         }
 
-        public async Task<Maaltijd?> GetByNaamAsync(string naam)
+        public async Task<Maaltijd?> GetByIdAsync(int id)
         {
             try
             {
-                return await dbContext.Maaltijds.Where(v => v.Naam.Equals(naam)).FirstOrDefaultAsync();
+                return await dbContext.Maaltijds.Where(v => v.MaaltijdId.Equals(id)).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in DAO(PlaatsDAO) in GetAllAsync");
+                Console.WriteLine("Error in DAO(MaaltijdDAO) in GetAllAsync");
                 throw;
             }
         }
