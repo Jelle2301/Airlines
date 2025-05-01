@@ -10,5 +10,6 @@ namespace Repositories.Interfaces
     public interface IVluchtDAO : IDAO<Vlucht>
     {
         Task<IEnumerable<Vlucht>?> GetVluchtenTussenPlaatsen(int vertrekPlaatdId, int bestemmingId);
+        Task<Vlucht?> GetByIdAsync(int id);
     }
 }

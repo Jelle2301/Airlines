@@ -30,6 +30,7 @@ namespace Repositories
                 throw;
             }
         }
+
         public async Task<IEnumerable<Vlucht>?> GetVluchtenTussenPlaatsen(int vertrekPlaatdId, int bestemmingId)
         {
             try
@@ -43,8 +44,20 @@ namespace Repositories
                 throw;
             }
         }
-        
+        public async Task<Vlucht?> GetByIdAsync(int id)
+        {
+            try
+            {
+                return await dbContext.Vluchts.Where(v => v.VluchtId.Equals(id)).Include(v=> v.Vliegtuig).Include(v => v.Vertrekplaats).Include(v => v.Bestemming).ThenInclude(b => b.Plaats).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in DAO(VluchtDAO) in GetAllAsync");
+                throw;
+            }
+        }
 
-       
+
+
     }
 }

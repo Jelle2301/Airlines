@@ -9,5 +9,6 @@ namespace Repositories.Interfaces
 {
     public interface ISeizoenDAO : IDAO<Seizoen>
     {
+        Task<Seizoen?> GetByIdAsync(int id);
     }
 }

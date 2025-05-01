@@ -88,7 +88,7 @@
     <div class="kleinBlokDeel">
 		<h2>Huidige prijs: €<span id="totaalPrijs">@Model.TotaalPrijs</span></h2>
 	</div>
-    <form asp-action="VluchtSelecteren" method="post">
+    <form asp-action="VluchtSelecteren">
 
 		<div class="kleinBlokDeel">
         <label for="Voornaam">Voornaam</label>
@@ -96,13 +96,18 @@
         <label for="Achternaam">Achternaam</label>
         <input type="text" id="Achternaam" name="Achternaam" placeholder="Achternaam" />
     </div>
+
+
         <input type="hidden" name="VluchtId" value="@Model.Vlucht.VluchtId" />
+
+
 		@if (Model.Seizoen != null)
 		{
 			<input type="hidden" name="SeizoenId" value="@Model.Seizoen.SeizoenId" />
 		}else{
 			<input type="hidden" name="SeizoenId" value="0" />
         }
+        
 
 		<input type="hidden" name="ReisklasseId" value="" />
         <input type="hidden" name="MaaltijdId" value="" />

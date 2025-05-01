@@ -23,11 +23,25 @@ namespace Services
             throw new NotImplementedException();
         }
 
+
         public async Task<IEnumerable<Vlucht>?> GetVluchtenTussenPlaatsen(int vertrekPlaatdId, int bestemmingId)
         {
             try
             {
                 return await _vluchtDAO.GetVluchtenTussenPlaatsen(vertrekPlaatdId, bestemmingId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(VluchtService) in GetAllAsync");
+                throw;
+            }
+        }
+
+        public async Task<Vlucht?> GetByIdAsync(int id)
+        {
+            try
+            {
+                return await _vluchtDAO.GetByIdAsync(id);
             }
             catch (Exception ex)
             {

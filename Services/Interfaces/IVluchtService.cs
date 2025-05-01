@@ -10,5 +10,6 @@ namespace Services.Interfaces
     public interface IVluchtService : IService<Plaats>
     {
         Task<IEnumerable<Vlucht>?> GetVluchtenTussenPlaatsen(int vertrekPlaatdId, int bestemmingId);
+        Task<Vlucht?> GetByIdAsync(int id);
     }
 }

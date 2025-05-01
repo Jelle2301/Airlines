@@ -92,6 +92,7 @@
                     </a>
                     *@
                     <form asp-controller="Ticket" asp-action="Index" method="post">
+						<input type="hidden" name="VluchtId" value="@item.VluchtId" />
                         <input type="hidden" name="BeginPrijs" value="@item.BeginPrijs" />
                         <input type="hidden" name="TijdVertrek" value="@item.TijdVertrek" />
                         <input type="hidden" name="TijdAankomst" value="@item.TijdAankomst" />

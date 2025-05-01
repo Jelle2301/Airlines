@@ -9,5 +9,6 @@ namespace Services.Interfaces
 {
     public interface ISeizoenService : IService<Seizoen>
     {
+        Task<Seizoen?> GetByIdAsync(int id);
     }
 }

@@ -11,12 +11,14 @@ namespace Airlines.Controllers
         private readonly IReisklasseService _reisklasseService;
         private readonly IMaaltijdService _maaltijdService;
         private readonly ISeizoenService _seizoenService;
-        public TicketController(IMapper mapper, IReisklasseService reisklasseService, IMaaltijdService maaltijdService, ISeizoenService seizoenService)
+        private readonly IVluchtService _vluchtService;
+        public TicketController(IMapper mapper, IReisklasseService reisklasseService, IMaaltijdService maaltijdService, ISeizoenService seizoenService, IVluchtService vluchtService)
         {
             _mapper = mapper;
             this._reisklasseService = reisklasseService;
             this._maaltijdService = maaltijdService;
             this._seizoenService = seizoenService;
+            this._vluchtService = vluchtService;
         }
         
         public async Task<IActionResult> Index(VluchtVM vluchtVM)
@@ -68,21 +70,33 @@ namespace Airlines.Controllers
             return View();
         }
         
-        public IActionResult VluchtSelecteren(TicketVM ticketVM, int maaltijdId, int reisklasseId)
+        public async Task<IActionResult> VluchtSelecteren(TicketVM ticketVM, int maaltijdId, int reisklasseId , int vluchtId, int seizoenId)
         {
             try
             {
-                var gekozenReisklasse = _reisklasseService.GetByIdAsync(reisklasseId);
-                var gekozenMaaltjd = _maaltijdService.GetByIdAsync(maaltijdId);
+                var gekozenReisklasse = await _reisklasseService.GetByIdAsync(reisklasseId);
+                var gekozenMaaltjd = await _maaltijdService.GetByIdAsync(maaltijdId);
+                var vlucht = await _vluchtService.GetByIdAsync(vluchtId);
+                if(seizoenId != 0)
+                {
+                    var seizoen = _seizoenService.GetByIdAsync(seizoenId);
+                    ticketVM.Seizoen = _mapper.Map<SeizoenVM>(seizoen);
+                }
 
                 ticketVM.Reisklasse = _mapper.Map<ReisklasseVM>(gekozenReisklasse);
                 ticketVM.Maaltijd = _mapper.Map<MaaltijdVM>(gekozenMaaltjd);
+                ticketVM.Vlucht = _mapper.Map<VluchtVM>(vlucht);
 
-                var shoppingCartVM = HttpContext.Session.GetObject<ShoppingCartVM>("shoppingCart") ?? new ShoppingCartVM { Carts = new List<CartVM>() };
+                var shoppingCartVM = HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart") ?? new ShoppingCartVM { Carts = new List<CartVM>() };
 
-
+                shoppingCartVM.Carts.Add(new CartVM
+                {
+                    Ticket = ticketVM
+                    
+                });
 
                 HttpContext.Session.SetObject("ShoppingCart", shoppingCartVM);
+                return RedirectToAction("Index", "ShoppinCart");
             }
             catch (Exception ex)
             {

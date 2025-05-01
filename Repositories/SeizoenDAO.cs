@@ -30,5 +30,18 @@ namespace Repositories
                 throw;
             }
         }
+
+        public async Task<Seizoen?> GetByIdAsync(int id)
+        {
+            try
+            {
+                return await dbContext.Seizoens.Where(v => v.SeizoenId.Equals(id)).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in DAO(SeizoenDAO) in GetAllAsync");
+                throw;
+            }
+        }
     }
 }
