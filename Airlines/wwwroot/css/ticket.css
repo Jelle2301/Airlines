@@ -127,3 +127,12 @@ input[type="text"] {
         border-radius: 10px;
         cursor: pointer;
     }
+.loginLinkVoorBoeken {
+    background-color: #fcbf49;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+}

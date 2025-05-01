@@ -8,6 +8,7 @@ namespace Airlines.Controllers
     {
         public IActionResult Index()
         {
+            
             ShoppingCartVM? cartList =
                 HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
             return View(cartList);

@@ -1,11 +1,12 @@
 ﻿@model Airlines.ViewModels.TicketMogelijkhedenVM
-
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
 @{
     ViewData["Title"] = "Index";
 }
 
 
-    @*
+@*
 <div class="maaltijdenDiv">
     <label for="maaltijden">Kies jouw maaltijd<label>
     <select name="maaltijden" id="maaltijden">
@@ -20,7 +21,7 @@
 <div class="reisklasseDiv">
     <label for="reisklassen">Kies jouw Reisklasse<label>
             <select name="reisklassen" id="reisklassen">
-                
+
                 @foreach (var item in Model.Reisklassen)
                 {
                     <option value="@item.SoortReisklasse">@item.SoortReisklasse</option>
@@ -50,7 +51,7 @@
     <h1>Kies een maaltijd</h1>
     <p class="subtitelMaaltijd">Selecteren een maaltijd voor de vlucht</p>
     <div class="alleMaaltijdenBlok">
-       
+
         @foreach (var item in Model.Maaltijden)
         {
             <div class="maaltijdKaart" id="@("Maaltijd"+  item.MaaltijdId)" data-prijs="@item.ExtraPrijs">
@@ -62,17 +63,17 @@
                 </div>
             </div>
         }
-       
+
     </div>
 
     <h2>Kies een reisklasse</h2>
     <div class="reisklassen">
-        
-            @foreach (var item in Model.Reisklassen)
-            {
+
+        @foreach (var item in Model.Reisklassen)
+        {
             <label><input type="radio" id="@("Reisklasse"+  item.ReisklasseId)" data-prijs="@item.ExtraPrijsReisklasse" name="reisklasse" value="@item.SoortReisklasse"> @item.SoortReisklasse (+ €@item.ExtraPrijsReisklasse)</label>
-            }
-        
+        }
+
     </div>
 
     <div class="kleinBlokDeel">
@@ -84,36 +85,41 @@
         {
             <h2 class ="seizoenTitel">Seizoen: @Model.Seizoen.SoortPeriode</h2>
         }
-	</div>
+    </div>
     <div class="kleinBlokDeel">
-		<h2>Huidige prijs: €<span id="totaalPrijs">@Model.TotaalPrijs</span></h2>
-	</div>
+        <h2>Huidige prijs: €<span id="totaalPrijs">@Model.TotaalPrijs</span></h2>
+    </div>
     <form asp-action="VluchtSelecteren">
 
-		<div class="kleinBlokDeel">
-        <label for="Voornaam">Voornaam</label>
-        <input type="text" id="Voornaam" name="Voornaam" placeholder="Voornaam" />
-        <label for="Achternaam">Achternaam</label>
-        <input type="text" id="Achternaam" name="Achternaam" placeholder="Achternaam" />
-    </div>
+        <div class="kleinBlokDeel">
+            <label for="Voornaam">Voornaam</label>
+            <input type="text" id="Voornaam" name="Voornaam" placeholder="Voornaam" />
+            <label for="Achternaam">Achternaam</label>
+            <input type="text" id="Achternaam" name="Achternaam" placeholder="Achternaam" />
+        </div>
 
 
         <input type="hidden" name="VluchtId" value="@Model.Vlucht.VluchtId" />
 
 
-		@if (Model.Seizoen != null)
-		{
-			<input type="hidden" name="SeizoenId" value="@Model.Seizoen.SeizoenId" />
-		}else{
-			<input type="hidden" name="SeizoenId" value="0" />
+        @if (Model.Seizoen != null)
+        {
+            <input type="hidden" name="SeizoenId" value="@Model.Seizoen.SeizoenId" />
+        }else{
+            <input type="hidden" name="SeizoenId" value="0" />
         }
-        
 
-		<input type="hidden" name="ReisklasseId" value="" />
+
+        <input type="hidden" name="ReisklasseId" value="" />
         <input type="hidden" name="MaaltijdId" value="" />
         <input type="hidden" name="Prijs" value=""/>
-    <div class="submitKnop">
-        <button>Boek deze vlucht!</button>
+        <div class="submitKnop">
+            @if (SignInManager.IsSignedIn(User)) {
+                <button>Boek deze vlucht!</button>
+            }else{
+                <a asp-area="Identity" class="loginLinkVoorBoeken" asp-page="/Account/Login">Login voor te boeken</a>
+            }
+            
     </div>
     </form>
 </div>

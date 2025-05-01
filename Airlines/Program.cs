@@ -60,6 +60,12 @@ builder.Services.AddSwaggerGen(c =>
 });
 // add Automapper
 builder.Services.AddAutoMapper(typeof(Program));
+//session
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = "GilweAirlines.Session";
+    options.IdleTimeout = TimeSpan.FromMinutes(10);//moet minimum 1 seconde zijn
+});
 //DI
 builder.Services.AddTransient<IPlaatsDAO, PlaatsDAO>();
 builder.Services.AddTransient<IPlaatsService, PlaatsService>();
@@ -125,6 +131,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+//add session
+app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 

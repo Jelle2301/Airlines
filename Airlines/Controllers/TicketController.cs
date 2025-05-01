@@ -96,7 +96,7 @@ namespace Airlines.Controllers
                 });
 
                 HttpContext.Session.SetObject("ShoppingCart", shoppingCartVM);
-                return RedirectToAction("Index", "ShoppinCart");
+                return RedirectToAction("Index", "ShoppingCart");
             }
             catch (Exception ex)
             {
