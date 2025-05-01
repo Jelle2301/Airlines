@@ -6,7 +6,9 @@
 
 <link rel="stylesheet" href="/css/plaatsen.css" asp-append-version="true" />
 <link rel="stylesheet" href="/css/plaatsKnoppen.css" asp-append-version="true" />
-
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 <p>Kies jouw vertrekplaats</p>
 <br/>
 <div class="radio-input">
@@ -34,17 +36,67 @@
 
 </div>
 <br />
-<a href="#" id="zieVluchtenLink">Zie vluchten</a>
- @*
-<div class="flex-container">
-    @foreach (var item in Model)
-    {
-        @await Html.PartialAsync("DisplayTemplates/_TilePlaatsView",item)
-    }
+
+<div class="form-group">
+    <label for="StartDate" ></label>
+    <input id="StartDate" name="StartDate" class="form-control" />
 </div>
-*@
+<div class="form-group">
+    <label for="EndDate"></label>
+    <input id="EndDate" name="EndDate" class="form-control" />
+</div>
+
+
+<a href="#" id="zieVluchtenLink">Zie vluchten</a>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+         $(() => {
+            let minDate = new Date();
+            let maxDate = new Date();
+			minDate.setDate(minDate.getDate() + 3);
+			maxDate.setMonth(maxDate.getMonth() + 6);
+            let mindate;
+            $("#StartDate").datepicker({
+                beforeShowDay: $.datepicker.noWeekends,
+                minDate: minDate,
+                numberOfMonths: 2,
+                dateFormat: 'yy-mm-dd',
+                onSelect: (minDateStr) => {
+
+                    mindate = minDateStr; // Get selected date
+                    
+                    $("#EndDate").datepicker('option', 'minDate',
+                        minDateStr || '0');// Set other min, default to today // don't use $("#dateBack").datepicker({ minDate: min || '0' }); only for  initialization
+                }
+            });
+
+            $("#EndDate").datepicker({
+                minDate: minDate,
+                numberOfMonths: 3,
+                maxDate: maxDate,
+                dateFormat: 'yy-mm-dd',
+                onSelect: (maxDateStr) => {
+                    if (maxDateStr !== null) {
+                        console.log(maxDateStr);
+                        let start = new Date(mindate);
+                        let end = new Date(maxDateStr);
+                        let days = (end - start)
+                            / (1000 * 60 * 60 * 24);
+                        
+                        $("#DateResult").val(days);
+                    }
+                }
+            });
+        });
+    </script>
+}
+
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded",() => {
         var link = document.getElementById("zieVluchtenLink");
 
         link.addEventListener("click", function (event) {
