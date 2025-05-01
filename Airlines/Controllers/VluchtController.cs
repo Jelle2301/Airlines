@@ -2,6 +2,7 @@
 using AutoMapper;
 using Domains.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using Services.Interfaces;
 
 namespace Airlines.Controllers
@@ -17,7 +18,7 @@ namespace Airlines.Controllers
             _vluchtService = vluchtService;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Index(string vertrek, string bestemming)
+        public async Task<IActionResult> Index(DateTime StartDate, DateTime EndDate, string vertrek, string bestemming)
         {
             try
             {

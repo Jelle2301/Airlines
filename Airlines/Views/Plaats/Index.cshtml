@@ -15,7 +15,7 @@
     @foreach (var item in Model)
     {
         <label>
-            <input value="@item.Naam" name="value-radio-vertrek" id="@item.Naam-Vertrek" type="radio" />
+            <input value="@item.Naam" name="vertrekKeuze" id="@item.Naam-Vertrek" type="radio" />
             <span>@item.Naam</span>
         </label>
     }
@@ -29,26 +29,30 @@
         @foreach (var item in Model)
         {
         <label>
-            <input value="@item.Naam" name="value-radio-bestemming" id="@item.Naam-Bestemming" type="radio" />
+            <input value="@item.Naam" name="bestemmingKeuze" id="@item.Naam-Bestemming" type="radio" />
             <span>@item.Naam</span>
         </label>
         }
 
 </div>
 <br />
+<form asp-controller="Vlucht" asp-action="Index">
+    <div class="form-group">
+        <label for="StartDate"></label>
+        <input id="StartDate" name="StartDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="EndDate"></label>
+        <input id="EndDate" name="EndDate" class="form-control" />
+    </div>
 
-<div class="form-group">
-    <label for="StartDate" ></label>
-    <input id="StartDate" name="StartDate" class="form-control" />
-</div>
-<div class="form-group">
-    <label for="EndDate"></label>
-    <input id="EndDate" name="EndDate" class="form-control" />
-</div>
 
 
-<a href="#" id="zieVluchtenLink">Zie vluchten</a>
-
+    <input type="hidden" name="Vertrek" value="" />
+    <input type="hidden" name="Bestemming" value="" />
+    <button id="zieVluchtenLink">Zie vluchten</button>
+    
+</form>
 @section Scripts{
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
@@ -101,8 +105,8 @@
 
         link.addEventListener("click", function (event) {
             // Zoek de geselecteerde vertrekplaats
-            var vertrekRadio = document.querySelector('input[name="value-radio-vertrek"]:checked');
-            var bestemmingRadio = document.querySelector('input[name="value-radio-bestemming"]:checked');
+            var vertrekRadio = document.querySelector('input[name="vertrekKeuze"]:checked');
+            var bestemmingRadio = document.querySelector('input[name="bestemmingKeuze"]:checked');
             if (!vertrekRadio) {
                 alert("Kies een vertrekplaats.");
                 event.preventDefault(); // stop klikken als niks gekozen is
@@ -115,17 +119,15 @@
             }
             var vertrek = vertrekRadio.value;
             var bestemming = bestemmingRadio.value;
+
             if(vertrek == bestemming){
 				alert("Vertrekplaats en bestemming zijn gelijk.");
 				event.preventDefault(); // stop klikken als niks gekozen is
 				return;
 			}
-
-            
-
-            // Stel de nieuwe URL in voor de link
-            var baseUrl = "/Vlucht/Index";
-            link.href = baseUrl + "?vertrek=" + encodeURIComponent(vertrek) + "&bestemming=" + encodeURIComponent(bestemming);
+             
+                document.querySelector("input[name='Vertrek']").value = vertrekRadio.value;
+                document.querySelector("input[name='Bestemming']").value = bestemmingRadio.value;
         });
     });
 </script>
