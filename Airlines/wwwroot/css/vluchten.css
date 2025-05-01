@@ -1,57 +1,78 @@
 ﻿body {
-    background-color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #555; /* zacht grijs voor tekst */
-    margin: 20px;
+    font-family: system-ui, sans-serif;
+    background: #e8f7fc;
+    margin: 0;
+    padding: 2rem;
+    color: #2c3e50;
+}
+
+.blokPagina {
+    max-width: 1200px;
+    margin: auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    color: #222;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
 }
 
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 12px;
+h2 {
+    text-align: center;
+    margin-bottom: 0.7rem;
+}
+
+.subtitelMaaltijd {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #555;
+}
+
+.alleMaaltijdenBlok {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.maaltijdKaart {
+    background: #f9fcff;
+    border: 2px solid #c8e6f4;
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s, border-color 0.3s;
+    cursor: pointer;
 }
 
-    .table thead {
-        background-color: #AFDBF5;
-        color: #fff;
+    .maaltijdKaart:hover {
+        transform: translateY(-5px);
     }
 
-        .table thead th {
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-    .table tbody tr:nth-child(even) {
-        background-color: #f9f9f9;
+    .maaltijdKaart.selected {
+        border-color: #fcbf49;
+        box-shadow: 0 0 10px rgba(252, 191, 73, 0.4);
     }
 
-    .table tbody tr:hover {
-        background-color: #e9f6fc;
-        transition: background-color 0.3s ease;
+    .maaltijdKaart img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
     }
 
-    .table td {
-        padding: 12px;
-        border-bottom: 1px solid #ddd;
-        font-size: 0.9rem;
+.inhoudVanMaaltijd {
+    padding: 1rem;
+}
+
+    .inhoudVanMaaltijd h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.2rem;
     }
 
-    .table a {
-        color: #0077b6;
-        text-decoration: none;
-        font-weight: 500;
+    .inhoudVanMaaltijd p {
+        margin: 0.3rem 0;
+        font-size: 0.95rem;
+        color: #444;
     }
-
-        .table a:hover {
-            text-decoration: underline;
-        }

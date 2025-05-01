@@ -85,14 +85,45 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BestemmingNaam)
-                <td>
-                    @*
-                    <a asp-controller="Ticket" asp-action="Index" asp-route-vlucht="@item">
-                        Boek deze vlucht
-                    </a>
-                    *@
+
+                    
+
+                    
+               
+                
+            
+        </tr>
+}
+        <div class="blokPagina">
+            <h1>Vluchten:</h1>
+            <p class="subtitelMaaltijd">Ontdek ons ruim aanbod (Gilwe on top)</p>
+
+            <div class="alleMaaltijdenBlok">
+
+                @foreach (var item in Model)
+                {
+                    <div class="maaltijdKaart">
+                        <img src="/images/bestemmingen/@(item.BestemmingNaam + ".jpg")" alt="@item.BestemmingNaam" />
+                        <div class="inhoudVanMaaltijd">
+                            <h3>@item.VertrekNaam -> @item.BestemmingNaam</h3>
+                            <div class="tijden">
+                                <h4>🕒@item.TijdVertrek</h4>
+                                <h4>🕒@item.TijdAankomst</h4>
+                            </div>
+                            <div class="overstappen">
+
+                                <h4>✈️ Overstap komt hier</h4>
+                            </div>
+                            <hr class="solid"><!--Kan blijkbaar zorgen voor mooie divider lijn zoals in swift-->
+                            <div>
+                                <p>🪑 @item.AantalTotalePlaatsen</p>
+                                <p>Beginprijs: @item.BeginPrijs &euro;</p>
+                            </div>
+                            
+                        </div>
+                    </div>
                     <form asp-controller="Ticket" asp-action="Index" method="post">
-						<input type="hidden" name="VluchtId" value="@item.VluchtId" />
+                        <input type="hidden" name="VluchtId" value="@item.VluchtId" />
                         <input type="hidden" name="BeginPrijs" value="@item.BeginPrijs" />
                         <input type="hidden" name="TijdVertrek" value="@item.TijdVertrek" />
                         <input type="hidden" name="TijdAankomst" value="@item.TijdAankomst" />
@@ -107,16 +138,9 @@
                         <input type="hidden" name="BestemmingNaam" value="@item.BestemmingNaam" />
                         <button type="submit" class="btn btn-primary">Boek deze vlucht</button>
                     </form>
-                </td>
-                
-            @*
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-            *@
-        </tr>
-}
+                }
+
+            </div>
+        </div>
     </tbody>
 </table>
