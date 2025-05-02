@@ -11,6 +11,6 @@ namespace Repositories.Interfaces
     {
         Task<Maaltijd?> GetByIdAsync(int id);
         Task<IEnumerable<Maaltijd>?> GetAllGewoneMaaltijdenAsync();
-        Task<Maaltijd?> GetSpecifiekeMaaltijdVoorPlaats();
+        Task<Maaltijd?> GetSpecifiekeMaaltijdVoorPlaats(string bestemming);
     }
 }

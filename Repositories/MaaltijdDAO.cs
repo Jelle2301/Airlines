@@ -54,11 +54,11 @@ namespace Repositories
                 throw;
             }
         }
-        public async Task<Maaltijd?> GetSpecifiekeMaaltijdVoorPlaats()
+        public async Task<Maaltijd?> GetSpecifiekeMaaltijdVoorPlaats(string bestemming)
         {
             try
             {
-                return await dbContext.Maaltijds.Where(v => !v.PlaatsMaaltijd.Equals("Overal")).FirstOrDefaultAsync();
+                return await dbContext.Maaltijds.Where(v => v.PlaatsMaaltijd.Equals(bestemming)).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {

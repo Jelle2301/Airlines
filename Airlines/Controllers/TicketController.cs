@@ -27,16 +27,24 @@ namespace Airlines.Controllers
             try
             {
                 var lstReisklassen = await _reisklasseService.GetAllAsync();
-                var lstMaaltijden = await _maaltijdService.GetAllAsync();
+                var lstGewoneMaaltijden = await _maaltijdService.GetAllGewoneMaaltijdenAsync();
+                var plaatsGebondenMaaltijd = await _maaltijdService.GetSpecifiekeMaaltijdVoorPlaats(vluchtVM.BestemmingNaam);
                 TicketMogelijkhedenVM ticketMogelijkhedenVM = new TicketMogelijkhedenVM();
                 if (lstReisklassen != null)
                 {
                     ticketMogelijkhedenVM.Reisklassen = _mapper.Map<List<ReisklasseVM>>(lstReisklassen);
                 }
-                if (lstMaaltijden != null)
+                if (lstGewoneMaaltijden != null)
                 {
-                    ticketMogelijkhedenVM.Maaltijden = _mapper.Map<List<MaaltijdVM>>(lstMaaltijden);
+                    ticketMogelijkhedenVM.Maaltijden = _mapper.Map<List<MaaltijdVM>>(lstGewoneMaaltijden);
                 }
+                if (plaatsGebondenMaaltijd != null)
+                {
+                    ticketMogelijkhedenVM.Maaltijden.Add(_mapper.Map<MaaltijdVM>(plaatsGebondenMaaltijd));
+                }
+
+
+
                 ticketMogelijkhedenVM.Vlucht = vluchtVM;
                 var lstSeizoenen = await _seizoenService.GetAllAsync();
                 if (lstSeizoenen != null)

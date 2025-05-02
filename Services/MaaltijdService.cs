@@ -56,11 +56,11 @@ namespace Services
                 throw;
             }
         }
-        public async Task<Maaltijd?> GetSpecifiekeMaaltijdVoorPlaats()
+        public async Task<Maaltijd?> GetSpecifiekeMaaltijdVoorPlaats(string bestemming)
         {
             try
             {
-                return await _maaltijdDAO.GetSpecifiekeMaaltijdVoorPlaats();
+                return await _maaltijdDAO.GetSpecifiekeMaaltijdVoorPlaats(bestemming);
             }
             catch (Exception ex)
             {
