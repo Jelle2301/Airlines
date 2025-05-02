@@ -34,8 +34,6 @@ public partial class AirlineDbContext : DbContext
 
     public virtual DbSet<Maaltijd> Maaltijds { get; set; }
 
-    public virtual DbSet<Overstap> Overstaps { get; set; }
-
     public virtual DbSet<Plaats> Plaats { get; set; }
 
     public virtual DbSet<Reisklasse> Reisklasses { get; set; }
@@ -164,25 +162,11 @@ public partial class AirlineDbContext : DbContext
             entity.Property(e => e.Soort).IsUnicode(false);
         });
 
-        modelBuilder.Entity<Overstap>(entity =>
-        {
-            entity.ToTable("Overstap");
-
-            entity.HasOne(d => d.Plaats).WithMany(p => p.Overstaps)
-                .HasForeignKey(d => d.PlaatsId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Overstap_Plaats");
-
-            entity.HasOne(d => d.Vlucht).WithMany(p => p.Overstaps)
-                .HasForeignKey(d => d.VluchtId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Overstap_Vlucht");
-        });
-
         modelBuilder.Entity<Plaats>(entity =>
         {
             entity.HasKey(e => e.PlaatsId);
 
+            entity.Property(e => e.Code).IsUnicode(false);
             entity.Property(e => e.Naam).IsUnicode(false);
         });
 
@@ -252,6 +236,7 @@ public partial class AirlineDbContext : DbContext
 
             entity.ToTable("Vlucht");
 
+            entity.Property(e => e.EventueleVolgendeOverstapId).HasColumnName("eventueleVolgendeOverstapId");
             entity.Property(e => e.IsOverstap).HasColumnName("isOverstap");
             entity.Property(e => e.TijdAankomst).HasColumnType("datetime");
             entity.Property(e => e.TijdVertrek).HasColumnType("datetime");
@@ -260,6 +245,10 @@ public partial class AirlineDbContext : DbContext
                 .HasForeignKey(d => d.BestemmingId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Vliegtuig_Bestemming");
+
+            entity.HasOne(d => d.EventueleVolgendeOverstap).WithMany(p => p.InverseEventueleVolgendeOverstap)
+                .HasForeignKey(d => d.EventueleVolgendeOverstapId)
+                .HasConstraintName("FK_Vlucht_Vlucht");
 
             entity.HasOne(d => d.Vertrekplaats).WithMany(p => p.Vluchts)
                 .HasForeignKey(d => d.VertrekplaatsId)

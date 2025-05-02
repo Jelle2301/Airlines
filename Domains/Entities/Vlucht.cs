@@ -21,9 +21,13 @@ public partial class Vlucht
 
     public bool IsOverstap { get; set; }
 
+    public int? EventueleVolgendeOverstapId { get; set; }
+
     public virtual Bestemming Bestemming { get; set; } = null!;
 
-    public virtual ICollection<Overstap> Overstaps { get; set; } = new List<Overstap>();
+    public virtual Vlucht? EventueleVolgendeOverstap { get; set; }
+
+    public virtual ICollection<Vlucht> InverseEventueleVolgendeOverstap { get; set; } = new List<Vlucht>();
 
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 

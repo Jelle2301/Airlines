@@ -8,6 +8,7 @@ public partial class Plaats
     public int PlaatsId { get; set; }
 
     public string Naam { get; set; } = null!;
+    public string Code { get; set; } = null!;
 
     public virtual ICollection<Bestemming> Bestemmings { get; set; } = new List<Bestemming>();
 
