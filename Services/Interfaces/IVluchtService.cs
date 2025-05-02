@@ -11,5 +11,8 @@ namespace Services.Interfaces
     {
         Task<IEnumerable<Vlucht>?> GetVluchtenTussenPlaatsen(int vertrekPlaatdId, int bestemmingId);
         Task<Vlucht?> GetByIdAsync(int id);
+        Task<IEnumerable<Vlucht>?> GetNormaleVluchtenTussenPlaatsen(int vertrekPlaatdId, int bestemmingId);
+        Task<IEnumerable<Vlucht>?> GetOverstappenVanVlucht(int vluchtId);
+
     }
 }

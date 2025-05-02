@@ -49,5 +49,31 @@ namespace Services
                 throw;
             }
         }
+
+        public async Task<IEnumerable<Vlucht>?> GetNormaleVluchtenTussenPlaatsen(int vertrekPlaatdId, int bestemmingId)
+        {
+            try
+            {
+                return await _vluchtDAO.GetNormaleVluchtenTussenPlaatsen(vertrekPlaatdId, bestemmingId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(VluchtService) in GetAllAsync");
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<Vlucht>?> GetOverstappenVanVlucht(int vluchtId)
+        {
+            try
+            {
+                return await _vluchtDAO.GetOverstappenVanVlucht(vluchtId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(VluchtService) in GetAllAsync");
+                throw;
+            }
+        }
     }
 }
