@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Airlines.ViewModels.VluchtVM>
+﻿@model IEnumerable<Airlines.ViewModels.VluchtMetOverstappenVM>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,38 +16,44 @@
                 @foreach (var item in Model)
                 {
                     <div class="vluchtKaart">
-                        <img src="/images/bestemmingen/@(item.BestemmingNaam + ".jpg")" alt="@item.BestemmingNaam" />
+                <img src="/images/bestemmingen/@(item.GewoneVlucht.BestemmingNaam + ".jpg")" alt="@item.GewoneVlucht.BestemmingNaam" />
                         <div class="inhoudVanVlucht">
-                            <h3>@item.VertrekNaam -> @item.BestemmingNaam</h3>
+                    <h3>@item.GewoneVlucht.VertrekNaam -> @item.GewoneVlucht.BestemmingNaam</h3>
                             <div class="tijden">
-                                <p>🕒@item.TijdVertrek</p>
-                                <p>🕒@item.TijdAankomst</p>
+                        <p>🕒@item.GewoneVlucht.TijdVertrek</p>
+                        <p>🕒@item.GewoneVlucht.TijdAankomst</p>
                             </div>
                             <div class="overstappen">
-
-                                <p>✈️ Overstap komt hier</p>
+                                @if(item.OverstapVluchten !=null){
+                                    @foreach(var itemOverstap in item.OverstapVluchten){
+                                        <p>✈️ Overstap: @itemOverstap.BestemmingNaam</p>
+                                    }
+                                }else{
+                                    <p>✈️ Geen overstappen</p>
+                                }
+                                
                             </div>
                             <hr class="solid"><!--Kan blijkbaar zorgen voor mooie divider lijn zoals in swift-->
                             <div>
-                                <p>🪑 @item.AantalTotalePlaatsen</p>
-                                <p>Beginprijs: @item.BeginPrijs &euro;</p>
+                        <p>🪑 @item.GewoneVlucht.AantalTotalePlaatsen</p>
+                        <p>Beginprijs: @item.GewoneVlucht.BeginPrijs &euro;</p>
                             </div>
                             
                         </div>
                         <form asp-controller="Ticket" asp-action="Index" method="post">
-                            <input type="hidden" name="VluchtId" value="@item.VluchtId" />
-                            <input type="hidden" name="BeginPrijs" value="@item.BeginPrijs" />
-                            <input type="hidden" name="TijdVertrek" value="@item.TijdVertrek" />
-                            <input type="hidden" name="TijdAankomst" value="@item.TijdAankomst" />
-                            <input type="hidden" name="VliegtuigNaam" value="@item.VliegtuigNaam" />
+                    <input type="hidden" name="VluchtId" value="@item.GewoneVlucht.VluchtId" />
+                    <input type="hidden" name="BeginPrijs" value="@item.GewoneVlucht.BeginPrijs" />
+                    <input type="hidden" name="TijdVertrek" value="@item.GewoneVlucht.TijdVertrek" />
+                    <input type="hidden" name="TijdAankomst" value="@item.GewoneVlucht.TijdAankomst" />
+                    <input type="hidden" name="VliegtuigNaam" value="@item.GewoneVlucht.VliegtuigNaam" />
 
-                            <input type="hidden" name="AantalTotalePlaatsen" value="@item.AantalTotalePlaatsen" />
-                            <input type="hidden" name="AantalGewonePlaatsen" value="@item.AantalGewonePlaatsen" />
-                            <input type="hidden" name="AantalBusinessPlaatsen" value="@item.AantalBusinessPlaatsen" />
-                            <input type="hidden" name="AantalEconomyPlaatsen" value="@item.AantalEconomyPlaatsen" />
-                            <input type="hidden" name="VertrekNaam" value="@item.VertrekNaam" />
-                            <input type="hidden" name="OverstapNaam" value="@item.IsOverstap" />
-                            <input type="hidden" name="BestemmingNaam" value="@item.BestemmingNaam" />
+                    <input type="hidden" name="AantalTotalePlaatsen" value="@item.GewoneVlucht.AantalTotalePlaatsen" />
+                    <input type="hidden" name="AantalGewonePlaatsen" value="@item.GewoneVlucht.AantalGewonePlaatsen" />
+                    <input type="hidden" name="AantalBusinessPlaatsen" value="@item.GewoneVlucht.AantalBusinessPlaatsen" />
+                    <input type="hidden" name="AantalEconomyPlaatsen" value="@item.GewoneVlucht.AantalEconomyPlaatsen" />
+                    <input type="hidden" name="VertrekNaam" value="@item.GewoneVlucht.VertrekNaam" />
+                    <input type="hidden" name="OverstapNaam" value="@item.GewoneVlucht.IsOverstap" />
+                    <input type="hidden" name="BestemmingNaam" value="@item.GewoneVlucht.BestemmingNaam" />
                             <button type="submit" class="vluchtButton">Boek deze vlucht</button>
                         </form>
                     </div>

@@ -28,16 +28,32 @@ namespace Airlines.Controllers
                 
                 int vertrekPlaatsId = _plaatsService.GetByNaamAsync(vertrek).Result.PlaatsId;
                 int bestemmingId = _plaatsService.GetByNaamAsync(bestemming).Result.PlaatsId;
-                var lstVluchten = await _vluchtService.GetVluchtenTussenPlaatsen(vertrekPlaatsId, bestemmingId);
+                var lstVluchten = await _vluchtService.GetNormaleVluchtenTussenPlaatsen(vertrekPlaatsId, bestemmingId);
                 
                 List<VluchtVM> lstVluchtVM = null;
                 if(lstVluchten != null)
                 {
                     lstVluchtVM = _mapper.Map<List<VluchtVM>>(lstVluchten);
-                    return View(lstVluchtVM);
+
+                    List<VluchtMetOverstappenVM> lstVluchtMetOverstappenVM = new List<VluchtMetOverstappenVM>();
+                    foreach (VluchtVM vlucht in lstVluchtVM)
+                    {
+                       VluchtMetOverstappenVM vluchtMetOverstappenVM = new VluchtMetOverstappenVM();
+                        vluchtMetOverstappenVM.GewoneVlucht = vlucht;
+                        var lstVanOverstapVluchten = await _vluchtService.GetOverstappenVanVlucht(vlucht.VluchtId);
+                        vluchtMetOverstappenVM.OverstapVluchten = _mapper.Map<List<VluchtVM>>(lstVanOverstapVluchten);
+
+                        lstVluchtMetOverstappenVM.Add(vluchtMetOverstappenVM);  
+                    }
+
+
+
+                    return View(lstVluchtMetOverstappenVM);
+
                 }
-        
                 
+
+
             }
             catch (Exception ex)
             {
