@@ -2,6 +2,7 @@
 {
     public class TicketMogelijkhedenVM
     {
+        
         public List<MaaltijdVM> Maaltijden { get; set; } = null!;
 
         public List<ReisklasseVM> Reisklassen { get; set; } = null!;

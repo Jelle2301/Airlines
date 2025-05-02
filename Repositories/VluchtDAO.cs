@@ -70,18 +70,49 @@ namespace Repositories
                 throw;
             }
         }
-        /*
+        
         public async Task<IEnumerable<Vlucht>?> GetOverstappenVanVlucht(int vluchtId)
         {
             try
             {
-                return await dbContext.Overstaps.Where(v=>v.VluchtId == vluchtId).Include(v => v.Vlucht).ToListAsync();
+                
+
+                var overstappen = new List<Vlucht>();
+
+                var huidigeVlucht = await dbContext.Vluchts
+                                                   .Include(v => v.Vliegtuig)
+                                                   .Include(v => v.Vertrekplaats)
+                                                   .Include(v => v.Bestemming)
+                                                   .ThenInclude(b => b.Plaats)
+                                                   .FirstOrDefaultAsync(v => v.VluchtId == vluchtId);
+
+                while (huidigeVlucht != null && huidigeVlucht.EventueleVolgendeOverstapId != null)
+                {
+                    huidigeVlucht = await dbContext.Vluchts
+                                                   .Include(v => v.Vliegtuig)
+                                                   .Include(v => v.Vertrekplaats)
+                                                   .Include(v => v.Bestemming)
+                                                   .ThenInclude(b => b.Plaats)
+                                                   .FirstOrDefaultAsync(v => v.VluchtId == huidigeVlucht.EventueleVolgendeOverstapId);
+
+                    if (huidigeVlucht != null)
+                    {
+                        overstappen.Add(huidigeVlucht);
+                    }
+
+
+
+                }
+                return overstappen;
+            }
+            
             catch (Exception ex)
             {
                 Console.WriteLine("Error in DAO(VluchtDAO) in GetOverstappenVanVlucht");
                 throw;
             }
         }
-        */
+        
+        
     }
 }

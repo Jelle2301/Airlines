@@ -11,7 +11,7 @@ namespace Repositories.Interfaces
     {
         Task<IEnumerable<Vlucht>?> GetVluchtenTussenPlaatsen(int vertrekPlaatdId, int bestemmingId);
         Task<IEnumerable<Vlucht>?> GetNormaleVluchtenTussenPlaatsen(int vertrekPlaatdId, int bestemmingId);
-        //Task<IEnumerable<Vlucht>?> GetOverstappenVanVlucht(int vluchtId);
+        Task<IEnumerable<Vlucht>?> GetOverstappenVanVlucht(int vluchtId);
         Task<Vlucht?> GetByIdAsync(int id);
     }
 }
