@@ -79,6 +79,7 @@ builder.Services.AddTransient<ISeizoenDAO, SeizoenDAO>();
 builder.Services.AddTransient<ISeizoenService, SeizoenService>();
 builder.Services.AddTransient<IZitplaatsDAO, ZitplaatsDAO>();
 builder.Services.AddTransient<IZitplaatsService, ZitplaatsService>();
+builder.Services.AddTransient<IHotelService, HotelService>();
 
 //builder.Services
 // .AddAuthentication(options =>
