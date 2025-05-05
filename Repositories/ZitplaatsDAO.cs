@@ -35,8 +35,8 @@ namespace Repositories
         {
             try
             {
-                // return await dbContext.Zitplaats.Where(v => v.VluchtId = vluchtId).Where(v => v.isBezet == false).ToListAsync();
-                return await dbContext.Zitplaats.ToListAsync();//is nu voor geen errors te krijgen maar zal het bovenstaande gebruiken na dat in database aangepast is
+                 return await dbContext.Zitplaats.Where(v => v.VluchtId == vluchtId).Where(v => v.IsBezet == false).ToListAsync();
+                
             }
             catch (Exception ex)
             {
