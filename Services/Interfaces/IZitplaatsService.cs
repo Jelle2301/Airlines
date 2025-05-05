@@ -9,6 +9,8 @@ namespace Services.Interfaces
 {
     public interface IZitplaatsService : IService<Zitplaat>
     {
-        Task<IEnumerable<Zitplaat>?> GetAllZitplaatsenByVluchtAsync(int vluchtId);
+        Task<Zitplaat?> GetAllBeschikbareZitplaatsenByVluchtAsync(int vluchtId);
+        Task MaakZitplaatsBezet(int zitplaatdId);
+        Task MaakZitplaatsVrij(int zitplaatdId);
     }
 }

@@ -29,15 +29,41 @@ namespace Services
             }
         }
 
-        public async Task<IEnumerable<Zitplaat>?> GetAllZitplaatsenByVluchtAsync(int vluchtId)
+        public async Task<Zitplaat?> GetAllBeschikbareZitplaatsenByVluchtAsync(int vluchtId)
         {
             try
             {
-                return await _zitplaatsDAO.GetAllZitplaatsenByVluchtAsync(vluchtId);
+                return await _zitplaatsDAO.GetAllBeschikbareZitplaatsenByVluchtAsync(vluchtId);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Service(ZitplaatsService) in GetAllAsync");
+                Console.WriteLine("Error in Service(ZitplaatsService) in GetAllBeschikbareZitplaatsenByVluchtAsync");
+                throw;
+            }
+        }
+
+        public async Task MaakZitplaatsBezet(int zitplaatdId)
+        {
+            try
+            {
+                await _zitplaatsDAO.MaakZitplaatsBezet(zitplaatdId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(ZitplaatsService) in MaakZitplaatsBezet");
+                throw;
+            }
+        }
+
+        public async Task MaakZitplaatsVrij(int zitplaatdId)
+        {
+            try
+            {
+                await _zitplaatsDAO.MaakZitplaatsVrij(zitplaatdId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(ZitplaatsService) in MaakZitplaatsVrij");
                 throw;
             }
         }
