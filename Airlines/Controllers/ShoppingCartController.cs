@@ -1,9 +1,12 @@
-﻿using Airlines.Extensions;
+﻿using System.Reflection.Metadata.Ecma335;
+using Airlines.Extensions;
 using Airlines.ViewModels;
 using AutoMapper;
+using Domains.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 using Services.Interfaces;
+using SQLitePCL;
 
 namespace Airlines.Controllers
 {
@@ -22,7 +25,7 @@ namespace Airlines.Controllers
             {
                 ShoppingCartVM? cartList =
                     HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
-                //foreach (VluchtVM vlucht in lstVluchtVM)
+                
 
                 foreach (CartVM cartItem in cartList.Carts)
                 {
@@ -43,6 +46,31 @@ namespace Airlines.Controllers
             return View();
         }
         
+        public async Task<IActionResult> PostData()
+        {
+            try
+            {
+                ShoppingCartVM? cartList =
+                    HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
+                if (cartList.Carts == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                foreach (CartVM cartItem in cartList.Carts)
+                {
+                    var ticketIntity = _mapper.Map<Ticket>(cartItem.Ticket);
+                    sqlite3_context.
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Er is een fout opgetreden");
+            }
+            return View();
+        }
+
 
 
 
