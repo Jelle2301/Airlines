@@ -30,10 +30,17 @@ h1 {
     text-align: left;
     border-bottom: 1px solid #eee;
 }
-
-.shoppingCartTabel th {
-    background-color: #a3d6f1;
-    color: #003d66;
+    .shoppingCartTabel th {
+        background-color: #a3d6f1;
+        color: #003d66;
+    }
+     .shoppingCartTabel td input{
+        border:none
+    }
+#txtTotal {
+    background-color: #e8f7fc;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
 }
 
 .deleteBtn {

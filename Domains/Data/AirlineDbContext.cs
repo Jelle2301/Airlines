@@ -143,6 +143,7 @@ public partial class AirlineDbContext : DbContext
             entity.ToTable("Boeking");
 
             entity.Property(e => e.AchternaamBoeking).IsUnicode(false);
+            entity.Property(e => e.Status).IsUnicode(false);
             entity.Property(e => e.UserId).HasMaxLength(50);
             entity.Property(e => e.VoornaamBoeking).IsUnicode(false);
 
@@ -264,6 +265,8 @@ public partial class AirlineDbContext : DbContext
         modelBuilder.Entity<Zitplaat>(entity =>
         {
             entity.HasKey(e => e.ZitplaatsId);
+
+            entity.Property(e => e.IsBezet).HasColumnName("isBezet");
 
             entity.HasOne(d => d.Vlucht).WithMany(p => p.Zitplaats)
                 .HasForeignKey(d => d.VluchtId)

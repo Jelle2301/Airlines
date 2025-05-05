@@ -11,5 +11,7 @@ public partial class Zitplaat
 
     public int VluchtId { get; set; }
 
+    public bool IsBezet { get; set; }
+
     public virtual Vlucht Vlucht { get; set; } = null!;
 }

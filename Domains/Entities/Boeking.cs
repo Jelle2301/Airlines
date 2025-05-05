@@ -19,5 +19,7 @@ public partial class Boeking
 
     public string UserId { get; set; } = null!;
 
+    public string Status { get; set; } = null!;
+
     public virtual Ticket Ticket { get; set; } = null!;
 }

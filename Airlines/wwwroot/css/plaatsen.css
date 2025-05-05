@@ -1,137 +1,84 @@
-﻿
-.flex-container {
+﻿body {
+    font-family: system-ui, sans-serif;
+    background: #e8f7fc;
+    margin: 0;
+    padding: 2rem;
+    color: #2c3e50;
+}
+
+.blokPagina {
+    max-width: 1200px;
+    margin: auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 0.7rem;
+}
+.flight-search {
+    background-color: #eef7fe;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    max-width: 600px;
+    margin: auto;
+}
+.date-fields {
     display: flex;
-    flex-wrap: wrap;
-}
-.card {
-    overflow: visible;
-    width: 190px;
-    height: 154px;
-    margin:10px;
-}
-
-.content {
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 300ms;
-    box-shadow: 0px 0px 4px 1px #000000ee;
-    border-radius: 5px;
-}
-
-.front, .back {
-    background-color: #AFDBF5;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.back {
-    width: 100%;
-    height: 100%;
-    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
     display: flex;
-    align-items: center;
-    overflow: hidden;
+    justify-content: center; /* ➜ Centreert de datumvelden horizontaal */
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
-
-    .back::before {
-        position: absolute;
-        content: ' ';
-        display: block;
-        width: 160px;
-        height: 160%;
-        background: linear-gradient(90deg, transparent, white, white, white, white, transparent);
-        animation: rotation_481 5000ms infinite linear;
-    }
-
-.back-content {
-    position: absolute;
-    width: 99%;
-    height: 99%;
-    background-color: #AFDBF5;
-    border-radius: 5px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-}
-
-.card:hover .content {
-    transform: rotateY(180deg);
-}
-<!-- -->
-@keyframes rotation_481 {
-    0% {
-        transform: rotateZ(0deg);
-    }
-
-    0% {
-        transform: rotateZ(360deg);
-    }
-}
-
-.front {
-    transform: rotateY(180deg);
-    
-}
-
-    .front .front-content {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        padding: 10px;
+    .date-fields .form-group {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        align-items: center;
     }
 
-.front-content .badge {
-    background-color: #00000055;
-    padding: 2px 10px;
-    border-radius: 10px;
-    backdrop-filter: blur(2px);
-    width: fit-content;
-}
-
-
-button {
+#StartDate {
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #aaa;
     background-color: white;
-    border: 1px solid black;
-    padding:10px;
-    border-radius:10px;
+    font-size: 1rem;
+}
+#EndDate {
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #aaa;
+    background-color: white;
+    font-size: 1rem;
 }
 
-.title {
-    font-size: 11px;
-    max-width: 100%;
+#zieVluchtenLink {
+    text-align: center;
+    margin-top: 2rem;
+    align-items: center;
+}
+
+#zieVluchtenLink {
+    background-color: #fcbf49;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.buttonDiv {
     display: flex;
-    justify-content: space-between;
-}
-
-    .title p {
-        width: 50%;
-    }
-
-.card-footer {
-    color: #ffffff88;
-    margin-top: 5px;
-    font-size: 8px;
-}
-
-.front .img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-.countryNameCard {
-    color: #555;
+    justify-content: center; /* centreert horizontaal */
+    margin-top: 2rem;
 }

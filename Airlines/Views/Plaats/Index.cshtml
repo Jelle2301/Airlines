@@ -9,13 +9,15 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-<p>Kies jouw vertrekplaats</p>
+<div class="blokPagina">
+<h1>Welke vluchten wenst u?</h1>
+<h2>Kies jouw vertrekplaats</h2>
 <br/>
 <div class="radio-input">
     @foreach (var item in Model)
     {
         <label>
-            <input value="@item.Naam" name="vertrekKeuze" id="@item.Naam-Vertrek" type="radio" />
+                    <input value="@item.Naam" name="vertrekKeuze" id="@item.Naam-Vertrek" type="radio" class="city-input" />
             <span>@item.Naam</span>
         </label>
     }
@@ -23,13 +25,13 @@
 </div>
 <br />
 
-<p>Kies jouw bestemming</p>
+<h2>Kies jouw bestemming</h2>
 <br />
 <div class="radio-input">
         @foreach (var item in Model)
         {
         <label>
-            <input value="@item.Naam" name="bestemmingKeuze" id="@item.Naam-Bestemming" type="radio" />
+            <input value="@item.Naam" name="bestemmingKeuze" id="@item.Naam-Bestemming" type="radio" class="city-input"/>
             <span>@item.Naam</span>
         </label>
         }
@@ -37,22 +39,28 @@
 </div>
 <br />
 <form asp-controller="Vlucht" asp-action="Index">
-    <div class="form-group">
-        <label for="StartDate"></label>
-        <input id="StartDate" name="StartDate" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label for="EndDate"></label>
-        <input id="EndDate" name="EndDate" class="form-control" />
+    <div class="date-fields">
+        <div class="form-group">
+            <label for="StartDate"></label>
+            <input id="StartDate" name="StartDate" class="form-control" placeholder="Vertrekdatum"/>
+        </div>
+        <div class="form-group">
+            <label for="EndDate"></label>
+                <input id="EndDate" name="EndDate" class="form-control" placeholder="Vertrekdatum" />
+        </div>
     </div>
 
 
 
     <input type="hidden" name="Vertrek" value="" />
     <input type="hidden" name="Bestemming" value="" />
-    <button id="zieVluchtenLink">Zie vluchten</button>
+    <div class="buttonDiv">
+        <button id="zieVluchtenLink">Zie vluchten</button>
+    </div>
     
 </form>
+   
+</div>
 @section Scripts{
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

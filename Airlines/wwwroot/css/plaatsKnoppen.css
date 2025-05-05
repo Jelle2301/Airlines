@@ -6,7 +6,9 @@
     --container_width: 50%;
     position: relative;
     display: flex;
+    justify-content: space-around; /* Of 'center' of 'space-between' */
     align-items: center;
+    margin: 0 auto; /* ➜ centreert de container horizontaal */
     border-radius: 10px;
     background-color: #AFDBF5;
     color: #000000;
@@ -26,6 +28,7 @@
         font-weight: 600;
         letter-spacing: -1px;
         font-size: 14px;
+        class ="city-input"
     }
 
 .selection {
@@ -41,12 +44,9 @@
 
 .radio-input label:has(input:checked) {
     color: #fff;
+    background-color: #415a80;
 }
 
-    .radio-input label:has(input:checked) ~ .selection {
-        background-color: rgb(11 117 223);
-        display: inline-block;
-    }
 
 .radio-input label:nth-child(1):has(input:checked) ~ .selection {
     transform: translateX(calc(var(--container_width) * 0/3));
