@@ -59,7 +59,7 @@ namespace Airlines.Controllers
                 foreach (CartVM cartItem in cartList.Carts)
                 {
                     var ticketIntity = _mapper.Map<Ticket>(cartItem.Ticket);
-                    sqlite3_context.
+                   
                 }
 
 
