@@ -102,6 +102,7 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 
+
 var app = builder.Build();
 
 //Localization - Culture from the HttpRequest
