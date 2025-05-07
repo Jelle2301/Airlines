@@ -1,4 +1,5 @@
 ﻿using System.Reflection.Metadata.Ecma335;
+using System.Security.Claims;
 using Airlines.Extensions;
 using Airlines.ViewModels;
 using AutoMapper;
@@ -57,7 +58,11 @@ namespace Airlines.Controllers
             {
                 ShoppingCartVM? cartList =
                     HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
-                if (cartList.Carts == null)
+                if (cartList == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                if(cartList.Carts == null)
                 {
                     return RedirectToAction("Index");
                 }
@@ -65,6 +70,7 @@ namespace Airlines.Controllers
                 {
                     var ticketEntity = _mapper.Map<Ticket>(cartItem.Ticket);
                     await _ticketService.AddAsync(ticketEntity);
+
                     var boekingVM = new BoekingVM();
                     boekingVM.TicketId =ticketEntity.TicketId;
                     boekingVM.DatumBoeking = DateTime.Now;
@@ -72,7 +78,10 @@ namespace Airlines.Controllers
                     boekingVM.TotalePrijs = ticketEntity.Prijs;
                     boekingVM.VoornaamBoeking = ticketEntity.Voornaam;
                     boekingVM.AchternaamBoeking = ticketEntity.Achternaam;
+                    boekingVM.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+                    var boekingEntity = _mapper.Map<Boeking>(boekingVM);
+                    await _boekingService.AddAsync(boekingEntity);
 
                 }
 
