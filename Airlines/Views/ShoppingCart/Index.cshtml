@@ -78,18 +78,21 @@
                 }
             </tbody>
         </table>
-
+        </form>
+        
         <div class="totaalStukje">
             <div class="col-md-6 text-end">
                 <strong>Total: </strong>
                 <input id="txtTotal" value="@Model.Carts.Sum(x => x.Ticket.Prijs)" class="form-control d-inline w-auto" readonly />
             </div>
                 <div class="col-md-6">
+                <form asp-controller="ShoppingCart" asp-action="PostData" method="post">
                     <input type="submit" value="Checkout" class="checkoutKnop" />
-                    <a asp-controller="ShoppingCart" asp-action="PostData" class="loginLinkVoorBoeken">Login voor te boeken</a>
+                </form>
+                    
                 </div>
         </div>
-    </form>
+        
 }
 
 else
