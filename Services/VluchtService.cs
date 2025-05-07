@@ -18,7 +18,7 @@ namespace Services
             _vluchtDAO = vluchtDAO;
         }
 
-        public Task<IEnumerable<Plaats>?> GetAllAsync()
+        public Task<IEnumerable<Plaat>?> GetAllAsync()
         {
             throw new NotImplementedException();
         }

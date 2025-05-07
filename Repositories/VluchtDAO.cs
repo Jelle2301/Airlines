@@ -48,7 +48,7 @@ namespace Repositories
         {
             try
             {
-                return await dbContext.Vluchts.Where(v => v.VluchtId.Equals(id)).Include(v=> v.Vliegtuig).Include(v => v.Vertrekplaats).Include(v => v.Bestemming).ThenInclude(b => b.Plaats).FirstOrDefaultAsync();
+                return await dbContext.Vluchts.Where(v => v.VluchtId.Equals(id)).Include(v=> v.Vliegtuig).Include(v => v.Vertrekplaats).ThenInclude(b => b.Plaats).Include(v => v.Bestemming).ThenInclude(b => b.Plaats).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {

@@ -34,7 +34,7 @@ public partial class AirlineDbContext : DbContext
 
     public virtual DbSet<Maaltijd> Maaltijds { get; set; }
 
-    public virtual DbSet<Plaats> Plaats { get; set; }
+    public virtual DbSet<Plaat> Plaats { get; set; }
 
     public virtual DbSet<Reisklasse> Reisklasses { get; set; }
 
@@ -42,7 +42,7 @@ public partial class AirlineDbContext : DbContext
 
     public virtual DbSet<Ticket> Tickets { get; set; }
 
-    public virtual DbSet<Vertrekplaats> Vertrekplaats { get; set; }
+    public virtual DbSet<Vertrekplaat> Vertrekplaats { get; set; }
 
     public virtual DbSet<Vliegtuig> Vliegtuigs { get; set; }
 
@@ -163,7 +163,7 @@ public partial class AirlineDbContext : DbContext
             entity.Property(e => e.Soort).IsUnicode(false);
         });
 
-        modelBuilder.Entity<Plaats>(entity =>
+        modelBuilder.Entity<Plaat>(entity =>
         {
             entity.HasKey(e => e.PlaatsId);
 
@@ -205,7 +205,6 @@ public partial class AirlineDbContext : DbContext
 
             entity.HasOne(d => d.Seizoen).WithMany(p => p.Tickets)
                 .HasForeignKey(d => d.SeizoenId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Ticket_Seizoen");
 
             entity.HasOne(d => d.Vlucht).WithMany(p => p.Tickets)
@@ -214,7 +213,7 @@ public partial class AirlineDbContext : DbContext
                 .HasConstraintName("FK_Ticket_Vlucht");
         });
 
-        modelBuilder.Entity<Vertrekplaats>(entity =>
+        modelBuilder.Entity<Vertrekplaat>(entity =>
         {
             entity.HasKey(e => e.VertrekplaatsId);
 

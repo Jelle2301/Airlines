@@ -5,7 +5,7 @@
 
         public int TicketId { get; set; }
 
-        public DateTime DatumBoeking { get; set; }
+        public DateOnly DatumBoeking { get; set; }
 
         public string VoornaamBoeking { get; set; } = null!;
 

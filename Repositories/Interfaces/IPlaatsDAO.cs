@@ -7,8 +7,8 @@ using Domains.Entities;
 
 namespace Repositories.Interfaces
 {
-    public interface IPlaatsDAO : IDAO<Plaats>
+    public interface IPlaatsDAO : IDAO<Plaat>
     {
-        Task<Plaats?> GetByNaamAsync(string naam);
+        Task<Plaat?> GetByNaamAsync(string naam);
     }
 }

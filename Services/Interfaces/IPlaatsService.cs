@@ -7,8 +7,8 @@ using Domains.Entities;
 
 namespace Services.Interfaces
 {
-    public interface IPlaatsService : IService<Plaats>
+    public interface IPlaatsService : IService<Plaat>
     {
-        Task<Plaats?> GetByNaamAsync(string naam);
+        Task<Plaat?> GetByNaamAsync(string naam);
     }
 }

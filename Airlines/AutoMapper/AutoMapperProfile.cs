@@ -9,7 +9,7 @@ namespace Airlines.AutoMapper
         public AutoMapperProfile()
         {
 
-            CreateMap<Plaats, PlaatsVM>();
+            CreateMap<Plaat, PlaatsVM>();
            
             CreateMap<Vlucht, VluchtVM>()
                 .ForMember(dest=> dest.BeginPrijs,
@@ -42,6 +42,12 @@ namespace Airlines.AutoMapper
                 .ForMember(dest => dest.IsOverstap,
                     opts => opts.MapFrom(
                         src => src.IsOverstap))
+                .ForMember(dest => dest.VertrekCode,
+                    opts => opts.MapFrom(
+                        src => src.Vertrekplaats.Plaats.Code))
+                .ForMember(dest => dest.BestemmingCode,
+                    opts => opts.MapFrom(
+                        src => src.Bestemming.Plaats.Code))
                 ;
 
             CreateMap<Maaltijd, MaaltijdVM>()
@@ -61,7 +67,7 @@ namespace Airlines.AutoMapper
             CreateMap<Ticket, TicketVM>();
 
             //van VM naar Entity
-            CreateMap<PlaatsVM, Plaats>();
+            CreateMap<PlaatsVM, Plaat>();
             CreateMap<VluchtVM, Vlucht>()
                 .ForMember(dest => dest.Prijs,
                     opts => opts.MapFrom(
@@ -93,6 +99,12 @@ namespace Airlines.AutoMapper
                 .ForMember(dest => dest.IsOverstap,
                     opts => opts.MapFrom(
                         src => src.IsOverstap))
+                .ForPath(dest => dest.Vertrekplaats.Plaats.Code,
+                    opts => opts.MapFrom(
+                        src => src.VertrekCode))
+                .ForPath(dest => dest.Bestemming.Plaats.Code,
+                    opts => opts.MapFrom(
+                        src => src.BestemmingCode))
                 ;
 
 
@@ -111,14 +123,16 @@ namespace Airlines.AutoMapper
             CreateMap<SeizoenVM, Seizoen>();
             CreateMap<ZitplaatsVM, Zitplaat>();
             CreateMap<TicketVM, Ticket>();
+            
 
             CreateMap<AspNetUser, UserVM>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName));
 
-            CreateMap<Plaats, PlaatsVM>()
+            CreateMap<Plaat, PlaatsVM>()
                 .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam));
+            CreateMap<BoekingVM, Boeking>();
         }
     }
 }

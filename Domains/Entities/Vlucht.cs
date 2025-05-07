@@ -31,7 +31,7 @@ public partial class Vlucht
 
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 
-    public virtual Vertrekplaats Vertrekplaats { get; set; } = null!;
+    public virtual Vertrekplaat Vertrekplaats { get; set; } = null!;
 
     public virtual Vliegtuig Vliegtuig { get; set; } = null!;
 

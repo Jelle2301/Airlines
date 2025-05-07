@@ -17,7 +17,7 @@ public partial class Ticket
 
     public int ReisklasseId { get; set; }
 
-    public int SeizoenId { get; set; }
+    public int? SeizoenId { get; set; }
 
     public int VluchtId { get; set; }
 
@@ -27,7 +27,7 @@ public partial class Ticket
 
     public virtual Reisklasse Reisklasse { get; set; } = null!;
 
-    public virtual Seizoen Seizoen { get; set; } = null!;
+    public virtual Seizoen? Seizoen { get; set; }
 
     public virtual Vlucht Vlucht { get; set; } = null!;
 }

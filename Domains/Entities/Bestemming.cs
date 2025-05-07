@@ -9,7 +9,7 @@ public partial class Bestemming
 
     public int PlaatsId { get; set; }
 
-    public virtual Plaats Plaats { get; set; } = null!;
+    public virtual Plaat Plaats { get; set; } = null!;
 
     public virtual ICollection<Vlucht> Vluchts { get; set; } = new List<Vlucht>();
 }

@@ -18,7 +18,7 @@ namespace Repositories
             this.dbContext = context;
         }
 
-        public async Task<IEnumerable<Plaats>?> GetAllAsync()
+        public async Task<IEnumerable<Plaat>?> GetAllAsync()
         {
             try
             {
@@ -31,7 +31,7 @@ namespace Repositories
             }
         }
 
-        public async Task<Plaats?> GetByNaamAsync(string naam)
+        public async Task<Plaat?> GetByNaamAsync(string naam)
         {
             try
             {

@@ -17,7 +17,7 @@ namespace Services
             _plaatsDAO = plaatsDAO;
         }
 
-        public async Task<IEnumerable<Plaats>?> GetAllAsync()
+        public async Task<IEnumerable<Plaat>?> GetAllAsync()
         {
             try
             {
@@ -29,7 +29,7 @@ namespace Services
                 throw;
             }
         }
-        public async Task<Plaats?> GetByNaamAsync(string naam)
+        public async Task<Plaat?> GetByNaamAsync(string naam)
         {
             try
             {

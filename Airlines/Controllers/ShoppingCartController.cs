@@ -60,11 +60,11 @@ namespace Airlines.Controllers
                     HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
                 if (cartList == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("ShoppingCartLeegIndex", "BoekingAfronding");
                 }
                 if(cartList.Carts == null)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("ShoppingCartLeegIndex", "BoekingAfronding");
                 }
                 foreach (CartVM cartItem in cartList.Carts)
                 {
@@ -73,7 +73,7 @@ namespace Airlines.Controllers
 
                     var boekingVM = new BoekingVM();
                     boekingVM.TicketId =ticketEntity.TicketId;
-                    boekingVM.DatumBoeking = DateTime.Now;
+                    boekingVM.DatumBoeking = DateOnly.FromDateTime(DateTime.Now);
                     boekingVM.Status = "Voltooid";
                     boekingVM.TotalePrijs = ticketEntity.Prijs;
                     boekingVM.VoornaamBoeking = ticketEntity.Voornaam;
@@ -85,7 +85,7 @@ namespace Airlines.Controllers
 
                 }
                 HttpContext.Session.Remove("ShoppingCart");
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "BoekingAfronding");
 
 
             }
@@ -93,7 +93,7 @@ namespace Airlines.Controllers
             {
                 ModelState.AddModelError("", "Er is een fout opgetreden");
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("ShoppingCartLeegIndex", "BoekingAfronding");
 
         }
 

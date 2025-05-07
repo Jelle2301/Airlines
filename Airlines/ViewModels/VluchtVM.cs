@@ -23,6 +23,8 @@
         public string VertrekNaam { get; set; } = null!;
         public string BestemmingNaam { get; set; } = null!;
         public bool IsOverstap { get; set; }
+        public string VertrekCode { get; set; } = null!;
+        public string BestemmingCode { get; set; } = null!;
 
 
 
