@@ -93,7 +93,8 @@ namespace Airlines.Controllers
             {
                 ModelState.AddModelError("", "Er is een fout opgetreden");
             }
-            return View();
+            return RedirectToAction("Index");
+
         }
 
 
