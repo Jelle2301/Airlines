@@ -51,7 +51,7 @@ namespace Airlines.Controllers
             }
             return View();
         }
-        
+        [HttpPost]
         public async Task<IActionResult> PostData()
         {
             try
@@ -84,6 +84,8 @@ namespace Airlines.Controllers
                     await _boekingService.AddAsync(boekingEntity);
 
                 }
+                HttpContext.Session.Remove("ShoppingCart");
+                return RedirectToAction("Index");
 
 
             }
