@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,55 +9,53 @@
 
 <section class="welkomBlok">
     <img src="/images/vliegtuigBeginpagina.jpg" alt="Vliegtuig" />
-    <h1>WELKOM BIJ GILWE AIRLINES ✈️</h1>
-    <p>Uw reis begint hier — eenvoudig, snel en voordelig!</p>
+    <h1>@Localizer["Welcome"].Value</h1>
+    <p>@Localizer["Travel"].Value</p>
     
-    <a class="zieVluchtenLink" asp-area="" asp-controller="Plaats" asp-action="Index">Bekijk vluchten</a>
+    <a class="zieVluchtenLink" asp-area="" asp-controller="Plaats" asp-action="Index">@Localizer["See-Flights"].Value</a>
 </section>
 </div>
 <section class="missie">
-    <h2>🛫 Onze missie</h2>
-    <p>Wij bieden jullie een top service aan zonder veel vertraging als bij TUI, alsook bieden wij u geen stakingen aan als bij NMBS.</p>
+    <h2>@Localizer["Mission-Title"].Value</h2>
+    <p>@Localizer["Mission-Text"].Value</p>
 </section>
 
 <section class="info">
     <div class="infoDiv">
         <div class="infoblokje">
-            <h3>✈️ Vluchten boeken</h3>
-            <p>U kunt bij ons eenvoudig een vlucht inboeken.</p>
+            <h3>@Localizer["Book-Flight-Title"].Value</h3>
+            <p>@Localizer["Book-Flight-Text"].Value</p>
         </div>
         <div class="infoblokje">
-            <h3>🍽️ Maaltijden tijdens uw vlucht</h3>
-            <p>Ook kunt u een lekkere maaltijd bij uw vlucht aankopen</p>
+            <h3>@Localizer["Meal-Title"].Value</h3>
+            <p>@Localizer["Meal-Text"].Value</p>
         </div>
         <div class="infoblokje">
-            <h3>🧳 Voordelig op reis</h3>
-            <p>Wij bieden u acceptabele en goedkope prijzen aan.</p>
+            <h3>@Localizer["Price-Title"].Value</h3>
+            <p>@Localizer["Price-Text"].Value</p>
         </div>
     </div>
 </section>
 <section class="voorstelling">
-    <h2>Oorsprong</h2>
+    <h2>@Localizer["Origin-Title"].Value</h2>
     <div class="infoblokjeVoorstelling">
-        <h3>Klein maar sterk</h3>
+        <h3>@Localizer["Origin-Second-Title"].Value</h3>
         <p>
-            Gilwe Airlines is een relatief klein bedrijf die zich probeert te onderschijden in een grote markt van aanbieders.
-            Dit maakt ons zeker niet temin. Wij bieden goedkope prijzen aan en veel opties.
+            @Localizer["Origin-Text"].Value
         </p>
 
     </div>
     <div class="infoblokjeVoorstelling">
-        <h3>Bezorgdheid</h3>
+        <h3>@Localizer["Concern-Title"].Value</h3>
         <p>
-            Wij staan ook bekend om onze bezorgdheid met de klanten
-            Wij willen dat u rap en eenvoudig ene reis kan plannen, daarom stellen we extra middelen ter beschikking zoals het tonen van hotels
+            @Localizer["Concern-Text"].Value
         </p>
     </div>
     
     <div class="infoblokjeVoorstelling">
-        <h3>Oprichters</h3>
+        <h3>@Localizer["Founders-Title"].Value</h3>
         <p>
-            Gilwe Airlines is opgericht door twee studen Toegepaste Informatica...
+            @Localizer["Founders-Text"].Value
         </p>
     </div>
     

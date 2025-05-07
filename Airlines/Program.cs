@@ -5,6 +5,7 @@ using Domains.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -26,10 +27,27 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+//Localization - recource map 
+builder.Services.AddLocalization(
+    options => options.ResourcesPath = "Resources");
+
 
 
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.SubFolder) // vertaling op View
+    .AddDataAnnotationsLocalization(); // vertaling op ViewModel
+// we need to decide which cultures we support, and which is the default culture.
+var supportedCultures = new[] { "nl", "en", "fr", "es" };
+
+//Localization - Dit configureert de standaard instellingen voor RequestLocalizationOptions en slaat ze op in de dependency injection-container (DI).*
+builder.Services.Configure<RequestLocalizationOptions>(options => {
+    options.SetDefaultCulture(supportedCultures[0])
+      .AddSupportedCultures(supportedCultures)  //Culture is used when formatting or parsing culture dependent data like dates, numbers, currencies, etc
+      .AddSupportedUICultures(supportedCultures);  //UICulture is used when localizing strings, for example when using resource files.
+});
+
 
 // SwaggerGen produces JSON schema documents that power Swagger UI.By default, these are served up under / swagger
 //{ documentName}/ swagger.json, where { documentName} is usually the API version.
@@ -83,7 +101,16 @@ builder.Services.AddTransient<IHotelService, HotelService>();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
+
 var app = builder.Build();
+
+//Localization - Culture from the HttpRequest
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture(supportedCultures[0])
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

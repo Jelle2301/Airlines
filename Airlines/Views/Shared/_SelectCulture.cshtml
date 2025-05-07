@@ -25,7 +25,8 @@
         </label>
         <select name="lang" class="setLang"
                 asp-for="@currentRequestCulture.RequestCulture.UICulture.Name"
-                asp-items="cultureItems">
+                asp-items="cultureItems"
+                onchange="this.form.submit()">
         </select>
 
     </form>
