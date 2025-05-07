@@ -104,6 +104,8 @@ builder.Services.AddTransient<IBoekingDAO, BoekingDAO>();
 builder.Services.AddTransient<IBoekingService, BoekingService>();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
+builder.Services.AddTransient<IDAO<AspNetUser>, UserDAO>();
+builder.Services.AddTransient<IService<AspNetUser>, UserService>();
 
 
 

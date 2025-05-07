@@ -112,6 +112,10 @@ namespace Airlines.AutoMapper
             CreateMap<ZitplaatsVM, Zitplaat>();
             CreateMap<TicketVM, Ticket>();
 
+            CreateMap<AspNetUser, UserVM>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName));
         }
     }
 }
