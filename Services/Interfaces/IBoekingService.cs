@@ -8,7 +8,7 @@ using Repositories.Interfaces;
 
 namespace Services.Interfaces
 {
-    public interface IBoekingService : IDAO<Boeking>
+    public interface IBoekingService : IService<Boeking>
     {
         Task AddAsync(Boeking entity);
         Task DeleteAsync(Boeking entity);

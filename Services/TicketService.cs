@@ -12,16 +12,16 @@ namespace Services
 {
     public class TicketService : ITicketService
     {
-        private ITicketService _ticketService;
-        public TicketService(ITicketService ticketService)
+        private ITicketDAO _ticketDAO;
+        public TicketService(ITicketDAO ticketDAO)
         {
-            _ticketService = ticketService;
+            _ticketDAO = ticketDAO;
         }
         public async Task AddAsync(Ticket entity)
         {
             try
             {
-                await _ticketService.AddAsync(entity);
+                await _ticketDAO.AddAsync(entity);
                 
             }
             catch (Exception ex)
@@ -35,7 +35,7 @@ namespace Services
         {
             try
             {
-                return await _ticketService.GetAllAsync();
+                return await _ticketDAO.GetAllAsync();
             }
             catch (Exception ex)
             {

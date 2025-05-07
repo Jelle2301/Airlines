@@ -12,14 +12,22 @@ namespace Services
 {
     public class BoekingService : IBoekingService
     {
-        private IBoekingService _boekingService;
-        public BoekingService(IBoekingService boekingService)
+        private IBoekingDAO _boekingDAO;
+        public BoekingService(IBoekingDAO boekingDAO)
         {
-            _boekingService = boekingService;
+            _boekingDAO = boekingDAO;
         }
-        public Task AddAsync(Boeking entity)
+        public async Task AddAsync(Boeking entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _boekingDAO.AddAsync(entity);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(BoekingService) in AddAsync");
+                throw;
+            }
         }
 
         public Task DeleteAsync(Boeking entity)
@@ -31,7 +39,7 @@ namespace Services
         {
             try
             {
-                return await _boekingService.GetAllAsync();
+                return await _boekingDAO.GetAllAsync();
             }
             catch (Exception ex)
             {

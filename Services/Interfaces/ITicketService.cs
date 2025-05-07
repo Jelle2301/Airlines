@@ -8,8 +8,9 @@ using Repositories.Interfaces;
 
 namespace Services.Interfaces
 {
-    public interface ITicketService : IDAO<Ticket>
+    public interface ITicketService :IService<Ticket>
     {
         Task AddAsync(Ticket entity);
     }
+    
 }

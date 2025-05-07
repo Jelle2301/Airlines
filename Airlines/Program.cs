@@ -98,12 +98,13 @@ builder.Services.AddTransient<ISeizoenService, SeizoenService>();
 builder.Services.AddTransient<IZitplaatsDAO, ZitplaatsDAO>();
 builder.Services.AddTransient<IZitplaatsService, ZitplaatsService>();
 builder.Services.AddTransient<IHotelService, HotelService>();
-builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.AddTransient<ITicketDAO, TicketDAO>();
 builder.Services.AddTransient<ITicketService, TicketService>();
 builder.Services.AddTransient<IBoekingDAO, BoekingDAO>();
 builder.Services.AddTransient<IBoekingService, BoekingService>();
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
+
 
 
 
