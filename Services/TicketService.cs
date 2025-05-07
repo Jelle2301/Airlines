@@ -6,26 +6,36 @@ using System.Threading.Tasks;
 using Domains.Entities;
 using Repositories;
 using Repositories.Interfaces;
+using Services.Interfaces;
 
 namespace Services
 {
-    public class TicketService : ITicketDAO
+    public class TicketService : ITicketService
     {
-        private ITicketDAO _ticketDAO;
-        public TicketService(ITicketDAO ticketDAO)
+        private ITicketService _ticketService;
+        public TicketService(ITicketService ticketService)
         {
-            _ticketDAO = ticketDAO;
+            _ticketService = ticketService;
         }
-        public Task AddAsync(Ticket entity)
+        public async Task AddAsync(Ticket entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _ticketService.AddAsync(entity);
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(TicketService) in AddAsync");
+                throw;
+            }
         }
 
         public async Task<IEnumerable<Ticket>?> GetAllAsync()
         {
             try
             {
-                return await _ticketDAO.GetAllAsync();
+                return await _ticketService.GetAllAsync();
             }
             catch (Exception ex)
             {

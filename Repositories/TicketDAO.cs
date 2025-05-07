@@ -17,9 +17,18 @@ namespace Repositories
         {
             this.dbContext = context;
         }
-        public Task AddAsync(Ticket entity)
+        public async Task AddAsync(Ticket entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await dbContext.Tickets.AddAsync(entity);
+                await dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in DAO(TicketDAO) in AddAsync");
+                throw;
+            }
         }
 
         public async Task<IEnumerable<Ticket>?> GetAllAsync()

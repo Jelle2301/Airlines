@@ -17,9 +17,18 @@ namespace Repositories
         {
             this.dbContext = context;
         }
-        public Task AddAsync(Boeking entity)
+        public async Task AddAsync(Boeking entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await dbContext.Boekings.AddAsync(entity);
+                await dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in DAO(BoekingDAO) in AddAsync");
+                throw;
+            }
         }
 
         public Task DeleteAsync(Boeking entity)

@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 using Domains.Entities;
 using Repositories;
 using Repositories.Interfaces;
+using Services.Interfaces;
 
 namespace Services
 {
-    public class BoekingService : IBoekingDAO
+    public class BoekingService : IBoekingService
     {
-        private IBoekingDAO _boekingDAO;
-        public BoekingService(IBoekingDAO boekingDAO)
+        private IBoekingService _boekingService;
+        public BoekingService(IBoekingService boekingService)
         {
-            _boekingDAO = boekingDAO;
+            _boekingService = boekingService;
         }
         public Task AddAsync(Boeking entity)
         {
@@ -30,7 +31,7 @@ namespace Services
         {
             try
             {
-                return await _boekingDAO.GetAllAsync();
+                return await _boekingService.GetAllAsync();
             }
             catch (Exception ex)
             {

@@ -14,10 +14,15 @@ namespace Airlines.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IZitplaatsService _zitplaatsService;
-        public ShoppingCartController(IMapper mapper, IZitplaatsService zitplaatsService)
+        private readonly ITicketService _ticketService;
+        private readonly IBoekingService _boekingService;
+        
+        public ShoppingCartController(IMapper mapper, IZitplaatsService zitplaatsService, ITicketService ticketService, IBoekingService boekingService)
         {
             _mapper = mapper;
             _zitplaatsService = zitplaatsService;
+            _ticketService = ticketService;
+            _boekingService = boekingService;
         }
         public async Task<IActionResult> Index()
         {
@@ -58,8 +63,17 @@ namespace Airlines.Controllers
                 }
                 foreach (CartVM cartItem in cartList.Carts)
                 {
-                    var ticketIntity = _mapper.Map<Ticket>(cartItem.Ticket);
-                   
+                    var ticketEntity = _mapper.Map<Ticket>(cartItem.Ticket);
+                    await _ticketService.AddAsync(ticketEntity);
+                    var boekingVM = new BoekingVM();
+                    boekingVM.TicketId =ticketEntity.TicketId;
+                    boekingVM.DatumBoeking = DateTime.Now;
+                    boekingVM.Status = "Voltooid";
+                    boekingVM.TotalePrijs = ticketEntity.Prijs;
+                    boekingVM.VoornaamBoeking = ticketEntity.Voornaam;
+                    boekingVM.AchternaamBoeking = ticketEntity.Achternaam;
+
+
                 }
 
 

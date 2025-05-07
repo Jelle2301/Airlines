@@ -2,11 +2,10 @@
 {
     public class BoekingVM
     {
-        public int BoekingId { get; set; }
 
         public int TicketId { get; set; }
 
-        public DateOnly DatumBoeking { get; set; }
+        public DateTime DatumBoeking { get; set; }
 
         public string VoornaamBoeking { get; set; } = null!;
 
