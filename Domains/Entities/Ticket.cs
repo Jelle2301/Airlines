@@ -21,6 +21,8 @@ public partial class Ticket
 
     public int VluchtId { get; set; }
 
+    public int ZitplaatsId { get; set; }
+
     public virtual ICollection<Boeking> Boekings { get; set; } = new List<Boeking>();
 
     public virtual Maaltijd? Maaltijd { get; set; }
@@ -30,4 +32,6 @@ public partial class Ticket
     public virtual Seizoen? Seizoen { get; set; }
 
     public virtual Vlucht Vlucht { get; set; } = null!;
+
+    public virtual Zitplaat Zitplaats { get; set; } = null!;
 }

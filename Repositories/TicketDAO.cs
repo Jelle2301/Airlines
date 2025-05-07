@@ -24,6 +24,7 @@ namespace Repositories
                 dbContext.Entry(entity.Maaltijd).State = EntityState.Unchanged;
                 dbContext.Entry(entity.Reisklasse).State = EntityState.Unchanged;
                 dbContext.Entry(entity.Vlucht).State = EntityState.Unchanged;
+                dbContext.Entry(entity.Zitplaats).State = EntityState.Unchanged;
                 await dbContext.Tickets.AddAsync(entity);
                 await dbContext.SaveChangesAsync();
             }

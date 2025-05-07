@@ -39,6 +39,7 @@ namespace Airlines.Controllers
                     if (seat != null)
                     {
                         cartItem.Ticket.Zitplaats = _mapper.Map<ZitplaatsVM>(seat);
+                        cartItem.Ticket.Zitplaats.ZitplaatsId = cartItem.Ticket.Zitplaats.ZitplaatsId;
                         await _zitplaatsService.MaakZitplaatsBezet(cartItem.Ticket.Zitplaats.ZitplaatsId);
                     }
                 }

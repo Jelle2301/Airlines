@@ -211,6 +211,11 @@ public partial class AirlineDbContext : DbContext
                 .HasForeignKey(d => d.VluchtId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Ticket_Vlucht");
+
+            entity.HasOne(d => d.Zitplaats).WithMany(p => p.Tickets)
+                .HasForeignKey(d => d.ZitplaatsId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Ticket_Zitplaats");
         });
 
         modelBuilder.Entity<Vertrekplaat>(entity =>

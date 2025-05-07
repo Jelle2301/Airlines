@@ -20,5 +20,6 @@ namespace Airlines.ViewModels
         public VluchtVM Vlucht { get; set; } = null!;
 
         public ZitplaatsVM Zitplaats { get; set; } = null!;
+        public int ZitplaatsId { get; set; }
     }
 }

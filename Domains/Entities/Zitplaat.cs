@@ -13,5 +13,7 @@ public partial class Zitplaat
 
     public bool IsBezet { get; set; }
 
+    public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
+
     public virtual Vlucht Vlucht { get; set; } = null!;
 }
