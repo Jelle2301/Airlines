@@ -116,6 +116,9 @@ namespace Airlines.AutoMapper
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName));
+
+            CreateMap<Plaats, PlaatsVM>()
+                .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam));
         }
     }
 }

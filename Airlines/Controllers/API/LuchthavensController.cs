@@ -10,17 +10,23 @@ namespace Airlines.Controllers.API
     [ApiController]
     public class LuchthavensController : Controller
     {
-        private IService<Plaats> _plaatsService;
+        private IPlaatsService _plaatsService;
         private readonly IMapper _mapper;
-        public LuchthavensController(IService<Plaats> plaatsService, IMapper mapper)
+        public LuchthavensController(IPlaatsService plaatsService, IMapper mapper)
         {
             _plaatsService = plaatsService;
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<ActionResult<PlaatsVM>> Get()
+        public async Task<ActionResult<PlaatsVM>> GetAllLuchthavens()
         {
-            return View();
+            var luchthavens = await _plaatsService.GetAllAsync();
+            if (luchthavens == null)
+            {
+                return NotFound("No airports found");
+            }
+            var luchthavensVMs = _mapper.Map<IEnumerable<PlaatsVM>>(luchthavens);
+            return Ok(luchthavensVMs);
         }
     }
 }
