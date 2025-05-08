@@ -112,7 +112,19 @@ namespace Repositories
                 throw;
             }
         }
-        
-        
+
+        public async Task<IEnumerable<Vlucht>?> GetNormaleVluchtenTussenPlaatsenTussenDatums(int vertrekPlaatdId, int bestemmingId, DateTime startDatum, DateTime eindDatum)
+        {
+            try
+            {
+                return await dbContext.Vluchts.Where(v => v.IsOverstap == false).Include(v => v.Vliegtuig).Include(v => v.Vertrekplaats).Where(v => v.VertrekplaatsId == vertrekPlaatdId).Include(v => v.Bestemming).ThenInclude(b => b.Plaats).Where(v => v.BestemmingId == bestemmingId).Where(v => v.TijdVertrek.Date >= startDatum && v.TijdVertrek.Date <= eindDatum).ToListAsync();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in DAO(VluchtDAO) in GetNormaleVluchtenTussenPlaatsenTussenDatums");
+                throw;
+            }
+        }
     }
 }

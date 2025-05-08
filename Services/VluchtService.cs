@@ -75,5 +75,18 @@ namespace Services
                 throw;
             }
         }
+
+        public async Task<IEnumerable<Vlucht>?> GetNormaleVluchtenTussenPlaatsenTussenDatums(int vertrekPlaatdId, int bestemmingId, DateTime startDatum, DateTime eindDatum)
+        {
+            try
+            {
+                return await _vluchtDAO.GetNormaleVluchtenTussenPlaatsenTussenDatums(vertrekPlaatdId, bestemmingId, startDatum, eindDatum);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(VluchtService) in GetNormaleVluchtenTussenPlaatsenTussenDatums");
+                throw;
+            }
+        }
     }
 }

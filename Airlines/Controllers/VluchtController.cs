@@ -30,7 +30,9 @@ namespace Airlines.Controllers
                 
                 int vertrekPlaatsId = _plaatsService.GetByNaamAsync(vertrek).Result.PlaatsId;
                 int bestemmingId = _plaatsService.GetByNaamAsync(bestemming).Result.PlaatsId;
-                var lstVluchten = await _vluchtService.GetNormaleVluchtenTussenPlaatsen(vertrekPlaatsId, bestemmingId);
+
+                var lstVluchten = await _vluchtService.GetNormaleVluchtenTussenPlaatsenTussenDatums(vertrekPlaatsId, bestemmingId, StartDate, EndDate);
+
                 
                 List<VluchtVM> lstVluchtVM = null;
                 if(lstVluchten != null)
