@@ -55,25 +55,9 @@ namespace Airlines.Controllers.API
             if (result.Succeeded)
             {
                 var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
-                return GenerateJwtToken(model.Email, appUser); // als je correct bent ingelogd, zal een Jwt-Token worden aangemaakt
+                return Ok(appUser); // als je correct bent ingelogd, zal een Jwt-Token worden aangemaakt
             }
             throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
-        }
-
-        private object GenerateJwtToken(string email, IdentityUser user)
-        {
-            // wat een claim is werd reeds uitgelegd -> is een kenmerk over een individu
-            var claims = new List<Claim>
-                 {
-                 new Claim(JwtRegisteredClaimNames.Sub, email),
-                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                 new Claim(ClaimTypes.NameIdentifier, user.Id)
-                 };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtConfig:JwtKey"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration["JwtConfig:JwtExpireDays"]));
-            var token = new JwtSecurityToken(_configuration["JwtConfig:JwtIssuer"], _configuration["JwtConfig:JwtIssuer"], claims, expires: expires, signingCredentials: creds);
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         public class LoginDto
