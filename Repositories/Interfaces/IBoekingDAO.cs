@@ -11,5 +11,6 @@ namespace Repositories.Interfaces
     {
         Task AddAsync(Boeking entity);
         Task DeleteAsync(Boeking entity);
+        Task<IEnumerable<Boeking>?> GetAllBoekingenVanUser(string userId);
     }
 }

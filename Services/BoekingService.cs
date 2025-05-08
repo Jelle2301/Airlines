@@ -47,5 +47,18 @@ namespace Services
                 throw;
             }
         }
+
+        public async Task<IEnumerable<Boeking>?> GetAllBoekingenVanUser(string userId)
+        {
+            try
+            {
+                return await _boekingDAO.GetAllBoekingenVanUser(userId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(BoekingService) in GetAllBoekingenVanUser");
+                throw;
+            }
+        }
     }
 }

@@ -115,7 +115,7 @@ namespace Airlines.Controllers
 
                 if (itemToRemove != null)
                 {
-                    cartList?.Carts?.Remove(itemToRemove);
+                    HttpContext.Session.Remove("ShoppingCart");
                     HttpContext.Session.SetObject("ShoppingCart", cartList);
                 }
                 return View("index");

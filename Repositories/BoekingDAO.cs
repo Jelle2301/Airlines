@@ -48,5 +48,18 @@ namespace Repositories
                 throw;
             }
         }
+
+        public async Task<IEnumerable<Boeking>?> GetAllBoekingenVanUser(string userId)
+        {
+            try
+            {
+                return await dbContext.Boekings.Where(u => u.UserId == userId).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in DAO(BoekingDAO) in GetAllBoekingenVanUser");
+                throw;
+            }
+        }
     }
 }

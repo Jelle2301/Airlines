@@ -72,3 +72,13 @@ h1 {
 .checkoutKnop:hover {
     background-color: #33aaff;
 }
+.deleteKnop {
+    padding: 10px 20px;
+    background-color: #fcbf49;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+}
