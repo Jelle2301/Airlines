@@ -17,7 +17,7 @@ namespace Airlines.Controllers
         private readonly IZitplaatsService _zitplaatsService;
         private readonly ITicketService _ticketService;
         private readonly IBoekingService _boekingService;
-        
+
         public ShoppingCartController(IMapper mapper, IZitplaatsService zitplaatsService, ITicketService ticketService, IBoekingService boekingService)
         {
             _mapper = mapper;
@@ -31,7 +31,7 @@ namespace Airlines.Controllers
             {
                 ShoppingCartVM? cartList =
                     HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
-                
+
 
                 foreach (CartVM cartItem in cartList.Carts)
                 {
@@ -63,7 +63,7 @@ namespace Airlines.Controllers
                 {
                     return RedirectToAction("ShoppingCartLeegIndex", "BoekingAfronding");
                 }
-                if(cartList.Carts == null)
+                if (cartList.Carts == null)
                 {
                     return RedirectToAction("ShoppingCartLeegIndex", "BoekingAfronding");
                 }
@@ -73,7 +73,7 @@ namespace Airlines.Controllers
                     await _ticketService.AddAsync(ticketEntity);
 
                     var boekingVM = new BoekingVM();
-                    boekingVM.TicketId =ticketEntity.TicketId;
+                    boekingVM.TicketId = ticketEntity.TicketId;
                     boekingVM.DatumBoeking = DateOnly.FromDateTime(DateTime.Now);
                     boekingVM.Status = "Voltooid";
                     boekingVM.TotalePrijs = ticketEntity.Prijs;
@@ -102,7 +102,7 @@ namespace Airlines.Controllers
 
 
 
-        
+
         public IActionResult Delete(int plaatsInShoppingCart)
         {
             try
@@ -127,4 +127,5 @@ namespace Airlines.Controllers
             return View("index");
 
         }
+    }
 }

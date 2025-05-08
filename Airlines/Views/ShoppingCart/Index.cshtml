@@ -35,8 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (Model.Carts == null || Model.Carts.Count == 0)
-                    {
+                    
 
 
                         @foreach (var (cartItem, index) in Model.Carts.Select((value, i) => (value, i)))
@@ -82,9 +81,7 @@
                         *@
                             </tr>
                         }
-                    }else{
-                        <p>Shoppingcart is leeg</p>
-                    }
+                   
             </tbody>
         </table>
         </form>
