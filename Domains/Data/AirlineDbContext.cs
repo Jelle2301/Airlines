@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Domains.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Domains.Data;
 
@@ -49,10 +50,21 @@ public partial class AirlineDbContext : DbContext
     public virtual DbSet<Vlucht> Vluchts { get; set; }
 
     public virtual DbSet<Zitplaat> Zitplaats { get; set; }
-
+    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server = tcp:flight-project-vives.database.windows.net; Initial Catalog = flightDatabase; User ID = beheerder; Password = Flight1Ww.; MultipleActiveResultSets = True; Encrypt = True; TrustServerCertificate = True;");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            // install this packages: - Microsoft.Extensions.Configuration.Json
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
+            // add connectionstring to appsettings.json file (see appsettings.json)
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+        }
+    }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -1,5 +1,7 @@
 using Airlines.Data;
 using Airlines.EmailSender;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using Domains.Data;
 using Domains.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -17,12 +19,31 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// Key Vault settings
+string? vaultUrl = builder.Configuration["KeyVault:VaultUrl"];
+string? secretName = builder.Configuration["KeyVault:SecretName"];
+string? secretNamePassword = builder.Configuration["KeyVault:SecretNamePassword"];
+
+// Maak een client met default credentials (werkt lokaal met ingelogde gebruiker, en in Azure met managed identity)
+var client = new SecretClient(new Uri(vaultUrl), new DefaultAzureCredential());
+
+KeyVaultSecret secret = client.GetSecret(secretName);
+KeyVaultSecret mailPassword = client.GetSecret(secretName);
+string connectionString = secret.Value;
+
+string mailPasswordString = mailPassword.Value;
+
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+builder.Configuration["ConnectionStrings:DefaultConnection"] = connectionString;
+builder.Configuration["ConnectionStrings:MailPassword"] = mailPasswordString;
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddDbContext<AirlineDbContext>(options =>
     options.UseSqlServer(connectionString));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
