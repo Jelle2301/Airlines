@@ -102,24 +102,29 @@ namespace Airlines.Controllers
 
 
 
-        /*
-        public IActionResult Delete(int? vluchtId)
+        
+        public IActionResult Delete(int plaatsInShoppingCart)
         {
-            if (bierNr == null)
+            try
             {
-                return NotFound();
+
+
+                ShoppingCartVM? cartList = HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");//hoofdlettergevoelig
+                CartVM? itemToRemove = cartList?.Carts?.ElementAt(plaatsInShoppingCart);
+                cartList?.Carts?.RemoveAt(plaatsInShoppingCart);
+
+                if (itemToRemove != null)
+                {
+                    cartList?.Carts?.Remove(itemToRemove);
+                    HttpContext.Session.SetObject("ShoppingCart", cartList);
+                }
+                return View("index");
             }
-            ShoppingCartVM? cartList = HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");//hoofdlettergevoelig
-
-            CartVM? itemToRemove = cartList?.Carts?.FirstOrDefault(r => r.BeerNumber == bierNr);
-
-            if (itemToRemove != null)
+            catch (Exception ex)
             {
-                cartList?.Carts?.Remove(itemToRemove);
-                HttpContext.Session.SetObject("ShoppingCart", cartList);
+                ModelState.AddModelError("", "Er is een fout opgetreden");
             }
-            return View("index", cartList);
+            return View("index");
+
         }
-        */
-    }
 }

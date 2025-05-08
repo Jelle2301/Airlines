@@ -12,11 +12,13 @@ namespace Airlines.Controllers
         private readonly IMapper _mapper;
         private readonly IPlaatsService _plaatsService;
         private readonly IVluchtService _vluchtService;
-        public VluchtController(IPlaatsService plaatsService, IVluchtService vluchtService, IMapper mapper)
+        private readonly IZitplaatsService _zitplaatsService;
+        public VluchtController(IPlaatsService plaatsService, IVluchtService vluchtService, IMapper mapper, IZitplaatsService zitplaatsService)
         {
             _plaatsService = plaatsService;
             _vluchtService = vluchtService;
             _mapper = mapper;
+            _zitplaatsService = zitplaatsService;
         }
         [HttpPost]
         public async Task<IActionResult> Index(DateTime StartDate, DateTime EndDate, string vertrek, string bestemming)
@@ -42,6 +44,9 @@ namespace Airlines.Controllers
                         vluchtMetOverstappenVM.GewoneVlucht = vlucht;
                         var lstVanOverstapVluchten = await _vluchtService.GetOverstappenVanVlucht(vlucht.VluchtId);
                         vluchtMetOverstappenVM.OverstapVluchten = _mapper.Map<List<VluchtVM>>(lstVanOverstapVluchten);
+                        var aantalBeschikbareZitplaatsen = await _zitplaatsService.TelAantalBeschikbareZitplaatsenVoorVlucht(vlucht.VluchtId);
+
+                       vluchtMetOverstappenVM.AantalBeschikbarePlaatsen = aantalBeschikbareZitplaatsen;
 
                         lstVluchtMetOverstappenVM.Add(vluchtMetOverstappenVM);  
                     }

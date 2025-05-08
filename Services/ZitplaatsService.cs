@@ -67,5 +67,18 @@ namespace Services
                 throw;
             }
         }
+
+        public async Task<int> TelAantalBeschikbareZitplaatsenVoorVlucht(int vluchtId)
+        {
+            try
+            {
+                return await _zitplaatsDAO.TelAantalBeschikbareZitplaatsenVoorVlucht(vluchtId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Service(ZitplaatsService) in TelAantalBeschikbareZitplaatsenVoorVlucht");
+                throw;
+            }
+        }
     }
 }

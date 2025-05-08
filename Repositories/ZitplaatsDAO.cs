@@ -45,6 +45,7 @@ namespace Repositories
             }
         }
 
+
         public async Task MaakZitplaatsBezet(int zitplaatdId)
         {
            await dbContext.Zitplaats.Where(v => v.ZitplaatsId == zitplaatdId).ExecuteUpdateAsync(v => v.SetProperty(z => z.IsBezet, true));
@@ -53,6 +54,20 @@ namespace Repositories
         public async Task MaakZitplaatsVrij(int zitplaatdId)
         {
             await dbContext.Zitplaats.Where(v => v.ZitplaatsId == zitplaatdId).ExecuteUpdateAsync(v => v.SetProperty(z => z.IsBezet, false));
+        }
+
+        public async Task<int> TelAantalBeschikbareZitplaatsenVoorVlucht(int vluchtId)
+        {
+            try
+            {
+                return await dbContext.Zitplaats.Where(v => v.VluchtId == vluchtId).Where(v => v.IsBezet == false).CountAsync();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in DAO(ZitplaatsDAO) in GetAllBeschikbareZitplaatsenByVluchtAsync");
+                throw;
+            }
         }
     }
 }

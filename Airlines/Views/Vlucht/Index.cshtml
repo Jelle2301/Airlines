@@ -35,7 +35,7 @@
                             </div>
                             <hr class="solid"><!--Kan blijkbaar zorgen voor mooie divider lijn zoals in swift-->
                             <div>
-                        <p>🪑 @item.GewoneVlucht.AantalTotalePlaatsen</p>
+                        <p>🪑 @item.AantalBeschikbarePlaatsen</p>
                         <p>Beginprijs: @item.GewoneVlucht.BeginPrijs &euro;</p>
                             </div>
                             
@@ -54,8 +54,11 @@
                     <input type="hidden" name="VertrekNaam" value="@item.GewoneVlucht.VertrekNaam" />
                     <input type="hidden" name="OverstapNaam" value="@item.GewoneVlucht.IsOverstap" />
                     <input type="hidden" name="BestemmingNaam" value="@item.GewoneVlucht.BestemmingNaam" />
-
-                            <button type="submit" class="vluchtButton">Boek deze vlucht</button>
+                    @if(item.AantalBeschikbarePlaatsen !=0){
+                        <button type="submit" class="vluchtButton">Boek deze vlucht</button>
+                    }else{
+                        <button type="submit" class="vluchtButtonBezet">Vlucht is volgeboekt</button>
+                    }
                         </form>
                     </div>
                     

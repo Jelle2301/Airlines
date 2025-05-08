@@ -12,5 +12,6 @@ namespace Services.Interfaces
         Task<Zitplaat?> GetAllBeschikbareZitplaatsenByVluchtAsync(int vluchtId);
         Task MaakZitplaatsBezet(int zitplaatdId);
         Task MaakZitplaatsVrij(int zitplaatdId);
+        Task<int> TelAantalBeschikbareZitplaatsenVoorVlucht(int vluchtId);
     }
 }

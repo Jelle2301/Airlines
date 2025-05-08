@@ -6,76 +6,85 @@
 }
 <link rel="stylesheet" href="/css/shoppingCart.css" asp-append-version="true" />
 <div class="blokPagina">
-<h1><em>Review</em> your cart:</h1>
+    <h1><em>Review</em> your cart:</h1>
 
-@if (Model?.Carts?.Any() == true)
+    @if (Model?.Carts?.Any() == true)
 
 
 
-{
-    <div class="row">
-        <div class="col navbar-brand"></div>
-        <div class="col-6 navbar-text text-end">
-            <small class="navbar-text">
-                <b>Your cart:</b> @*@Model.Carts.Sum(x => x.Count) item(s) -*@ @Model.ComputeTotalValue().ToString("c")
-            </small>
+    {
+        <div class="row">
+            <div class="col navbar-brand"></div>
+            <div class="col-6 navbar-text text-end">
+                <small class="navbar-text">
+                    <b>Your cart:</b> @*@Model.Carts.Sum(x => x.Count) item(s) -*@ @Model.ComputeTotalValue().ToString("c")
+                </small>
+            </div>
         </div>
-    </div>
 
-    <form asp-action="Payment">
+        <form asp-action="Payment">
             <table class="shoppingCartTabel">
-            <thead>
-                <tr>
-                    <th>Voornaam</th>
-                    <th>Achternaam</th>
-                    <th>Prijs</th>
-                    <th>Maaltijd</th>
-                    <th>Reisklasse</th>
-                    <th>Seizoen</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var (cartItem, index) in Model.Carts.Select((value, i) => (value, i)))
-
-                {
+                <thead>
                     <tr>
+                        <th>Voornaam</th>
+                        <th>Achternaam</th>
+                        <th>Prijs</th>
+                        <th>Maaltijd</th>
+                        <th>Reisklasse</th>
+                        <th>Seizoen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Carts == null || Model.Carts.Count == 0)
+                    {
 
-                        <td>
-                            <input asp-for="@cartItem.Ticket.Voornaam" class="form-control" readonly />
-                        </td>
-                        <td>
-                            <input asp-for="@cartItem.Ticket.Achternaam" class="form-control" readonly />
-                        </td>
-                        <!--die asp-for zal ook id maken-->
-                        <td>
-                            <input asp-for="@cartItem.Ticket.Prijs" type="number" class="form-control" readonly />
-                        </td>
-                        <td>
-                            <input asp-for="@cartItem.Ticket.Maaltijd.Naam" class="form-control" readonly />
-                        </td>
-                        <td>
-                            <input asp-for="@cartItem.Ticket.Reisklasse.SoortReisklasse" class="form-control" readonly />
-                        </td>
-                        @if (cartItem.Ticket.Seizoen != null)
+
+                        @foreach (var (cartItem, index) in Model.Carts.Select((value, i) => (value, i)))
+
                         {
-                            <td>
-                                <input asp-for="@cartItem.Ticket.Seizoen.SoortPeriode" class="form-control" readonly />
-                            </td>
-                        }else{
-                            <td>
-                                <p>Geen seizoen actief</p>
-                            </td>
-                        }
-                            <td><button class="deleteBtn"></button></td>
-                        @*
+                            <tr>
+
+                                <td>
+                                    <input asp-for="@cartItem.Ticket.Voornaam" class="form-control" readonly />
+                                </td>
+                                <td>
+                                    <input asp-for="@cartItem.Ticket.Achternaam" class="form-control" readonly />
+                                </td>
+                                <!--die asp-for zal ook id maken-->
+                                <td>
+                                    <input asp-for="@cartItem.Ticket.Prijs" type="number" class="form-control" readonly />
+                                </td>
+                                <td>
+                                    <input asp-for="@cartItem.Ticket.Maaltijd.Naam" class="form-control" readonly />
+                                </td>
+                                <td>
+                                    <input asp-for="@cartItem.Ticket.Reisklasse.SoortReisklasse" class="form-control" readonly />
+                                </td>
+                                @if (cartItem.Ticket.Seizoen != null)
+                                {
+                                    <td>
+                                        <input asp-for="@cartItem.Ticket.Seizoen.SoortPeriode" class="form-control" readonly />
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <p>Geen seizoen actief</p>
+                                    </td>
+                                }
+                                <td><button class="deleteBtn"></button></td>
+                                @*
                         <td>
-                            <a asp-action="Delete" asp-route-bierNr="@cartItem.BeerNumber">
+                            <a asp-action="Delete" asp-route-bierNr="@index">
                                 <img src="~/images/delete.png" alt="Delete" />
                             </a>
                         </td>
                         *@
-                    </tr>
-                }
+                            </tr>
+                        }
+                    }else{
+                        <p>Shoppingcart is leeg</p>
+                    }
             </tbody>
         </table>
         </form>

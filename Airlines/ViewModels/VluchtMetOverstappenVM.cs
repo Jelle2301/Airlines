@@ -4,5 +4,6 @@
     {
         public VluchtVM GewoneVlucht { get; set; } = null!;
         public List<VluchtVM> OverstapVluchten { get; set; } = null!;
+        public int AantalBeschikbarePlaatsen { get; set; }
     }
 }
