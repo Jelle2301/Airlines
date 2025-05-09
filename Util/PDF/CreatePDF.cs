@@ -53,6 +53,8 @@ namespace Util.PDF
                 document.Add(new Paragraph("Vlucht Informatie").SetFontSize(20));
                 document.Add(new Paragraph($"Vertrekplaats: {vlucht.Vertrekplaats.Plaats.Naam}").SetFontSize(12));
                 document.Add(new Paragraph($"Bestemming: {vlucht.Bestemming.Plaats.Naam}").SetFontSize(12));
+                document.Add(new Paragraph($"Vertrektijd: {vlucht.TijdVertrek.ToShortTimeString()}").SetFontSize(12));
+                document.Add(new Paragraph($"Overstappen: {vlucht.EventueleVolgendeOverstap?.Bestemming.Plaats.Naam ?? "Geen overstap"}").SetFontSize(12));
 
                 document.Close();
                 return new MemoryStream(stream.ToArray());

@@ -17,6 +17,8 @@ using Services.Interfaces;
 using System.Text;
 using Util.Mail;
 using Util.Mail.interfaces;
+using Util.PDF;
+using Util.PDF.interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -129,6 +131,7 @@ builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("Email
 builder.Services.AddSingleton<IEmailSend, EmailSend>();
 builder.Services.AddTransient<IDAO<AspNetUser>, UserDAO>();
 builder.Services.AddTransient<IService<AspNetUser>, UserService>();
+builder.Services.AddTransient<ICreatePDF, CreatePDF>();
 
 
 

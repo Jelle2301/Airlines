@@ -50,11 +50,40 @@ namespace Util.Mail
         {
             var mail = new MailMessage(); // aanmaken van een mail-object
             mail.To.Add(new MailAddress(email));
-            mail.From = new
-            MailAddress("jellegoemaere6@gmail.com"); // hier komt jullie Gmail-adres
+            mail.From = new MailAddress(_emailSettings.Sender, _emailSettings.SenderName); // hier komt jullie Gmail-adres
             mail.Subject = subject;
             mail.Body = message;
             mail.Attachments.Add(new Attachment(attachementStream, attachmentName));
+            mail.IsBodyHtml = true;
+            try
+            {
+                using (var smtp = new SmtpClient(_emailSettings.MailServer))
+                {
+                    smtp.Port = _emailSettings.MailPort;
+                    smtp.EnableSsl = true;
+                    smtp.Credentials =
+                    new NetworkCredential(_emailSettings.Sender,
+                    _emailSettings.Password);
+                    await smtp.SendMailAsync(mail);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SendEmailWithPDFSAsync(string email, string subject, string message, List<MemoryStream> attachementStream, List<string> attachmentName, bool isBodyHtml = false)
+        {
+            var mail = new MailMessage(); // aanmaken van een mail-object
+            mail.To.Add(new MailAddress(email));
+            mail.From = new MailAddress(_emailSettings.Sender, _emailSettings.SenderName); // hier komt jullie Gmail-adres
+            mail.Subject = subject;
+            mail.Body = message;
+            foreach (var stream in attachementStream)
+            {
+                mail.Attachments.Add(new Attachment(stream, attachmentName[attachementStream.IndexOf(stream)]));
+            }
             mail.IsBodyHtml = true;
             try
             {

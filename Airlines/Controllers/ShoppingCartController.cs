@@ -1,5 +1,6 @@
 ﻿using System.Reflection.Metadata.Ecma335;
 using System.Security.Claims;
+using System.Text;
 using Airlines.Extensions;
 using Airlines.ViewModels;
 using AutoMapper;
@@ -8,6 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 using Services;
 using Services.Interfaces;
 using SQLitePCL;
+using Util.Mail;
+using Util.Mail.interfaces;
+using Util.PDF;
+using Util.PDF.interfaces;
 
 namespace Airlines.Controllers
 {
@@ -17,21 +22,25 @@ namespace Airlines.Controllers
         private readonly IZitplaatsService _zitplaatsService;
         private readonly ITicketService _ticketService;
         private readonly IBoekingService _boekingService;
+        private readonly IEmailSend _emailSend;
+        private readonly ICreatePDF _createPDF;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ShoppingCartController(IMapper mapper, IZitplaatsService zitplaatsService, ITicketService ticketService, IBoekingService boekingService)
+        public ShoppingCartController(IMapper mapper, IZitplaatsService zitplaatsService, ITicketService ticketService, IBoekingService boekingService, IEmailSend emailSend, ICreatePDF createPDF, IWebHostEnvironment webHostEnvironment)
         {
             _mapper = mapper;
             _zitplaatsService = zitplaatsService;
             _ticketService = ticketService;
             _boekingService = boekingService;
+            _emailSend = emailSend;
+            _createPDF = createPDF;
+            _webHostEnvironment = webHostEnvironment;
         }
         public async Task<IActionResult> Index()
         {
             try
             {
-                ShoppingCartVM? cartList =
-                    HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
-
+                ShoppingCartVM? cartList = HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
 
                 foreach (CartVM cartItem in cartList.Carts)
                 {
@@ -57,8 +66,9 @@ namespace Airlines.Controllers
         {
             try
             {
-                ShoppingCartVM? cartList =
-                    HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
+                ShoppingCartVM? cartList = HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
+                List <Boeking> bookings = new List<Boeking>();
+
                 if (cartList == null)
                 {
                     return RedirectToAction("ShoppingCartLeegIndex", "BoekingAfronding");
@@ -83,32 +93,26 @@ namespace Airlines.Controllers
 
                     var boekingEntity = _mapper.Map<Boeking>(boekingVM);
                     await _boekingService.AddAsync(boekingEntity);
-
+                    bookings.Add(boekingEntity);
                 }
+
+                // Mail sturen met geboekte tickets die binnen komen als pdf
+                generateMailAndSendIt(bookings);
+
                 HttpContext.Session.Remove("ShoppingCart");
+
                 return RedirectToAction("Index", "BoekingAfronding");
-
-
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Er is een fout opgetreden");
             }
             return RedirectToAction("ShoppingCartLeegIndex", "BoekingAfronding");
-
         }
-
-
-
-
-
-
         public IActionResult Delete(int plaatsInShoppingCart)
         {
             try
             {
-
-
                 ShoppingCartVM? cartList = HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");//hoofdlettergevoelig
                 CartVM? itemToRemove = cartList?.Carts?.ElementAt(plaatsInShoppingCart);
                 cartList?.Carts?.RemoveAt(plaatsInShoppingCart);
@@ -126,6 +130,36 @@ namespace Airlines.Controllers
             }
             return View("index");
 
+        }
+
+        public Task generateMailAndSendIt(List<Boeking> bookings)
+        {
+            var logoPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "Geluwe airlines blauw.jpg");
+            List<MemoryStream> pdfStreams = new List<MemoryStream>();
+            List<string> attachmentNames = new List<string>();
+            var userEmail = User.FindFirstValue(ClaimTypes.Email);
+            var mailSubject = "Tickets Gilwe Airlines";
+
+            StringBuilder mailBody = new StringBuilder();
+            mailBody.Append($"Best {User.FindFirstValue(ClaimTypes.Name)}");
+            mailBody.Append("Hierbij ontvangt u uw tickets die u reeds heeft besteld.");
+            mailBody.Append("Hartelijk dank om via Gilwe Airlines te vliegen.");
+            mailBody.Append("U vind uw tickets in de bijlage.");
+            mailBody.Append("Met vriendelijke groeten");
+            mailBody.Append("Gilwe Airlines");
+
+            var bodyMail = mailBody.ToString();
+
+            foreach (var booking in bookings)
+            {
+                    var pdfStream = _createPDF.CreatePDFDocumentAsync(logoPath, booking, booking.Ticket.Vlucht);
+                    pdfStreams.Add(pdfStream);
+
+                    var attachmentName = $"Ticket_{booking.TicketId}.pdf";
+                    attachmentNames.Add(attachmentName);
+            }
+
+            return _emailSend.SendEmailWithPDFSAsync(userEmail, mailSubject, bodyMail, pdfStreams, attachmentNames);
         }
     }
 }

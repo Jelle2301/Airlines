@@ -1,6 +1,4 @@
 ﻿@model Airlines.ViewModels.ShoppingCartVM
-
-
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,9 +7,6 @@
     <h1><em>Review</em> your cart:</h1>
 
     @if (Model?.Carts?.Any() == true)
-
-
-
     {
         <div class="row">
             <div class="col navbar-brand"></div>
@@ -35,14 +30,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
-
-
                         @foreach (var (cartItem, index) in Model.Carts.Select((value, i) => (value, i)))
-
                         {
                             <tr>
-
                                 <td>
                                     <input asp-for="@cartItem.Ticket.Voornaam" class="form-control" readonly />
                                 </td>
@@ -72,16 +62,13 @@
                                     </td>
                                 }
                                 
-                                
                                 <td>
                                 <a asp-action="Delete" class="deleteKnop" asp-route-plaatsInShoppingCart="@index">
                                     Delete
                                     </a>
                                 </td>
-                        
                             </tr>
                         }
-                   
             </tbody>
         </table>
         </form>
@@ -97,12 +84,9 @@
                 </form>
                     
                 </div>
-        </div>
-        
+        </div>       
 }
-
 else
-
 {
     <p>Your shopping cart is empty at the moment.</p>
 }
