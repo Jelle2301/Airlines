@@ -185,7 +185,7 @@ We want you to be able to plan a trip quickly and easily, so we provide addition
     <value>Business</value>
   </data>
   <data name="Travel-class-standard-text" xml:space="preserve">
-    <value>You travel with us with us, you get your meal that you ordered with your flight.
+    <value>You travel with us, you get your meal that you ordered with your flight.
 You can ask for drinks during the flight, water is free for the rest you have to pay on the plane itself.</value>
   </data>
   <data name="Travel-class-economical-text" xml:space="preserve">
