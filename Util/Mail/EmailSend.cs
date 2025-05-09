@@ -24,8 +24,7 @@ namespace Util.Mail
         {
             var mail = new MailMessage(); // aanmaken van een mail-object
             mail.To.Add(new MailAddress(email));
-            mail.From = new
-            MailAddress("jellegoemaere6@gmail.com"); // hier komt jullie Gmail-adres
+            mail.From = new MailAddress(_emailSettings.Sender, _emailSettings.SenderName); // hier komt jullie Gmail-adres opgehaald uit appsettings
             mail.Subject = subject;
             mail.Body = message;
             mail.IsBodyHtml = true;
