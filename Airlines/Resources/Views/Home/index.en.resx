@@ -172,4 +172,28 @@ We want you to be able to plan a trip quickly and easily, so we provide addition
   <data name="See-Flights" xml:space="preserve">
     <value>Check Flights</value>
   </data>
+  <data name="Travel-classes-Title" xml:space="preserve">
+    <value>Travel class</value>
+  </data>
+  <data name="Travel-class-standard" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="Travel-class-economical" xml:space="preserve">
+    <value>Economic</value>
+  </data>
+  <data name="Travel-class-business" xml:space="preserve">
+    <value>Business</value>
+  </data>
+  <data name="Travel-class-standard-text" xml:space="preserve">
+    <value>You travel with us with us, you get your meal that you ordered with your flight.
+You can ask for drinks during the flight, water is free for the rest you have to pay on the plane itself.</value>
+  </data>
+  <data name="Travel-class-economical-text" xml:space="preserve">
+    <value>In this class you will be offered sleeping pillows that you can put on your neck.
+You are also entitled to 1 free glass of cava during your flight.</value>
+  </data>
+  <data name="Travel-class-business-text" xml:space="preserve">
+    <value>You have the same possibilities as the other classes but you are entitled to more baggage, and you also have priority to board.
+Your baggage can be put away on the plane by employees, you have free access to our lounge before your departure.</value>
+  </data>
 </root>

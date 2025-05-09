@@ -172,4 +172,27 @@ Wij willen dat u rap en eenvoudig ene reis kan plannen, daarom stellen we extra 
   <data name="See-Flights" xml:space="preserve">
     <value>Bekijk vluchten</value>
   </data>
+  <data name="Travel-classes-Title" xml:space="preserve">
+    <value>Reis klasses</value>
+  </data>
+  <data name="Travel-class-standard" xml:space="preserve">
+    <value>Standaard</value>
+  </data>
+  <data name="Travel-class-economical" xml:space="preserve">
+    <value>Economic</value>
+  </data>
+  <data name="Travel-class-business" xml:space="preserve">
+    <value>Business</value>
+  </data>
+  <data name="Travel-class-standard-text" xml:space="preserve">
+    <value>U reist met ons mee met ons , u krijgt uw maaltijd die u mee bestelde met uw vlucht.
+U kan tijdens de vlucht drank vragen, water is voor niets voor de rest moet u betalen op het vliegtuig zelf.</value>
+  </data>
+  <data name="Travel-class-economical-text" xml:space="preserve">
+    <value>Binnen deze klasse krijgt u het aanbod om slaapkussenstjes te krijgen die u in uw nek kunt leggen.
+U heeft ook recht op 1 gratis glas cava tijdens uw vlucht.</value>
+  </data>
+  <data name="Travel-class-business-text" xml:space="preserve">
+    <value>U heeft de zelfde mogelijkheden als de andere klassen maar u heeft recht op meer bagage, alsook heeft u prioriteit om op te stappen.</value>
+  </data>
 </root>

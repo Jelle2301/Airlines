@@ -172,4 +172,28 @@
   <data name="See-Flights" xml:space="preserve">
     <value>Voir les vols</value>
   </data>
+  <data name="Travel-classes-Title" xml:space="preserve">
+    <value>Cours de voyage</value>
+  </data>
+  <data name="Travel-class-standard" xml:space="preserve">
+    <value>&#x8;Standard</value>
+  </data>
+  <data name="Travel-class-economical" xml:space="preserve">
+    <value>Economique</value>
+  </data>
+  <data name="Travel-class-business" xml:space="preserve">
+    <value>Business</value>
+  </data>
+  <data name="Travel-class-standard-text" xml:space="preserve">
+    <value>Vous voyagez avec nous, vous recevez votre repas que vous avez commandé avec votre vol.
+Vous pouvez demander des boissons pendant le vol, l'eau est gratuite, sinon vous devez payer dans l'avion lui-même.</value>
+  </data>
+  <data name="Travel-class-economical-text" xml:space="preserve">
+    <value>Dans ce cours, vous aurez la possibilité d'obtenir des oreillers de couchage que vous pourrez placer sur votre cou.
+Vous avez également droit à 1 verre de cava gratuit pendant votre vol.</value>
+  </data>
+  <data name="Travel-class-business-text" xml:space="preserve">
+    <value>Vous avez les mêmes options que les autres classes, mais vous avez droit à plus de bagages et vous avez également la priorité à l'embarquement.
+Vos bagages peuvent être stockés dans l'avion par le personnel, et vous avez libre accès à notre salon avant votre départ.</value>
+  </data>
 </root>

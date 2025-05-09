@@ -172,4 +172,28 @@
   <data name="See-Flights" xml:space="preserve">
     <value>Ver vuelos</value>
   </data>
+  <data name="Travel-classes-Title" xml:space="preserve">
+    <value>Clases de viaje</value>
+  </data>
+  <data name="Travel-class-standard" xml:space="preserve">
+    <value>Estándar</value>
+  </data>
+  <data name="Travel-class-economical" xml:space="preserve">
+    <value>Económico</value>
+  </data>
+  <data name="Travel-class-business" xml:space="preserve">
+    <value>Business</value>
+  </data>
+  <data name="Travel-class-standard-text" xml:space="preserve">
+    <value>Viajas con nosotros y recibes la comida que pediste con tu vuelo.
+Puedes pedir bebidas durante el vuelo, el agua es gratuita, de lo contrario tendrás que pagar en el propio avión.</value>
+  </data>
+  <data name="Travel-class-economical-text" xml:space="preserve">
+    <value>Dentro de esta clase se te ofrecerá la oportunidad de conseguir almohadas para dormir que podrás colocar sobre tu cuello.
+También tendrás derecho a 1 copa de cava gratis durante tu vuelo.</value>
+  </data>
+  <data name="Travel-class-business-text" xml:space="preserve">
+    <value>Tienes las mismas opciones que las otras clases, pero tienes derecho a más equipaje y también tienes prioridad para embarcar.
+El personal podrá guardar su equipaje en el avión y usted tendrá acceso gratuito a nuestra sala VIP antes de su salida.</value>
+  </data>
 </root>

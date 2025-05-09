@@ -6,7 +6,6 @@
 
 <link rel="stylesheet" href="/css/beginpagina.css" asp-append-version="true" />
 <div class="welkomBlokDiv">
-
 <section class="welkomBlok">
     <img src="/images/vliegtuigBeginpagina.jpg" alt="Vliegtuig" />
     <h1>@Localizer["Welcome"].Value</h1>
@@ -36,6 +35,27 @@
         </div>
     </div>
 </section>
+<section class="reisklasses">
+    <h2>@Localizer["Travel-classes-Title"].Value</h2>
+    <div class="inforeisklas">
+        <h3>@Localizer["Travel-class-standard"].Value</h3>
+        <p>
+            @Localizer["Travel-class-standard-text"].Value
+        </p>
+    </div>
+    <div class="inforeisklas">
+        <h3>@Localizer["Travel-class-economical"].Value</h3>
+        <p>
+            @Localizer["Travel-class-economical-text"].Value
+        </p>
+    </div>
+    <div class="inforeisklas">
+        <h3>@Localizer["Travel-class-business"].Value</h3>
+        <p>
+            @Localizer["Travel-class-business-text"].Value
+        </p>
+    </div>
+</section>
 <section class="voorstelling">
     <h2>@Localizer["Origin-Title"].Value</h2>
     <div class="infoblokjeVoorstelling">
@@ -58,5 +78,4 @@
             @Localizer["Founders-Text"].Value
         </p>
     </div>
-    
 </section>
