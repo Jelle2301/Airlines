@@ -1,6 +1,12 @@
-﻿namespace Airlines.EmailSender
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Util.Mail
 {
-    public class EmailSettings
+    public class MailSettings
     {
         public string MailServer { get; set; }
         public int MailPort { get; set; }

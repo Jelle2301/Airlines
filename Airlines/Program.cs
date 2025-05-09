@@ -1,5 +1,4 @@
 using Airlines.Data;
-using Airlines.EmailSender;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Domains.Data;
@@ -16,6 +15,8 @@ using Repositories.Interfaces;
 using Services;
 using Services.Interfaces;
 using System.Text;
+using Util.Mail;
+using Util.Mail.interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -123,8 +124,9 @@ builder.Services.AddTransient<ITicketDAO, TicketDAO>();
 builder.Services.AddTransient<ITicketService, TicketService>();
 builder.Services.AddTransient<IBoekingDAO, BoekingDAO>();
 builder.Services.AddTransient<IBoekingService, BoekingService>();
-builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-builder.Services.AddSingleton<IEmailSender, EmailSender>();
+//builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddSingleton<IEmailSend, EmailSend>();
 builder.Services.AddTransient<IDAO<AspNetUser>, UserDAO>();
 builder.Services.AddTransient<IService<AspNetUser>, UserService>();
 
