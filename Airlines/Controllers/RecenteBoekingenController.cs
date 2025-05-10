@@ -26,10 +26,11 @@ namespace Airlines.Controllers
         {
             try
             {
-
                     var boekingenVanLoggedInPersoon = await _boekingService.GetAllBoekingenVanUser(User.FindFirstValue(ClaimTypes.NameIdentifier));
-                    return View(boekingenVanLoggedInPersoon);
+                    
+                    var boekingenVanLoggedInPersoonVM = _mapper.Map<IEnumerable<MijnBoekingVM>>(boekingenVanLoggedInPersoon);
 
+                    return View(boekingenVanLoggedInPersoonVM);
             }
             catch (Exception ex)
             {

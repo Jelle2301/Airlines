@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Airlines.ViewModels.MijnBoekingVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/lijstBoekings.css" />
+<h1>Mijn boekingen</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Voornaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Achternaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumBoeking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opstap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bestemming)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Voornaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Achternaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumBoeking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opstap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bestemming)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

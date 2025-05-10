@@ -133,6 +133,14 @@ namespace Airlines.AutoMapper
             CreateMap<Plaat, PlaatsVM>()
                 .ForMember(dest => dest.Naam, opt => opt.MapFrom(src => src.Naam));
             CreateMap<BoekingVM, Boeking>();
+
+            CreateMap<Boeking, MijnBoekingVM>()
+                .ForMember(dest => dest.Voornaam, opt => opt.MapFrom(src => src.VoornaamBoeking))
+                .ForMember(dest => dest.Achternaam, opt => opt.MapFrom(src => src.AchternaamBoeking))
+                .ForMember(dest => dest.DatumBoeking, opt => opt.MapFrom(src => src.DatumBoeking))
+                .ForMember(dest => dest.Opstap, opt => opt.MapFrom(src => src.Ticket.Vlucht.Vertrekplaats.Plaats.Naam))
+                .ForMember(dest => dest.Bestemming, opt => opt.MapFrom(src => src.Ticket.Vlucht.Bestemming.Plaats.Naam))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status));
         }
     }
 }
