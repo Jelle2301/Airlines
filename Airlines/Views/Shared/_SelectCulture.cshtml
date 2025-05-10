@@ -16,18 +16,15 @@
         $"~{Context.Request.Path.Value}";
 }
 
-<div>
+<div class="language-selector">
     <form id="selectLanguage" asp-controller="Home"
           asp-action="SetAppLanguage" asp-route-returnUrl="@responseUrl"
-          method="post" class="form-horizontal" role="form">
-        <label asp-for="@currentRequestCulture.RequestCulture.UICulture.Name">
-            @Localizer["Select Language"]
-        </label>
-        <select name="lang" class="setLang"
+          method="post" role="form">
+        <label for="lang">@Localizer["Select Language"]</label>
+        <select id="lang" name="lang" class="setLang"
                 asp-for="@currentRequestCulture.RequestCulture.UICulture.Name"
                 asp-items="cultureItems"
                 onchange="this.form.submit()">
         </select>
-
     </form>
 </div>
